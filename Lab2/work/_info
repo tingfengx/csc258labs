@@ -7,46 +7,67 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/15295/Desktop/csc258labs/Lab2
+dC:/Users/15295/Desktop/csc258labs/Lab2
 vmux
-Z1 !s110 1569192778
+!s110 1569199949
 !i10b 1
 !s100 cdR_1YenO8Tj:kQjco8Hj0
 IR>@9X`C0?ZYPT;Gz=0e8a3
-Z2 VDg1SIo80bB@j0V0VzS_@n1
-R0
-Z3 w1569171708
-Z4 8mux.v
-Z5 Fmux.v
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+Z1 dC:/Users/eloisa/Desktop/csc258labs/Lab2
+w1569198290
+8mux.v
+Fmux.v
 L0 6
-Z6 OV;L;10.5b;63
+Z2 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1569192778.000000
-Z8 !s107 mux.v|
-Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|mux.v|
+!s108 1569199949.000000
+!s107 mux.v|
+!s90 -reportprogress|300|-timescale|1ns/1ns|mux.v|
 !i113 1
-Z10 o-timescale 1ns/1ns
-Z11 tCvgOpt 0
+Z3 o-timescale 1ns/1ns
+Z4 tCvgOpt 0
 vmux2to1
-R1
+Z5 !s110 1569201214
 !i10b 1
-!s100 TTIHj49<CR0@RI;z:V^^52
-I;;U2B[KUn:OCMzk>Rck643
-R2
+!s100 oCj@[R][hSKd]n:;oDa^k3
+I5T;3M:cfZ4lY[n]:5FY_61
 R0
+R1
+Z6 w1569200946
+Z7 8mux4.v
+Z8 Fmux4.v
+L0 33
+R2
+r1
+!s85 0
+31
+Z9 !s108 1569201214.000000
+Z10 !s107 mux4.v|
+Z11 !s90 -reportprogress|300|-timescale|1ns/1ns|mux4.v|
+!i113 1
 R3
 R4
+vmux4
 R5
-L0 18
+!i10b 1
+!s100 IV]@_GBdc=cglYOM2BDZR3
+I3MNzT7_A^UIEWo_0dW4II2
+R0
+R1
 R6
+R7
+R8
+L0 6
+R2
 r1
 !s85 0
 31
-R7
-R8
 R9
-!i113 1
 R10
 R11
+!i113 1
+R3
+R4
