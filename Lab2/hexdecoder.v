@@ -85,7 +85,7 @@ module hex2(x, y, z, w, m);
     input w;
     output m;
   
-    assign m = (x & y & z) | (x & y & ~w) | (~x & ~y & z & ~w);
+    assign m = (x & y & ~w) | (x & y & z) | (~x & ~y & z & ~w);
 
 endmodule
 
@@ -96,7 +96,7 @@ module hex3(x, y, z, w, m);
     input w;
     output m;
   
-    assign m = (~x & y & ~z & ~w) | (~x & ~y & ~z & w) | (y & z & w) | (~y & z & ~w);
+    assign m = (~x & y & ~z & ~w) | (~x & ~y & ~z & w) | (y & z & w) | (x & ~y & z & ~w);
 
 endmodule
 
@@ -107,7 +107,7 @@ module hex4(x, y, z, w, m);
     input w;
     output m;
   
-    assign m = (~x & w) | (~x & y & ~z) | (~y & ~z & w);
+    assign m = (~x & w) | (~y & ~z & w) | (~x & y & ~z);
 
 endmodule
 
@@ -118,7 +118,7 @@ module hex5(x, y, z, w, m);
     input w;
     output m;
   
-    assign m = (~x & ~y & z) | (~x & ~y & w) | (~x & z & w) |(x & y & ~z & w);
+    assign m = (~x & ~y & w) | (~x & ~y & z) | (~x & z & w) |(x & y & ~z & w);
 
 endmodule
 
