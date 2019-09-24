@@ -1,7 +1,7 @@
 //SW[3:0] input, SW[3] SW[2] SW[1] SW[0] for the four places of hex digit xyzw
 //HEX0[6:0] output display
 
-module HexDecoder(HEX0, SW);
+module hexdecoder(HEX0, SW);
     input [3:0] SW;
     output [6:0] HEX0;
 
