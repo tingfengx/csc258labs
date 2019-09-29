@@ -1,0 +1,31 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab3/mux71
+vmux71
+!s110 1569713568
+!i10b 1
+!s100 6kjD:QYi:aJ``7KS@gE]<2
+I]gIW[>D<CSWgdm_:zdDE<2
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1569713190
+8mux71.v
+Fmux71.v
+L0 1
+OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1569713568.000000
+!s107 mux71.v|
+!s90 -reportprogress|300|-timescale|1ns/1ns|mux71.v|
+!i113 1
+o-timescale 1ns/1ns
+tCvgOpt 0
