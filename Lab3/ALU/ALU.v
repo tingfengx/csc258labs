@@ -6,12 +6,19 @@ module ALU(SW, KEY, LEDR, HEX0, HEX2, HEX4, HEX5);
 	output [6:0] HEX4;
 	output [6:0] HEX5;
 	output [7:0] LEDR;
-
+	// two wires for arithmetic operations
+	wire [4:0] addOneToA
 	wire [4:0] addAToB;
-	rippleadder4 FA1(.SW({1'b0, SW[7:4], SW[3:0]}), .LEDR(addAToB[4:0]));
 
-	wire [4:0] addOneToA;
-	rippleadder4 FA2(.SW({1'b0, SW[7:4], 4'b0001}), .LEDR(addOneToA[4:0]));
+	// two 4 bit ripple adders 
+	rippleadder4 ra1(
+		.SW({1'b0, SW[7:4], 4'b0001}), 
+		.LEDR(addOneToA[4:0])
+	);
+	rippleadder4 ra2(
+		.SW({1'b0, SW[7:4], SW[3:0]}), 
+		.LEDR(addAToB[4:0])
+	);
 
 	reg [7:0] ALUout;
 	always @(*)
@@ -20,8 +27,7 @@ module ALU(SW, KEY, LEDR, HEX0, HEX2, HEX4, HEX5);
 			3'b000: ALUout[7:0] = {3'b000, addOneToA[4:0]};
 			3'b001: ALUout[7:0] = {3'b000, addAToB[4:0]};
 			3'b010: ALUout[7:0] = {3'b000, SW[7:4] + SW[3:0]};
-			3'b011: ALUout[7:0] = {SW[7:4] | SW[3:0] ? 4'b0001 : 4'b0000, 
-				SW[7:4] ^ SW[3:0] ? 4'b0001 : 4'b0000};
+			3'b011: ALUout[7:0] = {SW[7:4] | SW[3:0] ? 4'b0001 : 4'b0000, SW[7:4] ^ SW[3:0] ? 4'b0001 : 4'b0000};
 			3'b100: ALUout[7:0] = {7'b0000000, (|SW[7:0])};
 			3'b101: ALUout[7:0] = SW[7:0];
 			default: ALUout[7:0] = 8'b0000_0000;
@@ -29,11 +35,23 @@ module ALU(SW, KEY, LEDR, HEX0, HEX2, HEX4, HEX5);
 	end
 	
 	assign LEDR[7:0] = ALUout[7:0];
-	hexdecoder hex0(.SW(SW[3:0]), .HEX(HEX0[6:0]));    //B
-	hexdecoder hex2(.SW(SW[7:4]), .HEX(HEX2[6:0]));    //A
+	hexdecoder hex0(
+		.SW(SW[3:0]), 
+		.HEX(HEX0[6:0])
+	);
+	hexdecoder hex2(
+		.SW(SW[7:4]), 
+		.HEX(HEX2[6:0])
+	);
 
-	hexdecoder hex4(.SW(ALUout[3:0]), .HEX(HEX4[6:0]));    //ALUout[3:0]
-	hexdecoder hex5(.SW(ALUout[7:4]), .HEX(HEX5[6:0]));    //ALUout[7:4]
+	hexdecoder hex4(
+		.SW(ALUout[3:0]), 
+		.HEX(HEX4[6:0])
+	);    //First four bits
+	hexdecoder hex5(
+		.SW(ALUout[7:4]), 
+		.HEX(HEX5[6:0])
+	);    //Second four bits
 endmodule
 
 module hexdecoder(HEX, SW);
@@ -45,49 +63,56 @@ module hexdecoder(HEX, SW);
         .y(SW[2]),
         .z(SW[1]),
         .w(SW[0]),
-        .m(HEX[0]));
+        .m(HEX[0])
+	);
 	
     hex1 u1(
         .x(SW[3]),
         .y(SW[2]),
         .z(SW[1]),
         .w(SW[0]),
-        .m(HEX[1]));
+        .m(HEX[1])
+	);
 	  
     hex2 u2(
         .x(SW[3]),
         .y(SW[2]),
         .z(SW[1]),
         .w(SW[0]),
-        .m(HEX[2]));
+        .m(HEX[2])
+	);
 
     hex3 u3(
         .x(SW[3]),
         .y(SW[2]),
         .z(SW[1]),
         .w(SW[0]),
-        .m(HEX[3]));
+        .m(HEX[3])
+	);
 
     hex4 u4(
         .x(SW[3]),
         .y(SW[2]),
         .z(SW[1]),
         .w(SW[0]),
-        .m(HEX[4]));
+        .m(HEX[4])
+	);
 
     hex5 u5(
         .x(SW[3]),
         .y(SW[2]),
         .z(SW[1]),
         .w(SW[0]),
-        .m(HEX[5]));
+        .m(HEX[5])
+	);
 
     hex6 u6(
         .x(SW[3]),
         .y(SW[2]),
         .z(SW[1]),
         .w(SW[0]),
-        .m(HEX[6]));
+        .m(HEX[6])
+	;
 				
 endmodule
 
