@@ -1,0 +1,95 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/eloisa/Desktop/csc258labs/Lab3/rippleadder4
+vfulladder
+Z1 !s110 1569728245
+!i10b 1
+!s100 ?]6US]2:4GBXo;iX[Y=B=2
+IaLkCOET<SBLBh82ZTjI:]2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1569727653
+Z4 8rippleadder4.v
+Z5 Frippleadder4.v
+L0 48
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1569728245.000000
+Z8 !s107 rippleadder4.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|rippleadder4.v|
+!i113 1
+Z10 o-timescale 1ns/1ns
+Z11 tCvgOpt 0
+vmux2to1
+R1
+!i10b 1
+!s100 Yo7F:f4O4^;0R3aI6[Pa`3
+INI2_ClLC6gdIBEmL5^2Qo1
+R2
+R0
+R3
+R4
+R5
+L0 94
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vrippleadder4
+R1
+!i10b 1
+!s100 bafB<Z]YUhLa`Y6TfUAz53
+In;lkRSZEWI`IULUA8W04<0
+R2
+R0
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vXOR
+R1
+!i10b 1
+!s100 8_f0ZnWPkTnh]:Kf]I8>02
+IzaZo?<GISkTzjJHjQPngI3
+R2
+R0
+R3
+R4
+R5
+L0 86
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@x@o@r
