@@ -1,15 +1,21 @@
-module ALU(SW, KEY, LEDR, HEX0, HEX2, HEX4, HEX5);
+module ALU(SW, KEY, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
 	input [7:0] SW;
 	input [2:0] KEY;
 	output [6:0] HEX0;
+	output [6:0] HEX1;
 	output [6:0] HEX2;
+	output [6:0] HEX3;
 	output [6:0] HEX4;
 	output [6:0] HEX5;
 	output [7:0] LEDR;
 	// two wires for arithmetic operations
-	wire [4:0] addOneToA
+	wire [4:0] addOneToA;
 	wire [4:0] addAToB;
 
+	// set hex1 and hex3 to zero
+	assign HEX1[6:0] = 7'b0000001;
+	assign HEX3[6:0] = 7'b0000001;
+	
 	// two 4 bit ripple adders 
 	rippleadder4 ra1(
 		.SW({1'b0, SW[7:4], 4'b0001}), 
@@ -27,14 +33,16 @@ module ALU(SW, KEY, LEDR, HEX0, HEX2, HEX4, HEX5);
 			3'b000: ALUout[7:0] = {3'b000, addOneToA[4:0]};
 			3'b001: ALUout[7:0] = {3'b000, addAToB[4:0]};
 			3'b010: ALUout[7:0] = {3'b000, SW[7:4] + SW[3:0]};
-			3'b011: ALUout[7:0] = {SW[7:4] | SW[3:0] ? 4'b0001 : 4'b0000, SW[7:4] ^ SW[3:0] ? 4'b0001 : 4'b0000};
-			3'b100: ALUout[7:0] = {7'b0000000, (|SW[7:0])};
+			3'b011: ALUout[7:0] = {SW[7:4] | SW[3:0], SW[7:4] ^ SW[3:0]};
+			3'b100: ALUout[7:0] = {7'b0000000, (|SW[7:0])}; // bitwise or the 8 inputs
 			3'b101: ALUout[7:0] = SW[7:0];
 			default: ALUout[7:0] = 8'b0000_0000;
 		endcase
 	end
-	
+		
 	assign LEDR[7:0] = ALUout[7:0];
+	
+	// HEX0 and HEX2 shows B and A respectively
 	hexdecoder hex0(
 		.SW(SW[3:0]), 
 		.HEX(HEX0[6:0])
@@ -112,7 +120,7 @@ module hexdecoder(HEX, SW);
         .z(SW[1]),
         .w(SW[0]),
         .m(HEX[6])
-	;
+	);
 				
 endmodule
 
