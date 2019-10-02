@@ -1,0 +1,307 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k}{module} \PYG{n+no}{ALU}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{,} \PYG{n+no}{KEY}\PYG{p}{,} \PYG{n+no}{LEDR}\PYG{p}{,} \PYG{n+no}{HEX0}\PYG{p}{,} \PYG{n+no}{HEX1}\PYG{p}{,} \PYG{n+no}{HEX2}\PYG{p}{,} \PYG{n+no}{HEX3}\PYG{p}{,} \PYG{n+no}{HEX4}\PYG{p}{,} \PYG{n+no}{HEX5}\PYG{p}{);}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{SW}\PYG{p}{;}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{KEY}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX0}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX1}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX2}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX3}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX4}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX5}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{LEDR}\PYG{p}{;}
+        \PYG{c+c1}{// two wires for arithmetic operations}
+        \PYG{k+kt}{wire} \PYG{p}{[}\PYG{l+m+mh}{4}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{addOneToA}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{p}{[}\PYG{l+m+mh}{4}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{addAToB}\PYG{p}{;}
+
+        \PYG{c+c1}{// set hex1 and hex3 to zero}
+        \PYG{k}{assign} \PYG{n+no}{HEX1}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b0000001}\PYG{p}{;}
+        \PYG{k}{assign} \PYG{n+no}{HEX3}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b0000001}\PYG{p}{;}
+
+        \PYG{c+c1}{// two 4 bit ripple adders}
+        \PYG{n}{rippleadder4} \PYG{n}{ra1}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n+no}{SW}\PYG{p}{(\PYGZob{}}\PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{,} \PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{4}\PYG{p}{],} \PYG{l+m+mh}{4}\PYG{l+m+mb}{\PYGZsq{}b0001}\PYG{p}{\PYGZcb{}),}
+            \PYG{p}{.}\PYG{n+no}{LEDR}\PYG{p}{(}\PYG{n}{addOneToA}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{])}
+        \PYG{p}{);}
+        \PYG{n}{rippleadder4} \PYG{n}{ra2}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n+no}{SW}\PYG{p}{(\PYGZob{}}\PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{,} \PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{4}\PYG{p}{],} \PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}),}
+            \PYG{p}{.}\PYG{n+no}{LEDR}\PYG{p}{(}\PYG{n}{addAToB}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{ALUout}\PYG{p}{;}
+        \PYG{k}{always} \PYG{p}{@(}\PYG{o}{*}\PYG{p}{)}
+        \PYG{k}{begin}
+            \PYG{k}{case} \PYG{p}{(}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{])}
+                \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{o}{:} \PYG{n}{ALUout}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{p}{,} \PYG{n}{addOneToA}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{};}
+                \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b001}\PYG{o}{:} \PYG{n}{ALUout}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{p}{,} \PYG{n}{addAToB}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{};}
+                \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b010}\PYG{o}{:} \PYG{n}{ALUout}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{p}{,} \PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{4}\PYG{p}{]} \PYG{o}{+} \PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{};}
+                \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b011}\PYG{o}{:} \PYG{n}{ALUout}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{4}\PYG{p}{]} \PYG{o}{|} \PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{],} \PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{4}\PYG{p}{]} \PYG{o}{\PYGZca{}} \PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{};}
+                \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b100}\PYG{o}{:} \PYG{n}{ALUout}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b0000000}\PYG{p}{,} \PYG{p}{(}\PYG{o}{|}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{])\PYGZcb{};} \PYG{c+c1}{// bitwise or the 8 inputs}
+                \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b101}\PYG{o}{:} \PYG{n}{ALUout}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{o}{=} \PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{];}
+                \PYG{k}{default}\PYG{o}{:} \PYG{n}{ALUout}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mh}{8}\PYG{l+m+mb}{\PYGZsq{}b0000}\PYG{n}{\PYGZus{}0000}\PYG{p}{;}
+            \PYG{k}{endcase}
+        \PYG{k}{end}
+
+        \PYG{k}{assign} \PYG{n+no}{LEDR}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{o}{=} \PYG{n}{ALUout}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{];}
+
+        \PYG{c+c1}{// HEX0 and HEX2 shows B and A respectively}
+        \PYG{n}{hexdecoder} \PYG{n}{hex0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n+no}{SW}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n+no}{HEX}\PYG{p}{(}\PYG{n+no}{HEX0}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{])}
+        \PYG{p}{);}
+        \PYG{n}{hexdecoder} \PYG{n}{hex2}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n+no}{SW}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{4}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n+no}{HEX}\PYG{p}{(}\PYG{n+no}{HEX2}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{hexdecoder} \PYG{n}{hex4}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n+no}{SW}\PYG{p}{(}\PYG{n}{ALUout}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n+no}{HEX}\PYG{p}{(}\PYG{n+no}{HEX4}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{])}
+        \PYG{p}{);}    \PYG{c+c1}{//First four bits}
+        \PYG{n}{hexdecoder} \PYG{n}{hex5}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n+no}{SW}\PYG{p}{(}\PYG{n}{ALUout}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{4}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n+no}{HEX}\PYG{p}{(}\PYG{n+no}{HEX5}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{])}
+        \PYG{p}{);}    \PYG{c+c1}{//Second four bits}
+    \PYG{k}{endmodule}
+
+    \PYG{k}{module} \PYG{n}{hexdecoder}\PYG{p}{(}\PYG{n+no}{HEX}\PYG{p}{,} \PYG{n+no}{SW}\PYG{p}{);}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{SW}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX}\PYG{p}{;}
+
+        \PYG{n}{hex0} \PYG{n}{u0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{y}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{z}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{w}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{m}\PYG{p}{(}\PYG{n+no}{HEX}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{hex1} \PYG{n}{u1}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{y}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{z}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{w}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{m}\PYG{p}{(}\PYG{n+no}{HEX}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{hex2} \PYG{n}{u2}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{y}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{z}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{w}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{m}\PYG{p}{(}\PYG{n+no}{HEX}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{hex3} \PYG{n}{u3}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{y}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{z}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{w}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{m}\PYG{p}{(}\PYG{n+no}{HEX}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{hex4} \PYG{n}{u4}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{y}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{z}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{w}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{m}\PYG{p}{(}\PYG{n+no}{HEX}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{hex5} \PYG{n}{u5}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{y}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{z}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{w}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{m}\PYG{p}{(}\PYG{n+no}{HEX}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{hex6} \PYG{n}{u6}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{y}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{z}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{w}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{m}\PYG{p}{(}\PYG{n+no}{HEX}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{])}
+        \PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+    \PYG{k}{module} \PYG{n}{hex0}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{,} \PYG{n}{w}\PYG{p}{,} \PYG{n}{m}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{x}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{y}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{z}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{w}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{m}\PYG{p}{;}
+
+        \PYG{k}{assign} \PYG{n}{m} \PYG{o}{=} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+    \PYG{k}{module} \PYG{n}{hex1}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{,} \PYG{n}{w}\PYG{p}{,} \PYG{n}{m}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{x}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{y}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{z}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{w}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{m}\PYG{p}{;}
+
+        \PYG{k}{assign} \PYG{n}{m} \PYG{o}{=} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{w}\PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+    \PYG{k}{module} \PYG{n}{hex2}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{,} \PYG{n}{w}\PYG{p}{,} \PYG{n}{m}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{x}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{y}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{z}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{w}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{m}\PYG{p}{;}
+
+        \PYG{k}{assign} \PYG{n}{m} \PYG{o}{=} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{n}{z}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{w}\PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+    \PYG{k}{module} \PYG{n}{hex3}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{,} \PYG{n}{w}\PYG{p}{,} \PYG{n}{m}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{x}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{y}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{z}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{w}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{m}\PYG{p}{;}
+
+        \PYG{k}{assign} \PYG{n}{m} \PYG{o}{=} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{w}\PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+    \PYG{k}{module} \PYG{n}{hex4}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{,} \PYG{n}{w}\PYG{p}{,} \PYG{n}{m}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{x}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{y}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{z}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{w}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{m}\PYG{p}{;}
+
+        \PYG{k}{assign} \PYG{n}{m} \PYG{o}{=} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{z}\PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+    \PYG{k}{module} \PYG{n}{hex5}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{,} \PYG{n}{w}\PYG{p}{,} \PYG{n}{m}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{x}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{y}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{z}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{w}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{m}\PYG{p}{;}
+
+        \PYG{k}{assign} \PYG{n}{m} \PYG{o}{=} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{n}{z}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{)} \PYG{o}{|}\PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+    \PYG{k}{module} \PYG{n}{hex6}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{z}\PYG{p}{,} \PYG{n}{w}\PYG{p}{,} \PYG{n}{m}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{x}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{y}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{z}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{w}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{m}\PYG{p}{;}
+
+        \PYG{k}{assign} \PYG{n}{m} \PYG{o}{=} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{z}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{n}{w}\PYG{p}{)} \PYG{o}{|} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{z} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}}\PYG{n}{w}\PYG{p}{);}
+
+
+    \PYG{k}{endmodule}
+
+    \PYG{k}{module} \PYG{n}{rippleadder4}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{,} \PYG{n+no}{LEDR}\PYG{p}{);}
+        \PYG{c+c1}{// SW[3:0] number 1}
+        \PYG{c+c1}{// SW[7:4] number 2}
+        \PYG{c+c1}{// SW[8:8] carry initial}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{8}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{SW}\PYG{p}{;}
+
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{4}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{LEDR}\PYG{p}{;}  \PYG{c+c1}{// 4 bit result, one bit carry}
+        \PYG{c+c1}{// connecting the four full adders}
+        \PYG{k+kt}{wire} \PYG{n}{w1}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{n}{w2}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{n}{w3}\PYG{p}{;}
+
+        \PYG{n}{fulladder} \PYG{n}{f1}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{cin}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{8}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{a}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{b}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{cout}\PYG{p}{(}\PYG{n}{w1}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{s}\PYG{p}{(}\PYG{n+no}{LEDR}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{fulladder} \PYG{n}{f2}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{cin}\PYG{p}{(}\PYG{n}{w1}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{a}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{b}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{cout}\PYG{p}{(}\PYG{n}{w2}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{s}\PYG{p}{(}\PYG{n+no}{LEDR}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{fulladder} \PYG{n}{f3}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{cin}\PYG{p}{(}\PYG{n}{w2}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{a}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{b}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{cout}\PYG{p}{(}\PYG{n}{w3}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{s}\PYG{p}{(}\PYG{n+no}{LEDR}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{fulladder} \PYG{n}{f4}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{cin}\PYG{p}{(}\PYG{n}{w3}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{a}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{b}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{cout}\PYG{p}{(}\PYG{n+no}{LEDR}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{s}\PYG{p}{(}\PYG{n+no}{LEDR}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{])}
+        \PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+    \PYG{c+c1}{// full adder}
+    \PYG{k}{module} \PYG{n}{fulladder}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{s}\PYG{p}{,} \PYG{n}{cout}\PYG{p}{);}
+    \PYG{c+c1}{//	input a;}
+    \PYG{c+c1}{//	input b;}
+    \PYG{c+c1}{//	input cin;}
+    \PYG{c+c1}{//	output s;}
+    \PYG{c+c1}{//	output cout;}
+    \PYG{c+c1}{//	}
+    \PYG{c+c1}{//	assign s = a\PYGZca{}b\PYGZca{}cin;}
+    \PYG{c+c1}{//	assign cout = (a \PYGZam{} b) | (cin \PYGZam{} (a\PYGZca{}b));}
+        \PYG{k}{input} \PYG{n}{cin}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{a}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{b}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{cout}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{s}\PYG{p}{;}
+
+        \PYG{k+kt}{wire} \PYG{n}{w1}\PYG{p}{;}
+
+        \PYG{n}{mux2to1} \PYG{n}{mux}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n}{b}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{y}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{s}\PYG{p}{(}\PYG{n}{w1}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{m}\PYG{p}{(}\PYG{n}{cout}\PYG{p}{)}
+        \PYG{p}{);}
+
+        \PYG{n+no}{XOR} \PYG{n}{x1}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{a}\PYG{p}{(}\PYG{n}{a}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{b}\PYG{p}{(}\PYG{n}{b}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{f}\PYG{p}{(}\PYG{n}{w1}\PYG{p}{)}
+        \PYG{p}{);}
+
+        \PYG{n+no}{XOR} \PYG{n}{x2}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{a}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{b}\PYG{p}{(}\PYG{n}{w1}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{f}\PYG{p}{(}\PYG{n}{s}\PYG{p}{)}
+        \PYG{p}{);}
+    \PYG{k}{endmodule}
+
+    \PYG{c+c1}{// define a XOR module}
+    \PYG{k}{module} \PYG{n+no}{XOR}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{f}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{a}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{b}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{f}\PYG{p}{;}
+        \PYG{k}{assign} \PYG{n}{f} \PYG{o}{=} \PYG{n}{a} \PYG{o}{\PYGZca{}} \PYG{n}{b}\PYG{p}{;}
+    \PYG{k}{endmodule}
+
+    \PYG{c+c1}{// mux2to1 from lab2}
+    \PYG{k}{module} \PYG{n}{mux2to1}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{s}\PYG{p}{,} \PYG{n}{m}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{x}\PYG{p}{;} \PYG{c+c1}{//selected when s is 0}
+        \PYG{k}{input} \PYG{n}{y}\PYG{p}{;} \PYG{c+c1}{//selected when s is 1}
+        \PYG{k}{input} \PYG{n}{s}\PYG{p}{;} \PYG{c+c1}{//select signal}
+        \PYG{k}{output} \PYG{n}{m}\PYG{p}{;} \PYG{c+c1}{//output}
+
+        \PYG{k}{assign} \PYG{n}{m} \PYG{o}{=} \PYG{n}{s} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{|} \PYG{o}{\PYGZti{}}\PYG{n}{s} \PYG{o}{\PYGZam{}} \PYG{n}{x}\PYG{p}{;}
+    \PYG{k}{endmodule}
+\end{Verbatim}

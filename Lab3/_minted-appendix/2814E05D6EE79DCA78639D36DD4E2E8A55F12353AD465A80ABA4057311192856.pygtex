@@ -1,0 +1,201 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{p}{\PYGZsh{}} \PYG{n}{Set} \PYG{n}{the} \PYG{n}{working} \PYG{n}{dir}\PYG{p}{,} \PYG{n}{where} \PYG{n}{all} \PYG{n}{compiled} \PYG{n}{Verilog} \PYG{n}{goes}\PYG{p}{.}
+    \PYG{n}{vlib} \PYG{n}{work}
+
+    \PYG{p}{\PYGZsh{}} \PYG{n}{Compile} \PYG{n}{all} \PYG{n}{Verilog} \PYG{n}{modules} \PYG{n}{in} \PYG{n}{mux}\PYG{p}{.}\PYG{n}{v} \PYG{n}{to} \PYG{n}{working} \PYG{n}{dir}\PYG{p}{;}
+    \PYG{p}{\PYGZsh{}} \PYG{n}{could} \PYG{n}{also} \PYG{n}{have} \PYG{n}{multiple} \PYG{n}{Verilog} \PYG{n}{files}\PYG{p}{.}
+    \PYG{p}{\PYGZsh{}} \PYG{n}{The} \PYG{n}{timescale} \PYG{n}{argument} \PYG{n}{defines} \PYG{k}{default} \PYG{k+kt}{time} \PYG{n}{unit}
+    \PYG{p}{\PYGZsh{}} \PYG{p}{(}\PYG{n}{used} \PYG{n}{when} \PYG{n}{no} \PYG{n}{unit} \PYG{n}{is} \PYG{n}{specified}\PYG{p}{),} \PYG{k}{while} \PYG{n}{the} \PYG{n}{second} \PYG{n}{number}
+    \PYG{p}{\PYGZsh{}} \PYG{n}{defines} \PYG{n}{precision} \PYG{p}{(}\PYG{n}{all} \PYG{n}{times} \PYG{n}{are} \PYG{n}{rounded} \PYG{n}{to} \PYG{n}{this} \PYG{n}{value}\PYG{p}{)}
+    \PYG{n}{vlog} \PYG{o}{\PYGZhy{}}\PYG{n}{timescale} \PYG{l+m+mh}{1}\PYG{n}{ns}\PYG{o}{/}\PYG{l+m+mh}{1}\PYG{n}{ns} \PYG{n+no}{ALU}\PYG{p}{.}\PYG{n}{v}
+
+    \PYG{p}{\PYGZsh{}} \PYG{n}{Load} \PYG{n}{simulation} \PYG{n}{using} \PYG{n}{mux} \PYG{n}{as} \PYG{n}{the} \PYG{n}{top} \PYG{n}{level} \PYG{n}{simulation} \PYG{k}{module}\PYG{p}{.}
+    \PYG{n}{vsim} \PYG{n+no}{ALU}
+
+    \PYG{p}{\PYGZsh{}} \PYG{n}{Log} \PYG{n}{all} \PYG{n}{signals} \PYG{k}{and} \PYG{n}{add} \PYG{n}{some} \PYG{n}{signals} \PYG{n}{to} \PYG{n}{waveform} \PYG{n}{window}\PYG{p}{.}
+    \PYG{n}{log} \PYG{p}{\PYGZob{}}\PYG{o}{/*}\PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZsh{}} \PYG{n}{add} \PYG{n}{wave} \PYG{p}{\PYGZob{}}\PYG{o}{/*}\PYG{p}{\PYGZcb{}} \PYG{n}{would} \PYG{n}{add} \PYG{n}{all} \PYG{n}{items} \PYG{n}{in} \PYG{n}{top} \PYG{n}{level} \PYG{n}{simulation} \PYG{k}{module}\PYG{p}{.}
+    \PYG{n}{add} \PYG{n}{wave} \PYG{p}{\PYGZob{}}\PYG{o}{/*}\PYG{p}{\PYGZcb{}}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{000}\PYG{p}{,} \PYG{n}{make} \PYG{n}{the} \PYG{k}{output} \PYG{n}{equal} \PYG{n}{to} \PYG{n}{plus} \PYG{n}{one}\PYG{p}{,} \PYG{l+m+mh}{0111} \PYG{o}{+} \PYG{l+m+mh}{1} \PYG{o}{=} \PYG{l+m+mh}{1000}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{000}\PYG{p}{,} \PYG{n}{make} \PYG{n}{the} \PYG{k}{output} \PYG{n}{equal} \PYG{n}{to} \PYG{n}{plus} \PYG{n}{one}\PYG{p}{,} \PYG{l+m+mh}{1111} \PYG{o}{+} \PYG{l+m+mh}{1} \PYG{o}{=} \PYG{l+m+mf}{10000.} \PYG{n}{overflow} \PYG{n}{by} \PYG{n}{one} \PYG{k+kt}{bit}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{001}\PYG{p}{,} \PYG{n+no}{A}\PYG{o}{+}\PYG{n+no}{B}\PYG{p}{.} \PYG{l+m+mh}{0000}\PYG{o}{+}\PYG{l+m+mh}{1111} \PYG{o}{=} \PYG{l+m+mh}{1111}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{001}\PYG{p}{,} \PYG{n+no}{A}\PYG{o}{+}\PYG{n+no}{B}\PYG{p}{.} \PYG{l+m+mh}{0101}\PYG{o}{+}\PYG{l+m+mh}{0001} \PYG{o}{=} \PYG{l+m+mh}{0110}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{010} \PYG{n}{verilog} \PYG{o}{+} \PYG{n}{operator} \PYG{l+m+mh}{0000}\PYG{o}{+}\PYG{l+m+mh}{1111} \PYG{o}{=} \PYG{l+m+mh}{1111}\PYG{p}{,} \PYG{n}{same} \PYG{n}{as} \PYG{k}{case} \PYG{l+m+mh}{1} \PYG{n}{in} \PYG{l+m+mh}{001}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{010} \PYG{n}{verilog} \PYG{o}{+} \PYG{n}{operator}\PYG{p}{,} \PYG{l+m+mh}{0101} \PYG{o}{+} \PYG{l+m+mh}{0001} \PYG{o}{=} \PYG{l+m+mh}{0110}\PYG{p}{,} \PYG{n}{same} \PYG{n}{as} \PYG{k}{case} \PYG{l+m+mh}{2} \PYG{n}{in} \PYG{l+m+mh}{001}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{011}\PYG{p}{,} \PYG{n+no}{XOR} \PYG{n}{in} \PYG{n}{the} \PYG{n}{lower} \PYG{n}{bits} \PYG{k}{and} \PYG{n+no}{OR} \PYG{n}{in} \PYG{n}{higher} \PYG{n}{bits}\PYG{p}{,} \PYG{l+m+mh}{1000} \PYG{k}{and} \PYG{l+m+mh}{0111}\PYG{p}{,} \PYG{n}{all} \PYG{n}{one}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{011}\PYG{p}{,} \PYG{n+no}{XOR} \PYG{n}{in} \PYG{n}{the} \PYG{n}{lower} \PYG{n}{bits} \PYG{k}{and} \PYG{n+no}{OR} \PYG{n}{in} \PYG{n}{higher} \PYG{n}{bits}\PYG{p}{,} \PYG{l+m+mh}{0101} \PYG{k}{and} \PYG{l+m+mh}{1111}\PYG{p}{,}  \PYG{n+no}{OR} \PYG{o}{=} \PYG{l+m+mh}{1111} \PYG{n+no}{XOR}\PYG{o}{=}\PYG{l+m+mh}{1010}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{100} \PYG{k}{case} \PYG{n}{where} \PYG{n}{alll} \PYG{n}{zero}\PYG{p}{,} \PYG{l+m+mh}{0000}\PYG{n}{\PYGZus{}0000}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{100} \PYG{k}{case} \PYG{n}{where} \PYG{n}{all} \PYG{n}{one}\PYG{p}{,} \PYG{l+m+mh}{0000}\PYG{n}{\PYGZus{}0001}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{100} \PYG{k}{case} \PYG{n}{where} \PYG{n}{some} \PYG{n}{one}\PYG{p}{,} \PYG{l+m+mh}{0000}\PYG{n}{\PYGZus{}0001}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{101} \PYG{k}{case} \PYG{n}{apear} \PYG{k}{input}\PYG{p}{,}  \PYG{l+m+mh}{01001101}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+
+    \PYG{p}{\PYGZsh{}} \PYG{l+m+mh}{101} \PYG{k}{case} \PYG{n}{apear} \PYG{k}{input}\PYG{p}{,}  \PYG{l+m+mh}{1100}\PYG{n}{\PYGZus{}1110}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{1}
+    \PYG{n}{run} \PYG{l+m+mh}{10}\PYG{n}{ns}
+\end{Verbatim}

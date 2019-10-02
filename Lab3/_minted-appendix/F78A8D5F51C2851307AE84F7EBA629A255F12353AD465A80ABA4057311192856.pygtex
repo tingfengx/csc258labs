@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{p}{\PYGZsh{}} \PYG{n}{Set} \PYG{n}{the} \PYG{n}{working} \PYG{n}{dir}\PYG{p}{,} \PYG{n}{where} \PYG{n}{all} \PYG{n}{compiled} \PYG{n}{Verilog} \PYG{n}{goes}\PYG{p}{.}
+    \PYG{n}{vlib} \PYG{n}{work}
+
+    \PYG{p}{\PYGZsh{}} \PYG{n}{Compile} \PYG{n}{all} \PYG{n}{Verilog} \PYG{n}{modules} \PYG{n}{in} \PYG{n}{mux}\PYG{p}{.}\PYG{n}{v} \PYG{n}{to} \PYG{n}{working} \PYG{n}{dir}\PYG{p}{;}
+    \PYG{p}{\PYGZsh{}} \PYG{n}{could} \PYG{n}{also} \PYG{n}{have} \PYG{n}{multiple} \PYG{n}{Verilog} \PYG{n}{files}\PYG{p}{.}
+    \PYG{p}{\PYGZsh{}} \PYG{n}{The} \PYG{n}{timescale} \PYG{n}{argument} \PYG{n}{defines} \PYG{k}{default} \PYG{k+kt}{time} \PYG{n}{unit}
+    \PYG{p}{\PYGZsh{}} \PYG{p}{(}\PYG{n}{used} \PYG{n}{when} \PYG{n}{no} \PYG{n}{unit} \PYG{n}{is} \PYG{n}{specified}\PYG{p}{),} \PYG{k}{while} \PYG{n}{the} \PYG{n}{second} \PYG{n}{number}
+    \PYG{p}{\PYGZsh{}} \PYG{n}{defines} \PYG{n}{precision} \PYG{p}{(}\PYG{n}{all} \PYG{n}{times} \PYG{n}{are} \PYG{n}{rounded} \PYG{n}{to} \PYG{n}{this} \PYG{n}{value}\PYG{p}{)}
+    \PYG{n}{vlog} \PYG{o}{\PYGZhy{}}\PYG{n}{timescale} \PYG{l+m+mh}{1}\PYG{n}{ns}\PYG{o}{/}\PYG{l+m+mh}{1}\PYG{n}{ns} \PYG{n}{mux71}\PYG{p}{.}\PYG{n}{v}
+
+    \PYG{p}{\PYGZsh{}} \PYG{n}{Load} \PYG{n}{simulation} \PYG{n}{using} \PYG{n}{mux} \PYG{n}{as} \PYG{n}{the} \PYG{n}{top} \PYG{n}{level} \PYG{n}{simulation} \PYG{k}{module}\PYG{p}{.}
+    \PYG{n}{vsim} \PYG{n}{mux71}
+
+    \PYG{p}{\PYGZsh{}} \PYG{n}{Log} \PYG{n}{all} \PYG{n}{signals} \PYG{k}{and} \PYG{n}{add} \PYG{n}{some} \PYG{n}{signals} \PYG{n}{to} \PYG{n}{waveform} \PYG{n}{window}\PYG{p}{.}
+    \PYG{n}{log} \PYG{p}{\PYGZob{}}\PYG{o}{/*}\PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZsh{}} \PYG{n}{add} \PYG{n}{wave} \PYG{p}{\PYGZob{}}\PYG{o}{/*}\PYG{p}{\PYGZcb{}} \PYG{n}{would} \PYG{n}{add} \PYG{n}{all} \PYG{n}{items} \PYG{n}{in} \PYG{n}{top} \PYG{n}{level} \PYG{n}{simulation} \PYG{k}{module}\PYG{p}{.}
+    \PYG{n}{add} \PYG{n}{wave} \PYG{p}{\PYGZob{}}\PYG{o}{/*}\PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{9}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0} \PYG{l+m+mh}{0}\PYG{p}{,} \PYG{l+m+mh}{1} \PYG{l+m+mh}{512}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{8}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0} \PYG{l+m+mh}{0}\PYG{p}{,} \PYG{l+m+mh}{1} \PYG{l+m+mh}{256} \PYG{o}{\PYGZhy{}}\PYG{n}{r} \PYG{l+m+mh}{512}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0} \PYG{l+m+mh}{0}\PYG{p}{,} \PYG{l+m+mh}{1} \PYG{l+m+mh}{128} \PYG{o}{\PYGZhy{}}\PYG{n}{r} \PYG{l+m+mh}{256}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0} \PYG{l+m+mh}{0}\PYG{p}{,} \PYG{l+m+mh}{1} \PYG{l+m+mh}{64} \PYG{o}{\PYGZhy{}}\PYG{n}{r} \PYG{l+m+mh}{128}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0} \PYG{l+m+mh}{0}\PYG{p}{,} \PYG{l+m+mh}{1} \PYG{l+m+mh}{32} \PYG{o}{\PYGZhy{}}\PYG{n}{r} \PYG{l+m+mh}{64}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0} \PYG{l+m+mh}{0}\PYG{p}{,} \PYG{l+m+mh}{1} \PYG{l+m+mh}{16} \PYG{o}{\PYGZhy{}}\PYG{n}{r} \PYG{l+m+mh}{32}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0} \PYG{l+m+mh}{0}\PYG{p}{,} \PYG{l+m+mh}{1} \PYG{l+m+mh}{8} \PYG{o}{\PYGZhy{}}\PYG{n}{r} \PYG{l+m+mh}{16}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0} \PYG{l+m+mh}{0}\PYG{p}{,} \PYG{l+m+mh}{1} \PYG{l+m+mh}{4} \PYG{o}{\PYGZhy{}}\PYG{n}{r} \PYG{l+m+mh}{8}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0} \PYG{l+m+mh}{0}\PYG{p}{,} \PYG{l+m+mh}{1} \PYG{l+m+mh}{2} \PYG{o}{\PYGZhy{}}\PYG{n}{r} \PYG{l+m+mh}{4}
+    \PYG{k}{force} \PYG{p}{\PYGZob{}}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]\PYGZcb{}} \PYG{l+m+mh}{0} \PYG{l+m+mh}{0}\PYG{p}{,} \PYG{l+m+mh}{1} \PYG{l+m+mh}{1} \PYG{o}{\PYGZhy{}}\PYG{n}{r} \PYG{l+m+mh}{2}
+    \PYG{n}{run} \PYG{l+m+mh}{1024}\PYG{n}{ns}
+\end{Verbatim}
