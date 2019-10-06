@@ -69,21 +69,21 @@ module fulladder(cin, a, b, s, cout);
 		.m(cout)
 	);
 	
-	XOR x1(
+	my_XOR x1(
 		.a(a),
 		.b(b),
 		.f(w1)
 	);
 	
-	XOR x2(
+	my_XOR x2(
 		.a(cin),
 		.b(w1),
 		.f(s)
 	);
 endmodule
 
-// define a XOR module
-module XOR(a, b, f);
+// define a my_XOR module
+module my_XOR(a, b, f);
 	input a;
 	input b;
 	output f;

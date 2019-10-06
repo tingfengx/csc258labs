@@ -13,8 +13,8 @@ module ALU(SW, KEY, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
 	wire [4:0] addAToB;
 
 	// set hex1 and hex3 to zero
-	assign HEX1[6:0] = 7'b0000001;
-	assign HEX3[6:0] = 7'b0000001;
+	assign HEX1[6:0] = 7'b1000000;
+	assign HEX3[6:0] = 7'b1000000;
 	
 	// two 4 bit ripple adders 
 	rippleadder4 ra1(
@@ -273,21 +273,21 @@ module fulladder(cin, a, b, s, cout);
 		.m(cout)
 	);
 	
-	XOR x1(
+	my_XOR x1(
 		.a(a),
 		.b(b),
 		.f(w1)
 	);
 	
-	XOR x2(
+	my_XOR x2(
 		.a(cin),
 		.b(w1),
 		.f(s)
 	);
 endmodule
 
-// define a XOR module
-module XOR(a, b, f);
+// define a my_XOR module
+module my_XOR(a, b, f);
 	input a;
 	input b;
 	output f;
