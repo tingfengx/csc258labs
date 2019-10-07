@@ -1,0 +1,98 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab4/RegisterShifter
+vFlipFlop
+Z1 !s110 1570480913
+!i10b 1
+!s100 06[5`l8:BQkfKPeGin?F30
+I>W4iE=fbXY><m@;;^[;z00
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1570480909
+Z4 8RegisterShifter.v
+Z5 FRegisterShifter.v
+L0 138
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1570480913.000000
+Z8 !s107 RegisterShifter.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|RegisterShifter.v|
+!i113 1
+Z10 o-timescale 1ns/1ns
+Z11 tCvgOpt 0
+n@flip@flop
+vRegisterShifter
+R1
+!i10b 1
+!s100 ZW1UBFIT1IE=[NW5G=oL63
+I8PT3]?lBXYAP50HIY1o1a2
+R2
+R0
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@register@shifter
+vShifterBit
+R1
+!i10b 1
+!s100 >Z?9ZM`lJnQ>HD`F2E:Sk0
+Ig@5zIEhgAH=PmWL63`UK;3
+R2
+R0
+R3
+R4
+R5
+L0 110
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@shifter@bit
+vTwoToOneMux
+R1
+!i10b 1
+!s100 ^meH:EAWjSKUAGVS?^Iiz1
+I^M1c1Ha7[Q6A2[AO<R3fl3
+R2
+R0
+R3
+R4
+R5
+L0 153
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@two@to@one@mux
