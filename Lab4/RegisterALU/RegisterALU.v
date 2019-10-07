@@ -1,5 +1,5 @@
 module RegisterALU(SW, KEY, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
-	input [7:0] SW;
+	input [9:0] SW;
 	input [0:0] KEY;
 	output [6:0] HEX0;
 	output [6:0] HEX1;
@@ -8,7 +8,7 @@ module RegisterALU(SW, KEY, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
 	output [6:0] HEX4;
 	output [6:0] HEX5;
 	output [7:0] LEDR;
-	
+		
 	reg [7:0] ALUout;
 	reg [7:0] Register;
 	
@@ -36,7 +36,7 @@ module RegisterALU(SW, KEY, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
 		case (SW[7:5])
 			3'b000: ALUout[7:0] = {3'b000, addOneToA[4:0]};
 			3'b001: ALUout[7:0] = {3'b000, addAToB[4:0]};
-			3'b010: ALUout[7:0] = {3'b000, A[3:0] = B[3:0]};
+			3'b010: ALUout[7:0] = {3'b000, A[3:0] + B[3:0]};
 			3'b011: ALUout[7:0] = {A[3:0] | B[3:0], A[3:0] ^ B[3:0]};
 			3'b100: ALUout[7:0] = (| {A[3:0], B[3:0]}) ? 8'b00000001 : 8'b00000000;
 			3'b101: ALUout[7:0] = B[3:0] << A[3:0];
@@ -49,12 +49,12 @@ module RegisterALU(SW, KEY, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
 	always @(posedge KEY[0])
 	begin
 		if (SW[9] == 1'b0) // SW[9 for reset_n]
-			register[7:0] <= 8'b00000000;
+			Register[7:0] <= 8'b00000000;
 		else
-			register[7:0] <= ALUOut[7:0];
+			Register[7:0] <= ALUout[7:0];
 	end
 	
-	assign LEDR[7:0] = ALUOut[7:0];
+	assign LEDR[7:0] = ALUout[7:0];
 	
 	// display nothing
 	assign HEX1[6:0] = 7'b1111111;
