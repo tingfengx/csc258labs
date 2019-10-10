@@ -117,20 +117,20 @@ module ShifterUnit8(LoadVal, Load_n, ShiftRight, ASR, clk, reset_n, q);
 
 endmodule
 
-// Acts like a mux for ASR or not
+// Acts like a mux2to1: ASR or not
 module ASRController(asr, first, m);
 	input asr, first;
 	output m;
-	reg m;
+	reg out;
 	always @(*)
 	begin
 		if (asr == 1'b1)
-			m = first;
+			out = first;
 		else
-			m = 1'b0;
+			out = 1'b0;
 	end
+	assign m = out;
 endmodule
-
 
 module ShifterBit(load_val, load_n, clk, reset_n, shift, in, out);
 	input load_val, load_n, clk, reset_n, shift, in;
@@ -138,14 +138,14 @@ module ShifterBit(load_val, load_n, clk, reset_n, shift, in, out);
 	wire w0;
 	wire w1;
 	
-	mux m0(
+	mux2to1 m0(
 		.x(out),
 		.y(in),
 		.s(shift),
 		.m(w0)
 	);
 	
-	mux m1(
+	mux2to1 m1(
 		.x(load_val),
 		.y(w0),
 		.s(load_n),
@@ -161,6 +161,15 @@ module ShifterBit(load_val, load_n, clk, reset_n, shift, in, out);
 
 endmodule
 
+// mux2to1 from lab2
+module mux2to1(x, y, s, m);
+	input x; //selected when s is 0
+	input y; //selected when s is 1
+	input s; //select signal
+	output m; //output
+	
+	assign m = s & y | ~s & x;
+endmodule
 
 module DFlipFlop(d, clk, r, q);
 	input d, clk;
@@ -178,14 +187,4 @@ module DFlipFlop(d, clk, r, q);
 		else
 			q <= d;
 	end
-endmodule
-
-
-module mux(x, y, s, m);
-    input x;
-    input y;
-    input s;
-    output m;
-  
-    assign m = s & y | ~s & x;
 endmodule
