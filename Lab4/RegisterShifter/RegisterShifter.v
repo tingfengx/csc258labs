@@ -1,162 +1,182 @@
 module RegisterShifter(SW, KEY, LEDR);
-	input [9:0] SW; 
+	input [9:0] SW;
 	input [3:0] KEY;
 	output [7:0] LEDR;
-	wire [7:0] loadValue;
-	wire clk;
-	wire ASR;
-	wire reset_n;
-	wire Load_n;
-	wire ShiftRight;
+	
+	ShifterUnit8 s(
+		.LoadVal(SW[7:0]),
+		.clk(KEY[0]),
+		.Load_n(KEY[1]),
+		.ShiftRight(KEY[2]),
+		.ASR(KEY[3]),
+		.reset_n(SW[9]),
+		.q(LEDR[7:0])
+	);
+endmodule
+
+
+
+module ShifterUnit8(LoadVal, Load_n, ShiftRight, ASR, clk, reset_n, q);
+	input [7:0] LoadVal;
+	input Load_n, ShiftRight, ASR, clk, reset_n;
+	output [7:0] q;
 	
 	wire w0;
-	wire [7:0] Q;
 	
-   	assign loadValue[7:0] = SW[7:0];
-   	assign reset_n = SW[9];
-	assign Load_n = KEY[1];
-	assign ShiftRight = KEY[2];
-	assign ASR = KEY[3];
-	assign clk = KEY[0];
-	
-	TwoToOneMux M0(
-		.x(1'b0), 
-		.y(Q[7]), 
-		.s(ASR), 
+	ASRCirc asr0(
+		.asr(ASR),
+		.first(LoadVal[7]),
 		.m(w0)
 	);
-    
+	
 	ShifterBit s7(
-		.load_val(loadValue[7]), 
-		.in(w0), 
-		.out(Q[7]), 
-		.reset_n(reset_n), 
-		.clk(clk), 
-		.load_n(Load_n), 
-		.shift(ShiftRight)
+		.load_val(LoadVal[7]),
+		.load_n(Load_n),
+		.shift(ShiftRight),
+		.clk(clk),
+		.reset_n(reset_n),
+		.in(w0),
+		.out(q[7])
 	);
 	
 	ShifterBit s6(
-		.load_val(loadValue[6]), 
-		.in(Q[7]), 
-		.out(Q[6]), 
-		.reset_n(reset_n), 
+		.load_val(LoadVal[6]),
+		.load_n(Load_n),
+		.shift(ShiftRight),
 		.clk(clk),
-		.load_n(Load_n), 
-		.shift(ShiftRight)
+		.reset_n(reset_n),
+		.in(q[7]),
+		.out(q[6])
 	);
-
+	
 	ShifterBit s5(
-		.load_val(loadValue[5]), 
-		.in(Q[6]),
-		.out(Q[5]),
-		.reset_n(reset_n), 
-		.clk(clk), 
-		.load_n(Load_n), 
-		.shift(ShiftRight)
+		.load_val(LoadVal[5]),
+		.load_n(Load_n),
+		.shift(ShiftRight),
+		.clk(clk),
+		.reset_n(reset_n),
+		.in(q[6]),
+		.out(q[5])
 	);
 	
 	ShifterBit s4(
-		.load_val(loadValue[4]), 
-		.in(Q[5]), 
-		.out(Q[4]), 
-		.reset_n(reset_n), 
-		.clk(clk), 
-		.load_n(Load_n), 
-		.shift(ShiftRight)
+		.load_val(LoadVal[4]),
+		.load_n(Load_n),
+		.shift(ShiftRight),
+		.clk(clk),
+		.reset_n(reset_n),
+		.in(q[5]),
+		.out(q[4])
 	);
-
+	
 	ShifterBit s3(
-		.load_val(loadValue[3]), 
-		.in(Q[4]), 
-		.out(Q[3]), 
-		.reset_n(reset_n), 
-		.clk(clk), 
-		.load_n(Load_n), 
-		.shift(ShiftRight)
+		.load_val(LoadVal[3]),
+		.load_n(Load_n),
+		.shift(ShiftRight),
+		.clk(clk),
+		.reset_n(reset_n),
+		.in(q[4]),
+		.out(q[3])
 	);
-
+	
 	ShifterBit s2(
-		.load_val(loadValue[2]), 
-		.in(Q[3]), 
-		.out(Q[2]), 
-		.reset_n(reset_n), 
-		.clk(clk), 
-		.load_n(Load_n), 
-		.shift(ShiftRight)
+		.load_val(LoadVal[2]),
+		.load_n(Load_n),
+		.shift(ShiftRight),
+		.clk(clk),
+		.reset_n(reset_n),
+		.in(q[3]),
+		.out(q[2])
 	);
-
+	
 	ShifterBit s1(
-		.load_val(loadValue[1]), 
-		.in(Q[2]), 
-		.out(Q[1]), 
-		.reset_n(reset_n), 
-		.clk(clk), 
-		.load_n(Load_n), 
-		.shift(ShiftRight)
+		.load_val(LoadVal[1]),
+		.load_n(Load_n),
+		.shift(ShiftRight),
+		.clk(clk),
+		.reset_n(reset_n),
+		.in(q[2]),
+		.out(q[1])
 	);
-
+	
 	ShifterBit s0(
-		.load_val(loadValue[0]), 
-		.in(Q[1]), 
-		.out(Q[0]), 
-		.reset_n(reset_n), 
-		.clk(clk), 
-		.load_n(Load_n), 
-		.shift(ShiftRight)
+		.load_val(LoadVal[0]),
+		.load_n(Load_n),
+		.shift(ShiftRight),
+		.clk(clk),
+		.reset_n(reset_n),
+		.in(q[1]),
+		.out(q[0])
 	);
 
-	assign LEDR[7:0] = Q[7:0];
 endmodule
 
-module ShifterBit(load_val, in, out, reset_n, clk, load_n, shift);
-	input in, load_val, reset_n, clk, load_n, shift;
-	output out;
-	wire w1, w2;
 
-	TwoToOneMux M0(
-		.x(in), 
-		.y(out), 
-		.s(shift), 
+module ASRCirc(asr, first, m);
+	input asr, first;
+	output reg m;
+	always @(*)
+	begin
+		if (asr == 1'b1)
+			m <= first;
+		else
+			m <= 1'b0;
+	end
+endmodule
+
+
+module ShifterBit(load_val, load_n, clk, reset_n, shift, in, out);
+	input load_val, load_n, clk, reset_n, shift, in;
+	output out;
+	
+	wire w0, w1;
+	
+	mux m0(
+		.x(out),
+		.y(in),
+		.s(shift),
+		.m(w0)
+	);
+	
+	mux m1(
+		.x(load_val),
+		.y(w0),
+		.s(load_n),
 		.m(w1)
 	);
-
-	TwoToOneMux M1(
-		.x(load_val), 
-		.y(w1),
-		.s(load_n), 
-		.m(w2)
+	
+	DFlipFlop d0(
+		.d(w1),
+		.clk(clk),
+		.r(reset_n),
+		.q(out)
 	);
 
-	FlipFlop F0(
-		.d(w2), 
-		.q(out), 
-		.clock(clk), 
-		.reset_n(reset_n)
-	);
 endmodule
 
 
-module FlipFlop(d, q, clock, reset_n);
-	input clock, reset_n;
-	input d;
+module DFlipFlop(d, clk, r, q);
+	input d, clk;
+	input r;
 	output q;
+	
 	reg q;
 	
-	always @(posedge clock)
+	always @(posedge clk)
 	begin
-		if (reset_n == 1'b0)
+		if (r == 1'b0)
 			q <= 1'b0;
 		else
 			q <= d;
 	end
 endmodule
 
-module TwoToOneMux(x, y, s, m);
-	input x;
-	input y;
-	input s;
-	output m;
-	
-	assign m = s ? y : x;
+
+module mux(x, y, s, m);
+    input x;
+    input y;
+    input s;
+    output m;
+  
+    assign m = s & y | ~s & x;
 endmodule

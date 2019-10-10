@@ -8,33 +8,96 @@ z2
 !i10f 100
 cModel Technology
 Z0 d/h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab4/RegisterShifter
-vFlipFlop
-Z1 !s110 1570480913
+vasrcircuit
+Z1 !s110 1570738082
 !i10b 1
-!s100 06[5`l8:BQkfKPeGin?F30
-I>W4iE=fbXY><m@;;^[;z00
+!s100 A:RGJWbh[8W9AoaJDELLf0
+Ild@L]0WITLQAPV4:h`ejo0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z3 w1570480909
+Z3 w1570737521
 Z4 8RegisterShifter.v
 Z5 FRegisterShifter.v
-L0 138
+L0 117
 Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1570480913.000000
+Z7 !s108 1570738082.000000
 Z8 !s107 RegisterShifter.v|
 Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|RegisterShifter.v|
 !i113 1
 Z10 o-timescale 1ns/1ns
 Z11 tCvgOpt 0
+vdfflop
+R1
+!i10b 1
+!s100 <oQDf90mN^@F29am_`BLI3
+IWe8hN`o>beE@h2ig]fGQ;3
+R2
+R0
+R3
+R4
+R5
+L0 162
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vFlipFlop
+Z12 !s110 1570737171
+!i10b 1
+!s100 Pj]U<lloZWhP>74nBlz3:1
+IIRmHfkPln0b^GPlWzzMHe1
+R2
+R0
+Z13 w1570735242
+R4
+R5
+L0 140
+R6
+r1
+!s85 0
+31
+Z14 !s108 1570737171.000000
+R8
+R9
+!i113 1
+R10
+R11
 n@flip@flop
+vmux
+R1
+!i10b 1
+!s100 _3PWLTEWgj_7hC63Cg_a42
+In<mJhY37CI]oP=965zRV52
+R2
+R0
+R3
+R4
+R5
+L0 180
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
 vRegisterShifter
 R1
 !i10b 1
-!s100 ZW1UBFIT1IE=[NW5G=oL63
-I8PT3]?lBXYAP50HIY1o1a2
+!s100 UmKoS?[cjWaD3DR>6BQ162
+IcFP;:5?S@E3>m:QUgc^ja3
 R2
 R0
 R3
@@ -52,17 +115,17 @@ R9
 R10
 R11
 n@register@shifter
-vShifterBit
+vshifter8bit
 R1
 !i10b 1
-!s100 >Z?9ZM`lJnQ>HD`F2E:Sk0
-Ig@5zIEhgAH=PmWL63`UK;3
+!s100 gGGca17oYoGTSNkk2Bc[11
+IDbRO2d?Xfbj0FKdZ:;m1a2
 R2
 R0
 R3
 R4
 R5
-L0 110
+L0 19
 R6
 r1
 !s85 0
@@ -73,23 +136,65 @@ R9
 !i113 1
 R10
 R11
+vShifterBit
+R12
+!i10b 1
+!s100 8M9EXQEHVj6JGG<4hfLI`2
+I^JIGHLNZzVK5<Ho1<PBVM3
+R2
+R0
+R13
+R4
+R5
+L0 112
+R6
+r1
+!s85 0
+31
+R14
+R8
+R9
+!i113 1
+R10
+R11
 n@shifter@bit
-vTwoToOneMux
+vshifterbit
 R1
 !i10b 1
-!s100 ^meH:EAWjSKUAGVS?^Iiz1
-I^M1c1Ha7[Q6A2[AO<R3fl3
+!s100 `;H^m8_P^EWD]=MZ;XSSg3
+I7>5SALVK6PGjMF46UmRCe3
 R2
 R0
 R3
 R4
 R5
-L0 153
+L0 131
 R6
 r1
 !s85 0
 31
 R7
+R8
+R9
+!i113 1
+R10
+R11
+vTwoToOneMux
+R12
+!i10b 1
+!s100 Vj?LOK[OaLCUCA]1fWLgP3
+IB^bVCUT`G]Pz9KZa^ciCg2
+R2
+R0
+R13
+R4
+R5
+L0 155
+R6
+r1
+!s85 0
+31
+R14
 R8
 R9
 !i113 1
