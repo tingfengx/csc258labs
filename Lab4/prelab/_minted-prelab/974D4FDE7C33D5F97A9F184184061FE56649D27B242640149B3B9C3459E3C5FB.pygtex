@@ -1,0 +1,193 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k}{module} \PYG{n}{RegisterShifter}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{,} \PYG{n+no}{KEY}\PYG{p}{,} \PYG{n+no}{LEDR}\PYG{p}{);}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{9}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{SW}\PYG{p}{;} \PYG{c+c1}{// SW8 Unused}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{KEY}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{LEDR}\PYG{p}{;}
+
+        \PYG{n}{ShifterUnit8} \PYG{n}{s}\PYG{p}{(}
+            \PYG{c+c1}{// SW7\PYGZhy{}0: LoadVal}
+            \PYG{p}{.}\PYG{n}{LoadVal}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{c+c1}{// KEY[1] Load\PYGZus{}n}
+            \PYG{p}{.}\PYG{n}{Load\PYGZus{}n}\PYG{p}{(}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]),}
+            \PYG{c+c1}{// KEY[2] ShifterRight}
+            \PYG{p}{.}\PYG{n}{ShiftRight}\PYG{p}{(}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]),}
+            \PYG{c+c1}{// KEY[3] ASR}
+            \PYG{p}{.}\PYG{n+no}{ASR}\PYG{p}{(}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]),}
+            \PYG{c+c1}{// KEY[0] Clock Signal}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{c+c1}{// Reset or not}
+            \PYG{p}{.}\PYG{n}{reset\PYGZus{}n}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{9}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{q}\PYG{p}{(}\PYG{n+no}{LEDR}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{])}
+        \PYG{p}{);}
+    \PYG{k}{endmodule}
+
+
+    \PYG{c+c1}{// 8 bit shifter module}
+    \PYG{k}{module} \PYG{n}{ShifterUnit8}\PYG{p}{(}\PYG{n}{LoadVal}\PYG{p}{,} \PYG{n}{Load\PYGZus{}n}\PYG{p}{,} \PYG{n}{ShiftRight}\PYG{p}{,} \PYG{n+no}{ASR}\PYG{p}{,} \PYG{n}{clk}\PYG{p}{,} \PYG{n}{reset\PYGZus{}n}\PYG{p}{,} \PYG{n}{q}\PYG{p}{);}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{LoadVal}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{Load\PYGZus{}n}\PYG{p}{,} \PYG{n}{ShiftRight}\PYG{p}{,} \PYG{n+no}{ASR}\PYG{p}{,} \PYG{n}{clk}\PYG{p}{,} \PYG{n}{reset\PYGZus{}n}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{q}\PYG{p}{;}
+
+        \PYG{k+kt}{wire} \PYG{n}{w0}\PYG{p}{;}
+
+        \PYG{n}{ASRCirc} \PYG{n}{asr0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{asr}\PYG{p}{(}\PYG{n+no}{ASR}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{first}\PYG{p}{(}\PYG{n}{LoadVal}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{m}\PYG{p}{(}\PYG{n}{w0}\PYG{p}{)}
+        \PYG{p}{);}
+
+        \PYG{n}{ShifterBit} \PYG{n}{s7}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}val}\PYG{p}{(}\PYG{n}{LoadVal}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}n}\PYG{p}{(}\PYG{n}{Load\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{shift}\PYG{p}{(}\PYG{n}{ShiftRight}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{reset\PYGZus{}n}\PYG{p}{(}\PYG{n}{reset\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{in}\PYG{p}{(}\PYG{n}{w0}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{out}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{ShifterBit} \PYG{n}{s6}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}val}\PYG{p}{(}\PYG{n}{LoadVal}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}n}\PYG{p}{(}\PYG{n}{Load\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{shift}\PYG{p}{(}\PYG{n}{ShiftRight}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{reset\PYGZus{}n}\PYG{p}{(}\PYG{n}{reset\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{in}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{out}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{ShifterBit} \PYG{n}{s5}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}val}\PYG{p}{(}\PYG{n}{LoadVal}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}n}\PYG{p}{(}\PYG{n}{Load\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{shift}\PYG{p}{(}\PYG{n}{ShiftRight}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{reset\PYGZus{}n}\PYG{p}{(}\PYG{n}{reset\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{in}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{out}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{ShifterBit} \PYG{n}{s4}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}val}\PYG{p}{(}\PYG{n}{LoadVal}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}n}\PYG{p}{(}\PYG{n}{Load\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{shift}\PYG{p}{(}\PYG{n}{ShiftRight}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{reset\PYGZus{}n}\PYG{p}{(}\PYG{n}{reset\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{in}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{5}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{out}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{ShifterBit} \PYG{n}{s3}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}val}\PYG{p}{(}\PYG{n}{LoadVal}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}n}\PYG{p}{(}\PYG{n}{Load\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{shift}\PYG{p}{(}\PYG{n}{ShiftRight}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{reset\PYGZus{}n}\PYG{p}{(}\PYG{n}{reset\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{in}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{4}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{out}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{ShifterBit} \PYG{n}{s2}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}val}\PYG{p}{(}\PYG{n}{LoadVal}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}n}\PYG{p}{(}\PYG{n}{Load\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{shift}\PYG{p}{(}\PYG{n}{ShiftRight}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{reset\PYGZus{}n}\PYG{p}{(}\PYG{n}{reset\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{in}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{out}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{ShifterBit} \PYG{n}{s1}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}val}\PYG{p}{(}\PYG{n}{LoadVal}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}n}\PYG{p}{(}\PYG{n}{Load\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{shift}\PYG{p}{(}\PYG{n}{ShiftRight}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{reset\PYGZus{}n}\PYG{p}{(}\PYG{n}{reset\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{in}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{out}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{n}{ShifterBit} \PYG{n}{s0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}val}\PYG{p}{(}\PYG{n}{LoadVal}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{load\PYGZus{}n}\PYG{p}{(}\PYG{n}{Load\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{shift}\PYG{p}{(}\PYG{n}{ShiftRight}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{reset\PYGZus{}n}\PYG{p}{(}\PYG{n}{reset\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{in}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{out}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{])}
+        \PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+    \PYG{c+c1}{// Acts like a mux for ASR or not}
+    \PYG{k}{module} \PYG{n}{ASRCirc}\PYG{p}{(}\PYG{n}{asr}\PYG{p}{,} \PYG{n}{first}\PYG{p}{,} \PYG{n}{m}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{asr}\PYG{p}{,} \PYG{n}{first}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{m}\PYG{p}{;}
+        \PYG{k+kt}{reg} \PYG{n}{m}\PYG{p}{;}
+        \PYG{k}{always} \PYG{p}{@(}\PYG{o}{*}\PYG{p}{)}
+        \PYG{k}{begin}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{asr} \PYG{o}{==} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{)}
+                \PYG{n}{m} \PYG{o}{=} \PYG{n}{first}\PYG{p}{;}
+            \PYG{k}{else}
+                \PYG{n}{m} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+        \PYG{k}{end}
+    \PYG{k}{endmodule}
+
+
+    \PYG{k}{module} \PYG{n}{ShifterBit}\PYG{p}{(}\PYG{n}{load\PYGZus{}val}\PYG{p}{,} \PYG{n}{load\PYGZus{}n}\PYG{p}{,} \PYG{n}{clk}\PYG{p}{,} \PYG{n}{reset\PYGZus{}n}\PYG{p}{,} \PYG{n}{shift}\PYG{p}{,} \PYG{n}{in}\PYG{p}{,} \PYG{n}{out}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{load\PYGZus{}val}\PYG{p}{,} \PYG{n}{load\PYGZus{}n}\PYG{p}{,} \PYG{n}{clk}\PYG{p}{,} \PYG{n}{reset\PYGZus{}n}\PYG{p}{,} \PYG{n}{shift}\PYG{p}{,} \PYG{n}{in}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{out}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{n}{w0}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{n}{w1}\PYG{p}{;}
+
+        \PYG{n}{mux} \PYG{n}{m0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n}{out}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{y}\PYG{p}{(}\PYG{n}{in}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{s}\PYG{p}{(}\PYG{n}{shift}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{m}\PYG{p}{(}\PYG{n}{w0}\PYG{p}{)}
+        \PYG{p}{);}
+
+        \PYG{n}{mux} \PYG{n}{m1}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n}{load\PYGZus{}val}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{y}\PYG{p}{(}\PYG{n}{w0}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{s}\PYG{p}{(}\PYG{n}{load\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{m}\PYG{p}{(}\PYG{n}{w1}\PYG{p}{)}
+        \PYG{p}{);}
+
+        \PYG{n}{DFlipFlop} \PYG{n}{d0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{d}\PYG{p}{(}\PYG{n}{w1}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{r}\PYG{p}{(}\PYG{n}{reset\PYGZus{}n}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{q}\PYG{p}{(}\PYG{n}{out}\PYG{p}{)}
+        \PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+
+    \PYG{k}{module} \PYG{n}{DFlipFlop}\PYG{p}{(}\PYG{n}{d}\PYG{p}{,} \PYG{n}{clk}\PYG{p}{,} \PYG{n}{r}\PYG{p}{,} \PYG{n}{q}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{d}\PYG{p}{,} \PYG{n}{clk}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{r}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{q}\PYG{p}{;}
+
+        \PYG{k+kt}{reg} \PYG{n}{q}\PYG{p}{;}
+
+        \PYG{k}{always} \PYG{p}{@(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{)}
+        \PYG{k}{begin}
+            \PYG{c+c1}{// If reset\PYGZus{}n == 0: reset the flip flop}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{r} \PYG{o}{==} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{)}
+                \PYG{n}{q} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+            \PYG{c+c1}{// transparent d\PYGZhy{}flipflop}
+            \PYG{k}{else}
+                \PYG{n}{q} \PYG{o}{\PYGZlt{}=} \PYG{n}{d}\PYG{p}{;}
+        \PYG{k}{end}
+    \PYG{k}{endmodule}
+
+
+    \PYG{k}{module} \PYG{n}{mux}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{s}\PYG{p}{,} \PYG{n}{m}\PYG{p}{);}
+        \PYG{k}{input} \PYG{n}{x}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{y}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n}{s}\PYG{p}{;}
+        \PYG{k}{output} \PYG{n}{m}\PYG{p}{;}
+
+        \PYG{k}{assign} \PYG{n}{m} \PYG{o}{=} \PYG{n}{s} \PYG{o}{\PYGZam{}} \PYG{n}{y} \PYG{o}{|} \PYG{o}{\PYGZti{}}\PYG{n}{s} \PYG{o}{\PYGZam{}} \PYG{n}{x}\PYG{p}{;}
+    \PYG{k}{endmodule}
+\end{Verbatim}
