@@ -12,8 +12,8 @@ module RegisterShifter(SW, KEY, LEDR);
 	wire w0;
 	wire [7:0] Q;
 	
-   assign loadValue[7:0] = SW[7:0];
-   assign reset_n = SW[9];
+   	assign loadValue[7:0] = SW[7:0];
+   	assign reset_n = SW[9];
 	assign Load_n = KEY[1];
 	assign ShiftRight = KEY[2];
 	assign ASR = KEY[3];
@@ -28,7 +28,8 @@ module RegisterShifter(SW, KEY, LEDR);
     
 	ShifterBit s7(
 		.load_val(loadValue[7]), 
-		.in(w0), .out(Q[7]), 
+		.in(w0), 
+		.out(Q[7]), 
 		.reset_n(reset_n), 
 		.clk(clk), 
 		.load_n(Load_n), 
@@ -37,7 +38,8 @@ module RegisterShifter(SW, KEY, LEDR);
 	
 	ShifterBit s6(
 		.load_val(loadValue[6]), 
-		.in(Q[7]), .out(Q[6]), 
+		.in(Q[7]), 
+		.out(Q[6]), 
 		.reset_n(reset_n), 
 		.clk(clk),
 		.load_n(Load_n), 
