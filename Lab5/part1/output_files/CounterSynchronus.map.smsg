@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at CounterSynchronus.v(5): object "HEX0" differs only in case from object "hex0" in the same scope File: /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab5/part1/CounterSynchronus.v Line: 5
+Info (10281): Verilog HDL Declaration information at CounterSynchronus.v(6): object "HEX1" differs only in case from object "hex1" in the same scope File: /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab5/part1/CounterSynchronus.v Line: 6

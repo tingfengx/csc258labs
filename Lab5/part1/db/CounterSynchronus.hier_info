@@ -1,0 +1,118 @@
+|CounterSynchronus
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+KEY[0] => KEY[0].IN1
+HEX0[0] <= hex:hex0.port1
+HEX0[1] <= hex:hex0.port1
+HEX0[2] <= hex:hex0.port1
+HEX0[3] <= hex:hex0.port1
+HEX0[4] <= hex:hex0.port1
+HEX0[5] <= hex:hex0.port1
+HEX0[6] <= hex:hex0.port1
+HEX1[0] <= hex:hex1.port1
+HEX1[1] <= hex:hex1.port1
+HEX1[2] <= hex:hex1.port1
+HEX1[3] <= hex:hex1.port1
+HEX1[4] <= hex:hex1.port1
+HEX1[5] <= hex:hex1.port1
+HEX1[6] <= hex:hex1.port1
+
+
+|CounterSynchronus|counter8:comb_3
+enable => enable.IN1
+clk => clk.IN8
+clear_b => clear_b.IN8
+Q[0] <= TFlipFlop:t0.port3
+Q[1] <= TFlipFlop:t1.port3
+Q[2] <= TFlipFlop:t2.port3
+Q[3] <= TFlipFlop:t3.port3
+Q[4] <= TFlipFlop:t4.port3
+Q[5] <= TFlipFlop:t5.port3
+Q[6] <= TFlipFlop:t6.port3
+Q[7] <= TFlipFlop:t7.port3
+
+
+|CounterSynchronus|counter8:comb_3|TFlipFlop:t0
+T => ~NO_FANOUT~
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CounterSynchronus|counter8:comb_3|TFlipFlop:t1
+T => ~NO_FANOUT~
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CounterSynchronus|counter8:comb_3|TFlipFlop:t2
+T => ~NO_FANOUT~
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CounterSynchronus|counter8:comb_3|TFlipFlop:t3
+T => ~NO_FANOUT~
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CounterSynchronus|counter8:comb_3|TFlipFlop:t4
+T => ~NO_FANOUT~
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CounterSynchronus|counter8:comb_3|TFlipFlop:t5
+T => ~NO_FANOUT~
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CounterSynchronus|counter8:comb_3|TFlipFlop:t6
+T => ~NO_FANOUT~
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CounterSynchronus|counter8:comb_3|TFlipFlop:t7
+T => ~NO_FANOUT~
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CounterSynchronus|hex:hex0
+in[0] => Decoder0.IN3
+in[1] => Decoder0.IN2
+in[2] => Decoder0.IN1
+in[3] => Decoder0.IN0
+out[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+out[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+out[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+out[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+out[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+out[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+out[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|CounterSynchronus|hex:hex1
+in[0] => Decoder0.IN3
+in[1] => Decoder0.IN2
+in[2] => Decoder0.IN1
+in[3] => Decoder0.IN0
+out[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+out[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+out[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+out[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+out[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+out[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+out[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
