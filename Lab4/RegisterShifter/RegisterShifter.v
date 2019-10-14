@@ -1,21 +1,27 @@
 module RegisterShifter(SW, KEY, LEDR);
-	input [9:0] SW;
+	input [9:0] SW; // SW8 Unused
 	input [3:0] KEY;
 	output [7:0] LEDR;
 	
 	ShifterUnit8 s(
+		// SW7-0: LoadVal
 		.LoadVal(SW[7:0]),
-		.clk(KEY[0]),
+		// KEY[1] Load_n
 		.Load_n(KEY[1]),
+		// KEY[2] ShifterRight
 		.ShiftRight(KEY[2]),
+		// KEY[3] ASR
 		.ASR(KEY[3]),
+		// KEY[0] Clock Signal
+		.clk(KEY[0]),
+		// Reset or not
 		.reset_n(SW[9]),
 		.q(LEDR[7:0])
 	);
 endmodule
 
 
-
+// 8 bit shifter module
 module ShifterUnit8(LoadVal, Load_n, ShiftRight, ASR, clk, reset_n, q);
 	input [7:0] LoadVal;
 	input Load_n, ShiftRight, ASR, clk, reset_n;
@@ -23,7 +29,7 @@ module ShifterUnit8(LoadVal, Load_n, ShiftRight, ASR, clk, reset_n, q);
 	
 	wire w0;
 	
-	ASRCirc asr0(
+	ASRController asr0(
 		.asr(ASR),
 		.first(LoadVal[7]),
 		.m(w0)
@@ -111,34 +117,35 @@ module ShifterUnit8(LoadVal, Load_n, ShiftRight, ASR, clk, reset_n, q);
 
 endmodule
 
-
-module ASRCirc(asr, first, m);
+// Acts like a mux2to1: ASR or not
+module ASRController(asr, first, m);
 	input asr, first;
-	output reg m;
+	output m;
+	reg out;
 	always @(*)
 	begin
 		if (asr == 1'b1)
-			m <= first;
+			out = first;
 		else
-			m <= 1'b0;
+			out = 1'b0;
 	end
+	assign m = out;
 endmodule
-
 
 module ShifterBit(load_val, load_n, clk, reset_n, shift, in, out);
 	input load_val, load_n, clk, reset_n, shift, in;
 	output out;
+	wire w0;
+	wire w1;
 	
-	wire w0, w1;
-	
-	mux m0(
+	mux2to1 m0(
 		.x(out),
 		.y(in),
 		.s(shift),
 		.m(w0)
 	);
 	
-	mux m1(
+	mux2to1 m1(
 		.x(load_val),
 		.y(w0),
 		.s(load_n),
@@ -154,6 +161,15 @@ module ShifterBit(load_val, load_n, clk, reset_n, shift, in, out);
 
 endmodule
 
+// mux2to1 from lab2
+module mux2to1(x, y, s, m);
+	input x; //selected when s is 0
+	input y; //selected when s is 1
+	input s; //select signal
+	output m; //output
+	
+	assign m = s & y | ~s & x;
+endmodule
 
 module DFlipFlop(d, clk, r, q);
 	input d, clk;
@@ -164,19 +180,11 @@ module DFlipFlop(d, clk, r, q);
 	
 	always @(posedge clk)
 	begin
+		// If reset_n == 0: reset the flip flop
 		if (r == 1'b0)
 			q <= 1'b0;
+		// transparent d-flipflop
 		else
 			q <= d;
 	end
-endmodule
-
-
-module mux(x, y, s, m);
-    input x;
-    input y;
-    input s;
-    output m;
-  
-    assign m = s & y | ~s & x;
 endmodule
