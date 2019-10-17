@@ -23,5 +23,12 @@ force {SW[9]} 1
 force {SW[0]} 1
 force {SW[1]} 1
 force {CLOCK_50} 0 0, 1 1ns -repeat 2ns
-run 1000000000ns
+run 100000000ns
+
+force {SW[8]} 1
+force {SW[9]} 1
+force {SW[0]} 0
+force {SW[1]} 0
+force {CLOCK_50} 0 0, 1 1ns -repeat 2ns
+run 100000000ns
 

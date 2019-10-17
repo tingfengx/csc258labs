@@ -1,0 +1,159 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab5/part3
+vd_flip_flop
+Z1 !s110 1571341599
+!i10b 1
+!s100 8]QB_@=bV_B2AV5m4H>kl2
+IGUg1ef=bl]M_XM4:Ol[me2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1571325962
+Z4 8morse_encoder_main.v
+Z5 Fmorse_encoder_main.v
+L0 290
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1571341598.000000
+Z8 !s107 morse_encoder_main.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|morse_encoder_main.v|
+!i113 1
+Z10 o-timescale 1ns/1ns
+Z11 tCvgOpt 0
+vLUT
+R1
+!i10b 1
+!s100 NoS3[Uo5?kUTSgUU?S]n40
+IeVmZRzi25UETMWHULc>R32
+R2
+R0
+R3
+R4
+R5
+L0 33
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@l@u@t
+vmorse_encoder_main
+R1
+!i10b 1
+!s100 Ao?n9mgZU<IF]m;>SN09Q3
+IH64dk=o2ZBE[1i2f^k>_;3
+R2
+R0
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vmux2to1
+R1
+!i10b 1
+!s100 L:h1n=LeHKXSZ7I^]4;4H2
+I;Z>Qa?hgh[>9acND`5_[72
+R2
+R0
+R3
+R4
+R5
+L0 278
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vrate_divider
+R1
+!i10b 1
+!s100 d2XOg5^j@GIEjd8:>R4O]1
+I:o>DM7P7HBeIEzU@UdQiG2
+R2
+R0
+R3
+R4
+R5
+L0 53
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vshift_register
+R1
+!i10b 1
+!s100 FFnn[D3ZmcKhVMDRPXSnP0
+INA>[6M0?`kB?HaJ859Clk2
+R2
+R0
+R3
+R4
+R5
+L0 70
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vShifterBit
+R1
+!i10b 1
+!s100 =K5b[fk_@4mmZJZXj=^TR3
+IY6O4IPggzbHebYY_n9ekI3
+R2
+R0
+R3
+R4
+R5
+L0 239
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@shifter@bit

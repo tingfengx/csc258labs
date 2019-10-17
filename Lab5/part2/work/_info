@@ -1,0 +1,94 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab5/part2
+vdisplay_counter_main
+Z1 !s110 1571340920
+!i10b 1
+!s100 FA2>XgXNIUN2I5[NH@WYg1
+IQ97FBadlD4HfigSg`Q;Fa2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1571330503
+Z4 8display_counter_main.v
+Z5 Fdisplay_counter_main.v
+L0 1
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1571340919.000000
+Z8 !s107 display_counter_main.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|display_counter_main.v|
+!i113 1
+Z10 o-timescale 1ns/1ns
+Z11 tCvgOpt 0
+vhex
+R1
+!i10b 1
+!s100 5GgXF5_g`A2B6eE2L2mL<2
+I9VJYM;kb1@NYGGHnIzm^P0
+R2
+R0
+R3
+R4
+R5
+L0 103
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vhex_counter
+R1
+!i10b 1
+!s100 lTF7=Wl6MLE6^VSG@0F5<0
+IZG]a93W12QS92B6`SkX>T0
+R2
+R0
+R3
+R4
+R5
+L0 39
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vrate_divider
+R1
+!i10b 1
+!s100 2UE>6CeA3InDhZafDkPRB3
+InYNOE5lM0og8GSd<UZaKe0
+R2
+R0
+R3
+R4
+R5
+L0 67
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
