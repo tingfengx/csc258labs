@@ -1,94 +1,91 @@
-module CounterSynchronus(SW, KEY, HEX0, HEX1);
-	// main module
-	input [1:0]SW;
-	input [0:0] KEY;
-	output [6:0] HEX0;
-	output [6:0] HEX1;
+module CounterSynchronus(KEY, SW, HEX0, HEX1);
+	input [0:0] KEY;   //Clock.
+	input [1:0] SW;    //SW[0] for Clear_b, SW[1] for Enable.
+	output [6:0] HEX0; 
+	output [6:0] HEX1; 
+	wire [7:0] wire8bit;
+	wire [6:0] T;
 	
-	wire [7:0] twohex;
+	assign T[0] = SW[1] & wire8bit[0];
+	assign T[1] = T[0] & wire8bit[1];
+	assign T[2] = T[1] & wire8bit[2];
+	assign T[3] = T[2] & wire8bit[3];
+	assign T[4] = T[3] & wire8bit[4];
+	assign T[5] = T[4] & wire8bit[5];
+	assign T[6] = T[5] & wire8bit[6];
 	
-	counter8(
-		.enable(SW[1]), 	// if incre
-		.clk(KEY[0]),  	// clock signal
-		.clear_b(SW[0]), 	// reset
-		.Q(twohex)
+	TFlipFlop TFF0(
+		.Clk(KEY[0]), 
+		.T(SW[0]), 
+		.Q(wire8bit[0]), 
+		.Clear_n(SW[0])
 	);
-	
-	// lower four bits
-	hex hex0(twohex[3:0], HEX0);
-	// upper four bits
-	hex hex1(twohex[7:4], HEX1);
-	
+	TFlipFlop TFF1(
+		.Clk(KEY[0]), 
+		.T(T[0]), 
+		.Q(wire8bit[1]), 
+		.Clear_n(SW[0])
+	);
+	// I will write in this more compact way
+	TFlipFlop TFF2(.Clk(KEY[0]), .T(T[1]), .Q(wire8bit[2]), .Clear_n(SW[0]));
+	TFlipFlop TFF3(.Clk(KEY[0]), .T(T[2]), .Q(wire8bit[3]), .Clear_n(SW[0]));
+	TFlipFlop TFF4(.Clk(KEY[0]), .T(T[3]), .Q(wire8bit[4]), .Clear_n(SW[0]));
+	TFlipFlop TFF5(.Clk(KEY[0]), .T(T[4]), .Q(wire8bit[5]), .Clear_n(SW[0]));
+	TFlipFlop TFF6(.Clk(KEY[0]), .T(T[5]), .Q(wire8bit[6]), .Clear_n(SW[0]));
+	TFlipFlop TFF7(.Clk(KEY[0]), .T(T[6]), .Q(wire8bit[7]), .Clear_n(SW[0]));
+
+	hexDecoder hex0(
+		.in(wire8bit[3:0]), 
+		.out(HEX0[6:0])
+	);
+	hexDecoder hex1(
+		.in(wire8bit[7:4]), 
+		.out(HEX1[6:0])
+	);
 endmodule
 
-module counter8(enable, clk, clear_b, Q);
-	input enable, clk, clear_b;
-	output [7:0] Q;
-	
-	// seven 'and' parts of the circuit
-	wire w0, w1, w2, w3, w4, w5, w6;
-	assign w0 = (enable & Q[0]);
-	assign w1 = (w0 & Q[1]);
-	assign w2 = (w1 & Q[2]);
-	assign w3 = (w2 & Q[3]);
-	assign w4 = (w3 & Q[4]);
-	assign w5 = (w4 & Q[5]);
-	assign w6 = (w5 & Q[6]);
-	
-	// Connecting the flip flops
-	TFlipFlop t0(enable, clk, clear_b, Q[0]);
-	TFlipFlop t1(w0, clk, clear_b, Q[1]);
-	TFlipFlop t2(w1, clk, clear_b, Q[2]);
-	TFlipFlop t3(w2, clk, clear_b, Q[3]);
-	TFlipFlop t4(w3, clk, clear_b, Q[4]);
-	TFlipFlop t5(w4, clk, clear_b, Q[5]);
-	TFlipFlop t6(w5, clk, clear_b, Q[6]);
-	TFlipFlop t7(w6, clk, clear_b, Q[7]);
-	
-endmodule	
-
-// Not to name this t_f_f
-module TFlipFlop(T, clk, clear_b, Q);
+module TFlipFlop(Clk, T, Clear_n, Q);
+	input Clk;
 	input T;
-	input clk;
-	input clear_b;
+	input Clear_n;
 	output reg Q;
-	always @(posedge clk, negedge clear_b)
-	begin
-		if (clear_b == 1'b0)
+
+	always @(posedge Clk, negedge Clear_n)
+ 	begin
+		if (Clear_n == 1'b0)
 			Q <= 1'b0;
-		else if (clear_b == 1'b1)
+		else if  (T == 1'b1)
 			Q <= ~Q;
 	end
 endmodule
 
-// Rewritten shorter version of hexdecoder
-// The previes version was too cumbersome
-// 	to include in pdf reports
-module hex(in, out);
+
+// rewritten for more compact code
+module hexDecoder (in, out);
 	input [3:0] in;
+	reg [6:0] result;
 	output [6:0] out;
-	reg [6:0] z;
 	always @(*)
 	begin
 		case (in[3:0])
-			4'b0000: z = 7'b1111110;
-			4'b0001: z = 7'b0110000;
-			4'b0010: z = 7'b1101101; 
-			4'b0011: z = 7'b1111001;
-			4'b0100: z = 7'b0110011;
-			4'b0101: z = 7'b1011011;  
-			4'b0110: z = 7'b1011111;
-			4'b0111: z = 7'b1110000;
-			4'b1000: z = 7'b1111111;
-			4'b1001: z = 7'b1111011;
-			4'b1010: z = 7'b1110111; 
-			4'b1011: z = 7'b0011111;
-			4'b1100: z = 7'b1001110;
-			4'b1101: z = 7'b0111101;
-			4'b1110: z = 7'b1001111;
-			4'b1111: z = 7'b1000111;
+			4'b0000: result[6:0] = 7'b1000000;
+			4'b0001: result[6:0] = 7'b1111001;
+			4'b0010: result[6:0] = 7'b0100100;
+			4'b0011: result[6:0] = 7'b0110000;
+			4'b0100: result[6:0] = 7'b0011001;
+			4'b0101: result[6:0] = 7'b0010010;
+			4'b0110: result[6:0] = 7'b0000010;
+			4'b0111: result[6:0] = 7'b1111000;
+			4'b1000: result[6:0] = 7'b0000000;
+			4'b1001: result[6:0] = 7'b0010000;
+			4'b1010: result[6:0] = 7'b0001000;
+			4'b1011: result[6:0] = 7'b0000011;
+			4'b1100: result[6:0] = 7'b1000110;
+			4'b1101: result[6:0] = 7'b0100001;
+			4'b1110: result[6:0] = 7'b0000110;
+			4'b1111: result[6:0] = 7'b0001110;
+			default: result[6:0] = 7'b1000000;
 		endcase
 	end
-	assign out[6:0] = z[6:0];
+	assign out[6:0] = result[6:0];
 endmodule 

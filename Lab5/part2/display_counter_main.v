@@ -27,7 +27,7 @@ module display_counter_main(SW, HEX0, CLOCK_50);
 		.count(RateDivider)
 	);
 	
-	seven_segment_decoder block2(
+	hex block2(
 		.c(Q[3:0]),
 		.m(HEX0[6:0])
 	);
@@ -97,15 +97,33 @@ module rate_divider(rate, clock, reset_n, count);
 
 endmodule
 
-module seven_segment_decoder(c,m);
-	input [3:0]c;
-	output [6:0]m;
-	assign m[0]=(~c[3]&~c[2]&~c[1]&c[0])|(~c[3]&c[2]&~c[1]&~c[0])|(c[3]&c[2]&~c[1]&c[0])|(c[3]&~c[2]&c[1]&c[0]);
-	assign m[1]=(~c[3]&c[2]&~c[1]&c[0])|(c[3]&c[2]&~c[0])|(c[3]&c[1]&c[0])|(c[2]&c[1]&~c[0]);
-	assign m[2]=(c[3]&c[2]&~c[0])|(c[3]&c[2]&c[1])|(~c[3]&~c[2]&c[1]&~c[0]);
-	assign m[3]=(~c[3]&~c[2]&~c[1]&c[0])|(~c[3]&c[2]&~c[1]&~c[0])|(c[2]&c[1]&c[0])|(c[3]&~c[2]&c[1]&~c[0]);
-	assign m[4]=(~c[3]&c[0])|(~c[3]&c[2]&~c[1])|(~c[2]&~c[1]&c[0]);
-	assign m[5]=(~c[3]&~c[2]&c[0])|(~c[3]&c[1]&c[0])|(~c[3]&~c[2]&c[1])|(c[3]&c[2]&~c[1]&c[0]);
-	assign m[6]=(~c[3]&~c[2]&~c[1])|(c[3]&c[2]&~c[1]&~c[0])|(~c[3]&c[2]&c[1]&c[0]);
-
-endmodule
+// Rewritten shorter version of hexdecoder
+// The previes version was too cumbersome
+// 	to include in pdf reports
+module hex(c, m);
+	input [3:0] c;
+	output [6:0] m;
+	reg [6:0] z;
+	always @(*)
+	begin
+		case (c[3:0])
+			4'b0000: z = 7'b1111110;
+			4'b0001: z = 7'b0110000;
+			4'b0010: z = 7'b1101101; 
+			4'b0011: z = 7'b1111001;
+			4'b0100: z = 7'b0110011;
+			4'b0101: z = 7'b1011011;  
+			4'b0110: z = 7'b1011111;
+			4'b0111: z = 7'b1110000;
+			4'b1000: z = 7'b1111111;
+			4'b1001: z = 7'b1111011;
+			4'b1010: z = 7'b1110111; 
+			4'b1011: z = 7'b0011111;
+			4'b1100: z = 7'b1001110;
+			4'b1101: z = 7'b0111101;
+			4'b1110: z = 7'b1001111;
+			4'b1111: z = 7'b1000111;
+		endcase
+	end
+	assign m[6:0] = z[6:0];
+endmodule 

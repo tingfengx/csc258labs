@@ -1,0 +1,162 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab5/part1
+vcounter8
+Z1 !s110 1571334057
+!i10b 1
+!s100 bTaR=1H;TcVgf<K1IYP>P0
+I6H4>W9f5KAGLRkX7^ba>?2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1571334026
+Z4 8CounterSynchronus.v
+Z5 FCounterSynchronus.v
+L0 28
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1571334057.000000
+Z8 !s107 CounterSynchronus.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|CounterSynchronus.v|
+!i113 1
+Z10 o-timescale 1ns/1ns
+Z11 tCvgOpt 0
+vCounterSynchronus
+Z12 !s110 1571334718
+!i10b 1
+!s100 2Of44=XeJO8?9^igLH?Re3
+IN?_Qc<L?0MB[:HmH05PKl0
+R2
+R0
+Z13 w1571334716
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+Z14 !s108 1571334718.000000
+R8
+R9
+!i113 1
+R10
+R11
+n@counter@synchronus
+veightBitCounter
+!s110 1571334250
+!i10b 1
+!s100 Xn8T^BG0``XfChCJonz:82
+IX^A`LAKTYDVOi9`e7ITbk1
+R2
+R0
+w1571334178
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+!s108 1571334250.000000
+R8
+R9
+!i113 1
+R10
+R11
+neight@bit@counter
+vhex
+R1
+!i10b 1
+!s100 bVYX=ZV3^LSiVTDQ3oAF_1
+IeH3n>@5:=f=UZOTO[=[@V0
+R2
+R0
+R3
+R4
+R5
+L0 72
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vhexDecoder
+R12
+!i10b 1
+!s100 2h5hcozg76>523X[aK[BT1
+I:f=>9:CX>6>cYRhi:_lTY0
+R2
+R0
+R13
+R4
+R5
+L0 64
+R6
+r1
+!s85 0
+31
+R14
+R8
+R9
+!i113 1
+R10
+R11
+nhex@decoder
+vTFlipFlop
+R12
+!i10b 1
+!s100 QQ_>7@Rlak>N9Wn8`JZ0T0
+ImPBZC8J2M[n3VBhg;i8d@3
+R2
+R0
+R13
+R4
+R5
+L0 47
+R6
+r1
+!s85 0
+31
+R14
+R8
+R9
+!i113 1
+R10
+R11
+n@t@flip@flop
+vtTypeFlipFlop
+!s110 1571334274
+!i10b 1
+!s100 Z=b62?_VQgkWV4R5mZVXI0
+I9e5HOJno5^9E>`0mh3idE3
+R2
+R0
+w1571334271
+R4
+R5
+L0 30
+R6
+r1
+!s85 0
+31
+!s108 1571334273.000000
+R8
+R9
+!i113 1
+R10
+R11
+nt@type@flip@flop
