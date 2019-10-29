@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at display_counter_main.v(84): always construct contains both blocking and non-blocking assignments File: D:/University/CSC258/Lab/Lab5/Part2/display_counter_main.v Line: 84

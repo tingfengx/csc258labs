@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[margin=2.5cm]{geometry}
+\usepackage[margin=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{minted}
 
@@ -15,7 +15,9 @@
 \maketitle
 \section*{PART 1}
 \paragraph{(1) \& (2)} Here is my schematic
-
+\begin{center}
+	\includegraphics[scale=0.25]{q1_scheme.jpg}
+\end{center}
 \paragraph{(3)} Here is my verlog code for the 8 bit counter as drawn above:
 \begin{minted}{verilog}
     module CounterSynchronus(SW, KEY, HEX0, HEX1);
@@ -303,7 +305,9 @@
 \end{center}
 
 \paragraph{(2)} Here is my design schematic
-
+\begin{center}
+	\includegraphics[scale=0.25]{q3_scheme.jpg}
+\end{center}
 \paragraph{(3)} Here is the verilog code corresponding to the schematic drawn above
 \begin{minted}{verilog}
     module morse_encoder_main(KEY, SW, LEDR, CLOCK_50);
