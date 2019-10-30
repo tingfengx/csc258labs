@@ -1,0 +1,110 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/University/CSC258/lab/lab6/part3
+vcontrol
+Z1 !s110 1531166629
+!i10b 1
+!s100 ZoMC]zCOgijjjQ0mTh5BA3
+Ie]:OPhQS`1X;WVebYd:gz1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1531164984
+Z4 8poly_function.v
+Z5 Fpoly_function.v
+L0 122
+Z6 OV;L;10.4d;61
+r1
+!s85 0
+31
+Z7 !s108 1531166629.000000
+Z8 !s107 poly_function.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|poly_function.v|
+!i113 1
+Z10 o-timescale 1ns/1ns
+vdatapath
+R1
+!i10b 1
+!s100 hhClee]eQ_;OAG>1l8c7@3
+I9LdcciFQc3Fa5:80SRM7N3
+R2
+R0
+R3
+R4
+R5
+L0 323
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vhex_decoder
+R1
+!i10b 1
+!s100 Y:a[WDcD_mn]3>Ec8_8L>2
+I^P@OgokmZj82oG@nhBjDk3
+R2
+R0
+R3
+R4
+R5
+L0 430
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vpart2
+R1
+!i10b 1
+!s100 aG:zjZ`6cmE@D81HedfQg2
+I6^Bm@OcNfU51fakJBh][F2
+R2
+R0
+R3
+R4
+R5
+L0 68
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vpoly_function
+R1
+!i10b 1
+!s100 6bHf97A30[TegMb__ei0o1
+I7a3?cZh3Ji`3KdB?ahhU20
+R2
+R0
+R3
+R4
+R5
+L0 10
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10

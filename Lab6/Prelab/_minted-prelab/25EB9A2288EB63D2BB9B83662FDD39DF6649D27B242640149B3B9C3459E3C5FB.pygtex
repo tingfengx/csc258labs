@@ -1,0 +1,363 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{c+c1}{//Sw[7:0] data\PYGZus{}in}
+    \PYG{c+c1}{//KEY[0] synchronous reset when pressed}
+    \PYG{c+c1}{//KEY[1] go signal}
+
+    \PYG{c+c1}{//LEDR displays result}
+    \PYG{c+c1}{//HEX0 \PYGZam{} HEX1 also displays result}
+
+    \PYG{k}{module} \PYG{n}{poly\PYGZus{}function}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{,} \PYG{n+no}{KEY}\PYG{p}{,} \PYG{n+no}{CLOCK\PYGZus{}50}\PYG{p}{,} \PYG{n+no}{LEDR}\PYG{p}{,} \PYG{n+no}{HEX0}\PYG{p}{,} \PYG{n+no}{HEX1}\PYG{p}{);}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{9}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{SW}\PYG{p}{;}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{KEY}\PYG{p}{;}
+        \PYG{k}{input} \PYG{n+no}{CLOCK\PYGZus{}50}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{9}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{LEDR}\PYG{p}{;}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX0}\PYG{p}{,} \PYG{n+no}{HEX1}\PYG{p}{;}
+
+        \PYG{k+kt}{wire} \PYG{n}{resetn}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{n}{go}\PYG{p}{;}
+
+        \PYG{k+kt}{wire} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{data\PYGZus{}result}\PYG{p}{;}
+        \PYG{k}{assign} \PYG{n}{go} \PYG{o}{=} \PYG{o}{\PYGZti{}}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{];}
+        \PYG{k}{assign} \PYG{n}{resetn} \PYG{o}{=} \PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{];}
+
+        \PYG{n}{part2} \PYG{n}{u0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n+no}{CLOCK\PYGZus{}50}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{resetn}\PYG{p}{(}\PYG{n}{resetn}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{go}\PYG{p}{(}\PYG{n}{go}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{data\PYGZus{}in}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{data\PYGZus{}result}\PYG{p}{(}\PYG{n}{data\PYGZus{}result}\PYG{p}{)}
+        \PYG{p}{);}
+
+        \PYG{k}{assign} \PYG{n+no}{LEDR}\PYG{p}{[}\PYG{l+m+mh}{9}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{,} \PYG{n}{data\PYGZus{}result}\PYG{p}{\PYGZcb{};}
+
+        \PYG{n}{hex\PYGZus{}decoder} \PYG{n+no}{H0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{hex\PYGZus{}digit}\PYG{p}{(}\PYG{n}{data\PYGZus{}result}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{segments}\PYG{p}{(}\PYG{n+no}{HEX0}\PYG{p}{)}
+        \PYG{p}{);}
+
+        \PYG{n}{hex\PYGZus{}decoder} \PYG{n+no}{H1}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{hex\PYGZus{}digit}\PYG{p}{(}\PYG{n}{data\PYGZus{}result}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{4}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{segments}\PYG{p}{(}\PYG{n+no}{HEX1}\PYG{p}{)}
+        \PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+    \PYG{k}{module} \PYG{n}{part2}\PYG{p}{(}
+            \PYG{k}{input} \PYG{n}{clk}\PYG{p}{,}
+            \PYG{k}{input} \PYG{n}{resetn}\PYG{p}{,}
+            \PYG{k}{input} \PYG{n}{go}\PYG{p}{,}
+            \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{data\PYGZus{}in}\PYG{p}{,}
+            \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{data\PYGZus{}result}
+        \PYG{p}{);}
+
+        \PYG{c+c1}{// lots of wires to connect our datapath and control}
+        \PYG{k+kt}{wire} \PYG{n}{ld\PYGZus{}a}\PYG{p}{,} \PYG{n}{ld\PYGZus{}b}\PYG{p}{,} \PYG{n}{ld\PYGZus{}c}\PYG{p}{,} \PYG{n}{ld\PYGZus{}x}\PYG{p}{,} \PYG{n}{ld\PYGZus{}r}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{n}{ld\PYGZus{}alu\PYGZus{}out}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{p}{[}\PYG{l+m+mh}{1}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}  \PYG{n}{alu\PYGZus{}select\PYGZus{}a}\PYG{p}{,} \PYG{n}{alu\PYGZus{}select\PYGZus{}b}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{n}{alu\PYGZus{}op}\PYG{p}{;}
+
+        \PYG{n}{control} \PYG{n+no}{C0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{resetn}\PYG{p}{(}\PYG{n}{resetn}\PYG{p}{),}
+
+            \PYG{p}{.}\PYG{n}{go}\PYG{p}{(}\PYG{n}{go}\PYG{p}{),}
+
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}alu\PYGZus{}out}\PYG{p}{(}\PYG{n}{ld\PYGZus{}alu\PYGZus{}out}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}x}\PYG{p}{(}\PYG{n}{ld\PYGZus{}x}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}a}\PYG{p}{(}\PYG{n}{ld\PYGZus{}a}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}b}\PYG{p}{(}\PYG{n}{ld\PYGZus{}b}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}c}\PYG{p}{(}\PYG{n}{ld\PYGZus{}c}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}r}\PYG{p}{(}\PYG{n}{ld\PYGZus{}r}\PYG{p}{),}
+
+            \PYG{p}{.}\PYG{n}{alu\PYGZus{}select\PYGZus{}a}\PYG{p}{(}\PYG{n}{alu\PYGZus{}select\PYGZus{}a}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{alu\PYGZus{}select\PYGZus{}b}\PYG{p}{(}\PYG{n}{alu\PYGZus{}select\PYGZus{}b}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{alu\PYGZus{}op}\PYG{p}{(}\PYG{n}{alu\PYGZus{}op}\PYG{p}{)}
+        \PYG{p}{);}
+
+        \PYG{n}{datapath} \PYG{n+no}{D0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{resetn}\PYG{p}{(}\PYG{n}{resetn}\PYG{p}{),}
+
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}alu\PYGZus{}out}\PYG{p}{(}\PYG{n}{ld\PYGZus{}alu\PYGZus{}out}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}x}\PYG{p}{(}\PYG{n}{ld\PYGZus{}x}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}a}\PYG{p}{(}\PYG{n}{ld\PYGZus{}a}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}b}\PYG{p}{(}\PYG{n}{ld\PYGZus{}b}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}c}\PYG{p}{(}\PYG{n}{ld\PYGZus{}c}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}r}\PYG{p}{(}\PYG{n}{ld\PYGZus{}r}\PYG{p}{),}
+
+            \PYG{p}{.}\PYG{n}{alu\PYGZus{}select\PYGZus{}a}\PYG{p}{(}\PYG{n}{alu\PYGZus{}select\PYGZus{}a}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{alu\PYGZus{}select\PYGZus{}b}\PYG{p}{(}\PYG{n}{alu\PYGZus{}select\PYGZus{}b}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{alu\PYGZus{}op}\PYG{p}{(}\PYG{n}{alu\PYGZus{}op}\PYG{p}{),}
+
+            \PYG{p}{.}\PYG{n}{data\PYGZus{}in}\PYG{p}{(}\PYG{n}{data\PYGZus{}in}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{data\PYGZus{}result}\PYG{p}{(}\PYG{n}{data\PYGZus{}result}\PYG{p}{)}
+        \PYG{p}{);}
+
+    \PYG{k}{endmodule}
+
+
+    \PYG{k}{module} \PYG{n}{control}\PYG{p}{(}
+            \PYG{k}{input} \PYG{n}{clk}\PYG{p}{,}
+            \PYG{k}{input} \PYG{n}{resetn}\PYG{p}{,}
+            \PYG{k}{input} \PYG{n}{go}\PYG{p}{,}
+
+            \PYG{k}{output} \PYG{k+kt}{reg}  \PYG{n}{ld\PYGZus{}a}\PYG{p}{,} \PYG{n}{ld\PYGZus{}b}\PYG{p}{,} \PYG{n}{ld\PYGZus{}c}\PYG{p}{,} \PYG{n}{ld\PYGZus{}x}\PYG{p}{,} \PYG{n}{ld\PYGZus{}r}\PYG{p}{,}
+            \PYG{k}{output} \PYG{k+kt}{reg}  \PYG{n}{ld\PYGZus{}alu\PYGZus{}out}\PYG{p}{,}
+            \PYG{k}{output} \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{1}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}  \PYG{n}{alu\PYGZus{}select\PYGZus{}a}\PYG{p}{,} \PYG{n}{alu\PYGZus{}select\PYGZus{}b}\PYG{p}{,}
+            \PYG{k}{output} \PYG{k+kt}{reg} \PYG{n}{alu\PYGZus{}op}
+        \PYG{p}{);}
+
+        \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{current\PYGZus{}state}\PYG{p}{,} \PYG{n}{next\PYGZus{}state}\PYG{p}{;}
+
+        \PYG{k}{localparam}  \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}A}        \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d0}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}A\PYGZus{}WAIT}   \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d1}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}B}        \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d2}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}B\PYGZus{}WAIT}   \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d3}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}C}        \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d4}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}C\PYGZus{}WAIT}   \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d5}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}X}        \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d6}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}X\PYGZus{}WAIT}   \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d7}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}CYCLE\PYGZus{}0}       \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d8}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}CYCLE\PYGZus{}1}       \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d9}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}CYCLE\PYGZus{}2}       \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d10}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}CYCLE\PYGZus{}3}       \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d11}\PYG{p}{,}
+                    \PYG{n+no}{S\PYGZus{}CYCLE\PYGZus{}4}       \PYG{o}{=} \PYG{l+m+mh}{4}\PYG{l+m+mi}{\PYGZsq{}d12}\PYG{p}{;}
+
+        \PYG{c+c1}{// Next state logic aka our state table}
+        \PYG{k}{always}\PYG{p}{@(}\PYG{o}{*}\PYG{p}{)}
+        \PYG{k}{begin}\PYG{o}{:} \PYG{n}{state\PYGZus{}table}
+                \PYG{k}{case} \PYG{p}{(}\PYG{n}{current\PYGZus{}state}\PYG{p}{)}
+                    \PYG{c+c1}{// Loop in current state until value is input}
+                    \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}A:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{go} \PYG{o}{?} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}A\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}A}\PYG{p}{;}
+                    \PYG{c+c1}{// Loop in current state until go signal goes low}
+                    \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}A\PYGZus{}WAIT:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{go} \PYG{o}{?} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}A\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}B}\PYG{p}{;}
+                    \PYG{c+c1}{// Loop in current state until value is input}
+                    \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}B:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{go} \PYG{o}{?} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}B\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}B}\PYG{p}{;}
+                    \PYG{c+c1}{// Loop in current state until go signal goes low}
+                    \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}B\PYGZus{}WAIT:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{go} \PYG{o}{?} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}B\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}C}\PYG{p}{;}
+                    \PYG{c+c1}{// Loop in current state until value is input}
+                    \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}C:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{go} \PYG{o}{?} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}C\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}C}\PYG{p}{;}
+                    \PYG{c+c1}{// Loop in current state until go signal goes low}
+                    \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}C\PYGZus{}WAIT:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{go} \PYG{o}{?} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}C\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}X}\PYG{p}{;}
+                    \PYG{c+c1}{// Loop in current state until value is input}
+                    \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}X:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{go} \PYG{o}{?} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}X\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}X}\PYG{p}{;}
+                    \PYG{c+c1}{// Loop in current state until go signal goes low}
+                    \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}X\PYGZus{}WAIT:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{go} \PYG{o}{?} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}X\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{S\PYGZus{}CYCLE\PYGZus{}0}\PYG{p}{;}
+                    \PYG{n+nl}{S\PYGZus{}CYCLE\PYGZus{}0:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n+no}{S\PYGZus{}CYCLE\PYGZus{}1}\PYG{p}{;}
+                    \PYG{c+c1}{// we will be done our two operations, start over after}
+                    \PYG{n+nl}{S\PYGZus{}CYCLE\PYGZus{}1:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n+no}{S\PYGZus{}CYCLE\PYGZus{}2}\PYG{p}{;}
+                    \PYG{n+nl}{S\PYGZus{}CYCLE\PYGZus{}2:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n+no}{S\PYGZus{}CYCLE\PYGZus{}3}\PYG{p}{;}
+                    \PYG{n+nl}{S\PYGZus{}CYCLE\PYGZus{}3:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n+no}{S\PYGZus{}CYCLE\PYGZus{}4}\PYG{p}{;}
+                    \PYG{n+nl}{S\PYGZus{}CYCLE\PYGZus{}4:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}A}\PYG{p}{;}
+                \PYG{k}{default}\PYG{o}{:}     \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}A}\PYG{p}{;}
+            \PYG{k}{endcase}
+        \PYG{k}{end} \PYG{c+c1}{// state\PYGZus{}table}
+
+
+        \PYG{c+c1}{// Output logic aka all of our datapath control signals}
+        \PYG{k}{always} \PYG{p}{@(}\PYG{o}{*}\PYG{p}{)}
+        \PYG{k}{begin}\PYG{o}{:} \PYG{n}{enable\PYGZus{}signals}
+            \PYG{c+c1}{// By default make all our signals 0}
+            \PYG{n}{ld\PYGZus{}alu\PYGZus{}out} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+            \PYG{n}{ld\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+            \PYG{n}{ld\PYGZus{}b} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+            \PYG{n}{ld\PYGZus{}c} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+            \PYG{n}{ld\PYGZus{}x} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+            \PYG{n}{ld\PYGZus{}r} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+            \PYG{n}{alu\PYGZus{}select\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{;}
+            \PYG{n}{alu\PYGZus{}select\PYGZus{}b} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{;}
+            \PYG{n}{alu\PYGZus{}op}       \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+
+            \PYG{k}{case} \PYG{p}{(}\PYG{n}{current\PYGZus{}state}\PYG{p}{)}
+                \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}A:} \PYG{k}{begin}
+                    \PYG{n}{ld\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                    \PYG{k}{end}
+                \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}B:} \PYG{k}{begin}
+                    \PYG{n}{ld\PYGZus{}b} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                    \PYG{k}{end}
+                \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}C:} \PYG{k}{begin}
+                    \PYG{n}{ld\PYGZus{}c} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                    \PYG{k}{end}
+                \PYG{n+nl}{S\PYGZus{}LOAD\PYGZus{}X:} \PYG{k}{begin}
+                    \PYG{n}{ld\PYGZus{}x} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                    \PYG{k}{end}
+                \PYG{n+nl}{S\PYGZus{}CYCLE\PYGZus{}0:}
+                    \PYG{k}{begin}
+                    \PYG{n}{ld\PYGZus{}alu\PYGZus{}out} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                        \PYG{n}{ld\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}select\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}select\PYGZus{}b} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b11}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}op} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                \PYG{k}{end}
+                \PYG{n+nl}{S\PYGZus{}CYCLE\PYGZus{}1:}
+                    \PYG{k}{begin}
+                        \PYG{n}{ld\PYGZus{}alu\PYGZus{}out} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                        \PYG{n}{ld\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}select\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}select\PYGZus{}b} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b11}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}op} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                \PYG{k}{end}
+                    \PYG{n+nl}{S\PYGZus{}CYCLE\PYGZus{}2:}
+                    \PYG{k}{begin}
+                        \PYG{n}{ld\PYGZus{}alu\PYGZus{}out} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                        \PYG{n}{ld\PYGZus{}b} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}select\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b01}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}select\PYGZus{}b} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b11}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}op} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                \PYG{k}{end}
+                    \PYG{n+nl}{S\PYGZus{}CYCLE\PYGZus{}3:}
+                    \PYG{k}{begin}
+                        \PYG{n}{ld\PYGZus{}alu\PYGZus{}out} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                        \PYG{n}{ld\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}select\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}select\PYGZus{}b} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b01}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}op} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+                \PYG{k}{end}
+                    \PYG{n+nl}{S\PYGZus{}CYCLE\PYGZus{}4:}
+                    \PYG{k}{begin}
+                        \PYG{n}{ld\PYGZus{}r} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}select\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}select\PYGZus{}b} \PYG{o}{=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b10}\PYG{p}{;}
+                        \PYG{n}{alu\PYGZus{}op} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+                \PYG{k}{end}
+            \PYG{c+c1}{// default:    // don\PYGZsq{}t need default since we already made sure all of our outputs were assigned a value at the start of the always block}
+            \PYG{k}{endcase}
+        \PYG{k}{end} \PYG{c+c1}{// enable\PYGZus{}signals}
+
+        \PYG{c+c1}{// current\PYGZus{}state registers}
+        \PYG{k}{always}\PYG{p}{@(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{)}
+        \PYG{k}{begin}\PYG{o}{:} \PYG{n}{state\PYGZus{}FFs}
+            \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{resetn}\PYG{p}{)}
+                \PYG{n}{current\PYGZus{}state} \PYG{o}{\PYGZlt{}=} \PYG{n+no}{S\PYGZus{}LOAD\PYGZus{}A}\PYG{p}{;}
+            \PYG{k}{else}
+                \PYG{n}{current\PYGZus{}state} \PYG{o}{\PYGZlt{}=} \PYG{n}{next\PYGZus{}state}\PYG{p}{;}
+        \PYG{k}{end} \PYG{c+c1}{// state\PYGZus{}FFS}
+    \PYG{k}{endmodule}
+
+    \PYG{c+c1}{// (*) Note: Specifying the I/O in the function header is also possible.}
+    \PYG{k}{module} \PYG{n}{datapath}\PYG{p}{(}
+            \PYG{k}{input} \PYG{n}{clk}\PYG{p}{,}
+            \PYG{k}{input} \PYG{n}{resetn}\PYG{p}{,}
+            \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{data\PYGZus{}in}\PYG{p}{,}
+            \PYG{k}{input} \PYG{n}{ld\PYGZus{}alu\PYGZus{}out}\PYG{p}{,}
+            \PYG{k}{input} \PYG{n}{ld\PYGZus{}x}\PYG{p}{,} \PYG{n}{ld\PYGZus{}a}\PYG{p}{,} \PYG{n}{ld\PYGZus{}b}\PYG{p}{,} \PYG{n}{ld\PYGZus{}c}\PYG{p}{,}
+            \PYG{k}{input} \PYG{n}{ld\PYGZus{}r}\PYG{p}{,}
+            \PYG{k}{input} \PYG{n}{alu\PYGZus{}op}\PYG{p}{,}
+            \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{1}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{alu\PYGZus{}select\PYGZus{}a}\PYG{p}{,} \PYG{n}{alu\PYGZus{}select\PYGZus{}b}\PYG{p}{,}
+            \PYG{k}{output} \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{data\PYGZus{}result}
+        \PYG{p}{);}
+
+        \PYG{c+c1}{// input registers}
+        \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{c}\PYG{p}{,} \PYG{n}{x}\PYG{p}{;}
+
+        \PYG{c+c1}{// output of the alu}
+        \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{alu\PYGZus{}out}\PYG{p}{;}
+        \PYG{c+c1}{// alu input muxes}
+        \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{alu\PYGZus{}a}\PYG{p}{,} \PYG{n}{alu\PYGZus{}b}\PYG{p}{;}
+
+        \PYG{c+c1}{// Registers a, b, c, x with respective input logic}
+        \PYG{k}{always} \PYG{p}{@} \PYG{p}{(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{)} \PYG{k}{begin}
+            \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{resetn}\PYG{p}{)} \PYG{k}{begin}
+                \PYG{n}{a} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{8}\PYG{l+m+mi}{\PYGZsq{}d0}\PYG{p}{;}
+                \PYG{n}{b} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{8}\PYG{l+m+mi}{\PYGZsq{}d0}\PYG{p}{;}
+                \PYG{n}{c} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{8}\PYG{l+m+mi}{\PYGZsq{}d0}\PYG{p}{;}
+                \PYG{n}{x} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{8}\PYG{l+m+mi}{\PYGZsq{}d0}\PYG{p}{;}
+            \PYG{k}{end}
+            \PYG{k}{else} \PYG{k}{begin}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{ld\PYGZus{}a}\PYG{p}{)}
+                    \PYG{n}{a} \PYG{o}{\PYGZlt{}=} \PYG{n}{ld\PYGZus{}alu\PYGZus{}out} \PYG{o}{?} \PYG{n}{alu\PYGZus{}out} \PYG{o}{:} \PYG{n}{data\PYGZus{}in}\PYG{p}{;}
+                    \PYG{c+c1}{// load alu\PYGZus{}out if load\PYGZus{}alu\PYGZus{}out signal is high, otherwise load from data\PYGZus{}in}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{ld\PYGZus{}b}\PYG{p}{)}
+                    \PYG{n}{b} \PYG{o}{\PYGZlt{}=} \PYG{n}{ld\PYGZus{}alu\PYGZus{}out} \PYG{o}{?} \PYG{n}{alu\PYGZus{}out} \PYG{o}{:} \PYG{n}{data\PYGZus{}in}\PYG{p}{;}
+                    \PYG{c+c1}{// load alu\PYGZus{}out if load\PYGZus{}alu\PYGZus{}out signal is high, otherwise load from data\PYGZus{}in}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{ld\PYGZus{}x}\PYG{p}{)}
+                    \PYG{n}{x} \PYG{o}{\PYGZlt{}=} \PYG{n}{data\PYGZus{}in}\PYG{p}{;}
+
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{ld\PYGZus{}c}\PYG{p}{)}
+                    \PYG{n}{c} \PYG{o}{\PYGZlt{}=} \PYG{n}{data\PYGZus{}in}\PYG{p}{;}
+            \PYG{k}{end}
+        \PYG{k}{end}
+
+        \PYG{c+c1}{// Output result register}
+        \PYG{k}{always} \PYG{p}{@} \PYG{p}{(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{)} \PYG{k}{begin}
+            \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{resetn}\PYG{p}{)} \PYG{k}{begin}
+                \PYG{n}{data\PYGZus{}result} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{8}\PYG{l+m+mi}{\PYGZsq{}d0}\PYG{p}{;}
+            \PYG{k}{end}
+            \PYG{k}{else}
+                \PYG{k}{if}\PYG{p}{(}\PYG{n}{ld\PYGZus{}r}\PYG{p}{)}
+                    \PYG{n}{data\PYGZus{}result} \PYG{o}{\PYGZlt{}=} \PYG{n}{alu\PYGZus{}out}\PYG{p}{;}
+        \PYG{k}{end}
+
+        \PYG{c+c1}{// The ALU input multiplexers}
+        \PYG{k}{always} \PYG{p}{@(}\PYG{o}{*}\PYG{p}{)}
+        \PYG{k}{begin}
+            \PYG{k}{case} \PYG{p}{(}\PYG{n}{alu\PYGZus{}select\PYGZus{}a}\PYG{p}{)}
+                \PYG{l+m+mh}{2}\PYG{l+m+mi}{\PYGZsq{}d0}\PYG{o}{:}
+                    \PYG{n}{alu\PYGZus{}a} \PYG{o}{=} \PYG{n}{a}\PYG{p}{;}
+                \PYG{l+m+mh}{2}\PYG{l+m+mi}{\PYGZsq{}d1}\PYG{o}{:}
+                    \PYG{n}{alu\PYGZus{}a} \PYG{o}{=} \PYG{n}{b}\PYG{p}{;}
+                \PYG{l+m+mh}{2}\PYG{l+m+mi}{\PYGZsq{}d2}\PYG{o}{:}
+                    \PYG{n}{alu\PYGZus{}a} \PYG{o}{=} \PYG{n}{c}\PYG{p}{;}
+                \PYG{l+m+mh}{2}\PYG{l+m+mi}{\PYGZsq{}d3}\PYG{o}{:}
+                    \PYG{n}{alu\PYGZus{}a} \PYG{o}{=} \PYG{n}{x}\PYG{p}{;}
+                \PYG{k}{default}\PYG{o}{:} \PYG{n}{alu\PYGZus{}a} \PYG{o}{=} \PYG{l+m+mh}{8}\PYG{l+m+mi}{\PYGZsq{}d0}\PYG{p}{;}
+            \PYG{k}{endcase}
+
+            \PYG{k}{case} \PYG{p}{(}\PYG{n}{alu\PYGZus{}select\PYGZus{}b}\PYG{p}{)}
+                \PYG{l+m+mh}{2}\PYG{l+m+mi}{\PYGZsq{}d0}\PYG{o}{:}
+                    \PYG{n}{alu\PYGZus{}b} \PYG{o}{=} \PYG{n}{a}\PYG{p}{;}
+                \PYG{l+m+mh}{2}\PYG{l+m+mi}{\PYGZsq{}d1}\PYG{o}{:}
+                    \PYG{n}{alu\PYGZus{}b} \PYG{o}{=} \PYG{n}{b}\PYG{p}{;}
+                \PYG{l+m+mh}{2}\PYG{l+m+mi}{\PYGZsq{}d2}\PYG{o}{:}
+                    \PYG{n}{alu\PYGZus{}b} \PYG{o}{=} \PYG{n}{c}\PYG{p}{;}
+                \PYG{l+m+mh}{2}\PYG{l+m+mi}{\PYGZsq{}d3}\PYG{o}{:}
+                    \PYG{n}{alu\PYGZus{}b} \PYG{o}{=} \PYG{n}{x}\PYG{p}{;}
+                \PYG{k}{default}\PYG{o}{:} \PYG{n}{alu\PYGZus{}b} \PYG{o}{=} \PYG{l+m+mh}{8}\PYG{l+m+mi}{\PYGZsq{}d0}\PYG{p}{;}
+            \PYG{k}{endcase}
+        \PYG{k}{end}
+
+        \PYG{c+c1}{// The ALU}
+        \PYG{k}{always} \PYG{p}{@(}\PYG{o}{*}\PYG{p}{)}
+        \PYG{k}{begin} \PYG{o}{:} \PYG{n+no}{ALU}
+            \PYG{c+c1}{// alu}
+            \PYG{k}{case} \PYG{p}{(}\PYG{n}{alu\PYGZus{}op}\PYG{p}{)}
+                \PYG{l+m+mh}{0}\PYG{o}{:} \PYG{k}{begin}
+                    \PYG{n}{alu\PYGZus{}out} \PYG{o}{=} \PYG{n}{alu\PYGZus{}a} \PYG{o}{+} \PYG{n}{alu\PYGZus{}b}\PYG{p}{;} \PYG{c+c1}{//performs addition}
+                \PYG{k}{end}
+                \PYG{l+m+mh}{1}\PYG{o}{:} \PYG{k}{begin}
+                    \PYG{n}{alu\PYGZus{}out} \PYG{o}{=} \PYG{n}{alu\PYGZus{}a} \PYG{o}{*} \PYG{n}{alu\PYGZus{}b}\PYG{p}{;} \PYG{c+c1}{//performs multiplication}
+                \PYG{k}{end}
+                \PYG{k}{default}\PYG{o}{:} \PYG{n}{alu\PYGZus{}out} \PYG{o}{=} \PYG{l+m+mh}{8}\PYG{l+m+mi}{\PYGZsq{}d0}\PYG{p}{;}
+            \PYG{k}{endcase}
+        \PYG{k}{end}
+
+    \PYG{k}{endmodule}
+
+    \PYG{c+c1}{// re\PYGZhy{}written using hexadecimal, this is better!}
+    \PYG{c+c1}{// New implementation in the handout}
+    \PYG{k}{module} \PYG{n}{hex\PYGZus{}decoder}\PYG{p}{(}\PYG{n}{hex\PYGZus{}digit}\PYG{p}{,} \PYG{n}{segments}\PYG{p}{);}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{hex\PYGZus{}digit}\PYG{p}{;}
+        \PYG{k}{output} \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{segments}\PYG{p}{;}
+
+        \PYG{k}{always} \PYG{p}{@(}\PYG{o}{*}\PYG{p}{)}
+            \PYG{k}{case} \PYG{p}{(}\PYG{n}{hex\PYGZus{}digit}\PYG{p}{)}
+                \PYG{l+m+mh}{4\PYGZsq{}h0}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b100}\PYG{n}{\PYGZus{}0000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h1}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b111}\PYG{n}{\PYGZus{}1001}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h2}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b010}\PYG{n}{\PYGZus{}0100}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h3}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b011}\PYG{n}{\PYGZus{}0000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h4}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b001}\PYG{n}{\PYGZus{}1001}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h5}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b001}\PYG{n}{\PYGZus{}0010}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h6}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}0010}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h7}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b111}\PYG{n}{\PYGZus{}1000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h8}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}0000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h9}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b001}\PYG{n}{\PYGZus{}1000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hA}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}1000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hB}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}0011}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hC}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b100}\PYG{n}{\PYGZus{}0110}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hD}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b010}\PYG{n}{\PYGZus{}0001}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hE}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}0110}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hF}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}1110}\PYG{p}{;}
+                \PYG{k}{default}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7\PYGZsq{}h7f}\PYG{p}{;}
+            \PYG{k}{endcase}
+    \PYG{k}{endmodule}
+\end{Verbatim}
