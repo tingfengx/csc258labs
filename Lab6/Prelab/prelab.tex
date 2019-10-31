@@ -110,7 +110,10 @@
         assign z = ((y_Q == F) || (y_Q == G));  
     endmodule
 \end{minted}
-\paragraph{4.} Here is my modelsim results
+\paragraph{4.} Here is my modelsim results. Notice that the states are incrementing. 
+\begin{center}
+    \includegraphics[scale=0.19]{q1_modelsim.png}
+\end{center}
 
 \section*{PART II}
 \paragraph{3.} Here is FSM state diagram:
@@ -565,7 +568,33 @@
 \end{minted}
 
 \paragraph{5.} FSM produced by Quartus, see the screen shot
-
+\begin{center}
+    \includegraphics[scale=0.19]{quartus_fsm.png}
+    \includegraphics[scale=0.19]{quartus_statetable.png}
+\end{center}
 \paragraph{6.} ModelSim results, see the below screen shot
+\begin{center}
+    \includegraphics[scale=0.19]{q2_sim.png}
+\end{center}
+
+\begin{Large}
+    Above is simulations that I did when testing modules, but it is rather hard to demonstrate how the module works. I did a simple example below. \newline \newline
+\end{Large}
+
+I will demonstrate this using 
+\begin{align*}
+    A &\gets 7_{10} \equiv 00001111_2 \\
+    B &\gets 5_{10} \equiv 00000101_2 \\
+    C &\gets 3_{10} \equiv 00000011_2 \\
+    x &\gets 1_{10} \equiv 00000001_2
+\end{align*}
+Then, the expected result is
+\begin{equation*}
+    Cx^2 + Bx + A = 15_{10} \equiv 00001111_2
+\end{equation*}
+Indeed, we have
+\begin{center}
+    \includegraphics[scale=0.19]{q2_simple_demo.png}
+\end{center}
 
 \end{document}
