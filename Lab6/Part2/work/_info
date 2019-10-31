@@ -7,38 +7,39 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dD:/University/CSC258/Lab/Lab6/Part2
+dD:/University/CSC258/Lab/Lab6/Part2
 vcontrol
-Z1 !s110 1531173128
+Z0 !s110 1572542407
 !i10b 1
-!s100 k;zlN_jCjaDPPJ1idQQaB3
-ID;XhGZLDQgO>3AIF3Bb^W1
-Z2 VDg1SIo80bB@j0V0VzS_@n1
-R0
-Z3 w1531171652
-Z4 8poly_function.v
-Z5 Fpoly_function.v
-L0 99
-Z6 OV;L;10.4d;61
+!s100 53E_VG>OfQUleZzdhY11=3
+IgI0@;N=2;[n;Dc9W74aXW1
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 d/h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab6/Part2
+Z3 w1572541972
+Z4 8cache.v
+Z5 Fcache.v
+L0 91
+Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1531173128.000000
-Z8 !s107 poly_function.v|
-Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|poly_function.v|
+Z7 !s108 1572542407.000000
+Z8 !s107 cache.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|cache.v|
 !i113 1
 Z10 o-timescale 1ns/1ns
+Z11 tCvgOpt 0
 vdatapath
-R1
-!i10b 1
-!s100 ?iSO3Rgl`P0GeJEcmOWXE3
-IkWBe[ERzN8T_a^D]jk:NS3
-R2
 R0
+!i10b 1
+!s100 4MILLzL^a7_Ug2H^2MH@P3
+I3OifzZM9f4_m>o=_hnKoJ2
+R1
+R2
 R3
 R4
 R5
-L0 228
+L0 210
 R6
 r1
 !s85 0
@@ -48,17 +49,18 @@ R8
 R9
 !i113 1
 R10
+R11
 vhex_decoder
-R1
-!i10b 1
-!s100 AMdaCUPL@j:iAaHIkY[1?3
-II6h2;mN^aQ0393Wcd@Eg23
-R2
 R0
+!i10b 1
+!s100 F@hWDKR^^C1XVkaU2z4zI2
+Iz?b3ka7P7[EV]58Bj2z182
+R1
+R2
 R3
 R4
 R5
-L0 325
+L0 298
 R6
 r1
 !s85 0
@@ -68,17 +70,18 @@ R8
 R9
 !i113 1
 R10
+R11
 vpart2
-R1
-!i10b 1
-!s100 mJU]fEif:ezB6a8LO=Xzj1
-I9JNA:fG]=<=UoVQ51G]`60
-R2
 R0
+!i10b 1
+!s100 @<XZMF;n[ai5H`JH];h7I2
+IV;^67>7TXLXVhg01`e?cF0
+R1
+R2
 R3
 R4
 R5
-L0 45
+L0 37
 R6
 r1
 !s85 0
@@ -88,17 +91,18 @@ R8
 R9
 !i113 1
 R10
+R11
 vpoly_function
-R1
-!i10b 1
-!s100 `ROFE4AN;k@eGzj?>Hj^Q0
-IU4Q[4:U=3UAX_b>AV1WzB0
-R2
 R0
+!i10b 1
+!s100 MQzUlEW84We]9X4f8QhCV3
+I4I;?S?<2Ie`Kc2^cEk0az3
+R1
+R2
 R3
 R4
 R5
-L0 9
+L0 1
 R6
 r1
 !s85 0
@@ -108,3 +112,4 @@ R8
 R9
 !i113 1
 R10
+R11
