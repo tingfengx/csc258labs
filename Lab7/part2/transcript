@@ -1,0 +1,312 @@
+cd /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2
+do part2.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 16:37:26 on Nov 07,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns part2.v 
+# -- Compiling module part2
+# 
+# Top level modules:
+# 	part2
+# End time: 16:37:26 on Nov 07,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -L altera_mf_ver part2 
+# Start time: 16:37:26 on Nov 07,2019
+# Loading work.part2
+# Loading work.vga_adapter
+# ** Error: (vsim-3033) vga_adapter.v(191): Instantiation of 'vga_address_translator' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+#         Searched libraries:
+#             /s/appspace/quartus-18.1.0.625/modelsim_ase/altera/verilog/altera_mf
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# Loading altera_mf_ver.altsyncram
+# ** Error: (vsim-3033) vga_adapter.v(231): Instantiation of 'vga_pll' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+#         Searched libraries:
+#             /s/appspace/quartus-18.1.0.625/modelsim_ase/altera/verilog/altera_mf
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# ** Error: (vsim-3033) vga_adapter.v(239): Instantiation of 'vga_controller' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+#         Searched libraries:
+#             /s/appspace/quartus-18.1.0.625/modelsim_ase/altera/verilog/altera_mf
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# Loading work.datapath
+# Loading work.control
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./part2.do PAUSED at line 3
+do part2.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 16:38:09 on Nov 07,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns part2.v 
+# -- Compiling module part2
+# 
+# Top level modules:
+# 	part2
+# End time: 16:38:09 on Nov 07,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -L altera_mf_ver part2 
+# Start time: 16:37:26 on Nov 07,2019
+# Loading work.part2
+# Loading work.vga_adapter
+# ** Error: (vsim-3033) vga_adapter.v(191): Instantiation of 'vga_address_translator' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+#         Searched libraries:
+#             /s/appspace/quartus-18.1.0.625/modelsim_ase/altera/verilog/altera_mf
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# Loading altera_mf_ver.altsyncram
+# ** Error: (vsim-3033) vga_adapter.v(231): Instantiation of 'vga_pll' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+#         Searched libraries:
+#             /s/appspace/quartus-18.1.0.625/modelsim_ase/altera/verilog/altera_mf
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# ** Error: (vsim-3033) vga_adapter.v(239): Instantiation of 'vga_controller' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+#         Searched libraries:
+#             /s/appspace/quartus-18.1.0.625/modelsim_ase/altera/verilog/altera_mf
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# Loading work.datapath
+# Loading work.control
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./part2.do PAUSED at line 3
+cd /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2
+do part2.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 16:38:37 on Nov 07,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns part2.v 
+# -- Compiling module part2
+# 
+# Top level modules:
+# 	part2
+# End time: 16:38:38 on Nov 07,2019, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -L altera_mf_ver part2 
+# Start time: 16:37:26 on Nov 07,2019
+# Loading work.part2
+# Loading work.vga_adapter
+# ** Error: (vsim-3033) vga_adapter.v(191): Instantiation of 'vga_address_translator' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+#         Searched libraries:
+#             /s/appspace/quartus-18.1.0.625/modelsim_ase/altera/verilog/altera_mf
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# Loading altera_mf_ver.altsyncram
+# ** Error: (vsim-3033) vga_adapter.v(231): Instantiation of 'vga_pll' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+#         Searched libraries:
+#             /s/appspace/quartus-18.1.0.625/modelsim_ase/altera/verilog/altera_mf
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# ** Error: (vsim-3033) vga_adapter.v(239): Instantiation of 'vga_controller' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+#         Searched libraries:
+#             /s/appspace/quartus-18.1.0.625/modelsim_ase/altera/verilog/altera_mf
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# Loading work.datapath
+# Loading work.control
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./part2.do PAUSED at line 3
+do part2.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 16:39:39 on Nov 07,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns part2.v vga_adapter.v vga_address_translator.v vga_controller.v vga_pll.v 
+# -- Compiling module part2
+# -- Compiling module vga_adapter
+# -- Compiling module vga_address_translator
+# -- Compiling module vga_controller
+# -- Compiling module vga_pll
+# 
+# Top level modules:
+# 	part2
+# End time: 16:39:40 on Nov 07,2019, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -L altera_mf_ver part2 
+# Start time: 16:37:26 on Nov 07,2019
+# Loading work.part2
+# Loading work.vga_adapter
+# Loading work.vga_address_translator
+# Loading altera_mf_ver.altsyncram
+# Loading work.vga_pll
+# Loading altera_mf_ver.altpll
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.pll_iobuf
+# Loading work.vga_controller
+# Loading work.datapath
+# Loading work.control
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(215): Unresolved defparam reference to 'WIDTH_A' in VideoMemory.WIDTH_A.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(216): Unresolved defparam reference to 'WIDTH_B' in VideoMemory.WIDTH_B.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(217): Unresolved defparam reference to 'INTENDED_DEVICE_FAMILY' in VideoMemory.INTENDED_DEVICE_FAMILY.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(218): Unresolved defparam reference to 'OPERATION_MODE' in VideoMemory.OPERATION_MODE.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(219): Unresolved defparam reference to 'WIDTHAD_A' in VideoMemory.WIDTHAD_A.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(220): Unresolved defparam reference to 'NUMWORDS_A' in VideoMemory.NUMWORDS_A.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(221): Unresolved defparam reference to 'WIDTHAD_B' in VideoMemory.WIDTHAD_B.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(222): Unresolved defparam reference to 'NUMWORDS_B' in VideoMemory.NUMWORDS_B.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(223): Unresolved defparam reference to 'OUTDATA_REG_B' in VideoMemory.OUTDATA_REG_B.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(224): Unresolved defparam reference to 'ADDRESS_REG_B' in VideoMemory.ADDRESS_REG_B.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(225): Unresolved defparam reference to 'CLOCK_ENABLE_INPUT_A' in VideoMemory.CLOCK_ENABLE_INPUT_A.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(226): Unresolved defparam reference to 'CLOCK_ENABLE_INPUT_B' in VideoMemory.CLOCK_ENABLE_INPUT_B.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(227): Unresolved defparam reference to 'CLOCK_ENABLE_OUTPUT_B' in VideoMemory.CLOCK_ENABLE_OUTPUT_B.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(228): Unresolved defparam reference to 'POWER_UP_UNINITIALIZED' in VideoMemory.POWER_UP_UNINITIALIZED.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# ** Error (suppressible): (vsim-10000) vga_adapter.v(229): Unresolved defparam reference to 'INIT_FILE' in VideoMemory.INIT_FILE.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./part2.do PAUSED at line 3
+do part2.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 16:40:38 on Nov 07,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns part2.v vga_adapter.v vga_address_translator.v vga_controller.v vga_pll.v 
+# -- Compiling module part2
+# -- Compiling module vga_adapter
+# -- Compiling module vga_address_translator
+# -- Compiling module vga_controller
+# -- Compiling module vga_pll
+# 
+# Top level modules:
+# 	part2
+# End time: 16:40:38 on Nov 07,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim part2 
+# Start time: 16:37:26 on Nov 07,2019
+# Loading work.part2
+# Loading work.vga_adapter
+# Loading work.vga_address_translator
+# ** Error: (vsim-3033) vga_adapter.v(202): Instantiation of 'altsyncram' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+#         Searched libraries:
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# Loading work.vga_pll
+# ** Error: (vsim-3033) vga_pll.v(50): Instantiation of 'altpll' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA/mypll File: vga_pll.v
+#         Searched libraries:
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# Loading work.vga_controller
+# Loading work.datapath
+# Loading work.control
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./part2.do PAUSED at line 3
+do part2.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 16:46:34 on Nov 07,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns part2.v vga_adapter.v vga_address_translator.v vga_controller.v vga_pll.v 
+# -- Compiling module part2
+# -- Compiling module vga_adapter
+# -- Compiling module vga_address_translator
+# -- Compiling module vga_controller
+# -- Compiling module vga_pll
+# 
+# Top level modules:
+# 	part2
+# End time: 16:46:34 on Nov 07,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim part2 
+# Start time: 16:37:26 on Nov 07,2019
+# Loading work.part2
+# Loading work.vga_adapter
+# Loading work.vga_address_translator
+# ** Error: (vsim-3033) vga_adapter.v(202): Instantiation of 'altsyncram' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA File: vga_adapter.v
+#         Searched libraries:
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# Loading work.vga_pll
+# ** Error: (vsim-3033) vga_pll.v(50): Instantiation of 'altpll' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /part2/VGA/mypll File: vga_pll.v
+#         Searched libraries:
+#             /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/work
+# Loading work.vga_controller
+# Loading work.datapath
+# Loading work.control
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./part2.do PAUSED at line 3
+do test_comb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 16:46:44 on Nov 07,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns test_comb.v 
+# ** Error: (vlog-7) Failed to open design unit file "test_comb.v" in read mode.
+# No such file or directory. (errno = ENOENT)
+# End time: 16:46:44 on Nov 07,2019, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
+# Error in macro ./test_comb.do line 2
+# /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
+#     while executing
+# "vlog -timescale 1ns/1ns test_comb.v"
+do test_comb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 16:48:33 on Nov 07,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns test_comb.v 
+# -- Compiling module test_comb
+# 
+# Top level modules:
+# 	test_comb
+# End time: 16:48:33 on Nov 07,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim test_comb 
+# Start time: 16:37:26 on Nov 07,2019
+# Loading work.test_comb
+# Loading work.control
+# Loading work.datapath
+# ** Warning: (vsim-3015) test_comb.v(23): [PCDPC] - Port size (7) does not match connection size (8) for port 'y_out'. The port definition is at: datapath.v(6).
+#    Time: 0 ns  Iteration: 0  Instance: /test_comb/d0 File: datapath.v
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Error: invalid command name "force{go}"
+# Error in macro ./test_comb.do line 22
+# invalid command name "force{go}"
+#     while executing
+# "force{go} 0"
+do test_comb.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 16:57:31 on Nov 07,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns test_comb.v 
+# -- Compiling module test_comb
+# 
+# Top level modules:
+# 	test_comb
+# End time: 16:57:31 on Nov 07,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 16:57:33 on Nov 07,2019, Elapsed time: 0:20:07
+# Errors: 31, Warnings: 2
+# vsim test_comb 
+# Start time: 16:57:33 on Nov 07,2019
+# Loading work.test_comb
+# Loading work.control
+# Loading work.datapath
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Error: invalid command name "force{go}"
+# Error in macro ./test_comb.do line 22
+# invalid command name "force{go}"
+#     while executing
+# "force{go} 0"
+quit
+# End time: 17:04:10 on Nov 07,2019, Elapsed time: 0:06:37
+# Errors: 3, Warnings: 1
