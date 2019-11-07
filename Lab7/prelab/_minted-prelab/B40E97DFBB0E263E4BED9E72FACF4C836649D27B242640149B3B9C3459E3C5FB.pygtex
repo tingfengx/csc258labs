@@ -1,0 +1,63 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{c+c1}{// SW[3:0] for data inputs}
+    \PYG{c+c1}{// SW[8:4] for address inputs}
+    \PYG{c+c1}{// SW[9] is write enable}
+    \PYG{c+c1}{// KEY[0] clock}
+
+    \PYG{c+c1}{// show address on HEX5 and HEX4}
+    \PYG{c+c1}{// input data on HEX2}
+    \PYG{c+c1}{// output data on HEX0 (output of memory)}
+
+    \PYG{k}{module} \PYG{n}{ram\PYGZus{}toplv}\PYG{p}{(}
+            \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{9}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{SW}\PYG{p}{,}
+            \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{0}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{KEY}\PYG{p}{,}
+            \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX5}\PYG{p}{,}
+            \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX4}\PYG{p}{,}
+            \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX2}\PYG{p}{,}
+            \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n+no}{HEX0}
+    \PYG{p}{);}
+        \PYG{k+kt}{wire} \PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{ramout}\PYG{p}{;}
+
+        \PYG{n}{ram32x4} \PYG{n}{ram\PYGZus{}block}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{address}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{8}\PYG{o}{:}\PYG{l+m+mh}{4}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{clock}\PYG{p}{(}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{data}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{wren}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{9}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{q}\PYG{p}{(}\PYG{n}{ramout}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{])}
+        \PYG{p}{);}
+
+        \PYG{c+c1}{// The last bit, for hex5}
+        \PYG{n}{hex\PYGZus{}decoder} \PYG{n}{hex5}\PYG{p}{(\PYGZob{}}\PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{p}{,} \PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{8}\PYG{p}{]\PYGZcb{},} \PYG{n+no}{HEX5}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]);}
+        \PYG{n}{hex\PYGZus{}decoder} \PYG{n}{hex4}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{4}\PYG{p}{],} \PYG{n+no}{HEX4}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]);}
+        \PYG{n}{hex\PYGZus{}decoder} \PYG{n}{hex2}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{],} \PYG{n+no}{HEX2}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]);}
+        \PYG{n}{hex\PYGZus{}decoder} \PYG{n}{hex0}\PYG{p}{(}\PYG{n}{ramout}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{],} \PYG{n+no}{HEX0}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]);}
+
+    \PYG{k}{endmodule}
+
+    \PYG{c+c1}{// borrowed from lab6 starter code}
+    \PYG{k}{module} \PYG{n}{hex\PYGZus{}decoder}\PYG{p}{(}\PYG{n}{hex\PYGZus{}digit}\PYG{p}{,} \PYG{n}{segments}\PYG{p}{);}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{hex\PYGZus{}digit}\PYG{p}{;}
+        \PYG{k}{output} \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{segments}\PYG{p}{;}
+
+        \PYG{k}{always} \PYG{p}{@(}\PYG{o}{*}\PYG{p}{)}
+            \PYG{k}{case} \PYG{p}{(}\PYG{n}{hex\PYGZus{}digit}\PYG{p}{)}
+                \PYG{l+m+mh}{4\PYGZsq{}h0}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b100}\PYG{n}{\PYGZus{}0000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h1}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b111}\PYG{n}{\PYGZus{}1001}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h2}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b010}\PYG{n}{\PYGZus{}0100}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h3}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b011}\PYG{n}{\PYGZus{}0000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h4}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b001}\PYG{n}{\PYGZus{}1001}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h5}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b001}\PYG{n}{\PYGZus{}0010}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h6}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}0010}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h7}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b111}\PYG{n}{\PYGZus{}1000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h8}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}0000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}h9}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b001}\PYG{n}{\PYGZus{}1000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hA}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}1000}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hB}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}0011}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hC}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b100}\PYG{n}{\PYGZus{}0110}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hD}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b010}\PYG{n}{\PYGZus{}0001}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hE}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}0110}\PYG{p}{;}
+                \PYG{l+m+mh}{4\PYGZsq{}hF}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{n}{\PYGZus{}1110}\PYG{p}{;}
+                \PYG{k}{default}\PYG{o}{:} \PYG{n}{segments} \PYG{o}{=} \PYG{l+m+mh}{7\PYGZsq{}h7f}\PYG{p}{;}
+            \PYG{k}{endcase}
+    \PYG{k}{endmodule}
+\end{Verbatim}
