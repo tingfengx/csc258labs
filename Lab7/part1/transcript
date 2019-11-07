@@ -1,0 +1,114 @@
+cd /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part1
+ls
+# greybox_tmp
+# ram32x4_bb.v
+# ram32x4.do
+# ram32x4.qip
+# ram32x4.v
+# transcript
+do ram32x4
+# Cannot open macro file: ram32x4
+.do
+# ambiguous command name ".do": .dockbar .dockbar-itk_hull .dockbar.popup .dockbar.tbf0 .dockbar.tbf0.gf .dockbar.tbf0.gf.g1 .dockbar.tbf0.standard .dockbar.tbf0.standard-itk_hull .dockbar.tbf0.standard.tb .dockbar.tbf0.standard.tb.button_0 .dockbar.tbf0.standard.tb.button_0.menu .dockbar.tbf0.standard.tb.button_0.menu.sub .dockbar.tbf0.standard.tb.button_1 .dockbar.tbf0.standard.tb.button_10 .dockbar.tbf0.standard.tb.button_10.menu .dockbar.tbf0.standard.tb.button_10.menu.sub .dockbar.tbf0.standard.tb.button_11 .dockbar.tbf0.standard.tb.button_12 .dockbar.tbf0.standard.tb.button_13 .dockbar.tbf0.standard.tb.button_2 .dockbar.tbf0.standard.tb.button_3 .dockbar.tbf0.standard.tb.button_4 .dockbar.tbf0.standard.tb.button_5 .dockbar.tbf0.standard.tb.button_6 .dockbar.tbf0.standard.tb.button_7 .dockbar.tbf0.standard.tb.button_8 .dockbar.tbf0.standard.tb.button_9 .dockbar.tbf0.standard.tb.f_0 .dockbar.tbf0.standard.tb.f_1 .dockbar.tbf0.standard.tb.f_10 .dockbar.tbf0.standard.tb.f_11 .dockbar.tbf0.standard.tb.f_12 .dockbar.tbf0.standard.tb.f_13 .dockbar.tbf0.standard.tb.f_14 .dockbar.tbf0.standard.tb.f_15 .dockbar.tbf0.standard.tb.f_2 .dockbar.tbf0.standard.tb.f_3 .dockbar.tbf0.standard.tb.f_4 .dockbar.tbf0.standard.tb.f_5 .dockbar.tbf0.standard.tb.f_6 .dockbar.tbf0.standard.tb.f_7 .dockbar.tbf0.standard.tb.f_8 .dockbar.tbf0.standard.tb.f_9 .dockbar.tbf0.standard.tb.spacer_0 .dockbar.tbf0.standard.tb.spacer_1 .dockbar.tbf1 .dockbar.tbf1.compile .dockbar.tbf1.compile-itk_hull .dockbar.tbf1.compile.tb .dockbar.tbf1.compile.tb.button_14 .dockbar.tbf1.compile.tb.button_15 .dockbar.tbf1.compile.tb.button_16 .dockbar.tbf1.compile.tb.button_17 .dockbar.tbf1.compile.tb.button_18 .dockbar.tbf1.compile.tb.f_0 .dockbar.tbf1.compile.tb.f_1 .dockbar.tbf1.compile.tb.f_2 .dockbar.tbf1.compile.tb.f_3 .dockbar.tbf1.compile.tb.f_4 .dockbar.tbf1.gf .dockbar.tbf1.gf.g1 .dockbar.tbf2 .dockbar.tbf2.gf .dockbar.tbf2.gf.g1 .dockbar.tbf2.simulate .dockbar.tbf2.simulate-itk_hull .dockbar.tbf2.simulate.tb .dockbar.tbf2.simulate.tb.button_19 .dockbar.tbf2.simulate.tb.button_20 .dockbar.tbf2.simulate.tb.button_21 .dockbar.tbf2.simulate.tb.button_22 .dockbar.tbf2.simulate.tb.button_23 .dockbar.tbf2.simulate.tb.button_24 .dockbar.tbf2.simulate.tb.button_25 .dockbar.tbf2.simulate.tb.button_26 .dockbar.tbf2.simulate.tb.button_27 .dockbar.tbf2.simulate.tb.button_28 .dockbar.tbf2.simulate.tb.button_29 .dockbar.tbf2.simulate.tb.button_30 .dockbar.tbf2.simulate.tb.button_31 .dockbar.tbf2.simulate.tb.p .dockbar.tbf2.simulate.tb.p-itk_hull .dockbar.tbf2.simulate.tb.p.label .dockbar.tbf2.simulate.tb.p.lwchildsite .dockbar.tbf2.simulate.tb.p.lwchildsite.efchildsite .dockbar.tbf2.simulate.tb.p.lwchildsite.efchildsite.downarrow .dockbar.tbf2.simulate.tb.p.lwchildsite.efchildsite.uparrow .dockbar.tbf2.simulate.tb.p.lwchildsite.entry .dockbar.tbf2.simulate.tb.spacer_2 .dockbar.tbf2.simulate.tb.spacer_3 .dockbar.tbf3 .dockbar.tbf3.gf .dockbar.tbf3.gf.g1 .dockbar.tbf3.step .dockbar.tbf3.step-itk_hull .dockbar.tbf3.step.tb .dockbar.tbf3.step.tb.button_32 .dockbar.tbf3.step.tb.button_33 .dockbar.tbf3.step.tb.button_34 .dockbar.tbf3.step.tb.button_35 .dockbar.tbf3.step.tb.button_35.menu .dockbar.tbf3.step.tb.button_36 .dockbar.tbf3.step.tb.button_37 .dockbar.tbf3.step.tb.f_0 .dockbar.tbf3.step.tb.f_1 .dockbar.tbf3.step.tb.f_2 .dockbar.tbf3.step.tb.f_3 .dockbar.tbf3.step.tb.f_4 .dockbar.tbf3.step.tb.f_5 .dockbar.tbf3.step.tb.f_6 .dockbar.tbf3.step.tb.spacer_4 .dockbar.tbf4 .dockbar.tbf4.gf .dockbar.tbf4.gf.g1 .dockbar.tbf4.profile .dockbar.tbf4.profile-itk_hull .dockbar.tbf4.profile.tb .dockbar.tbf4.profile.tb.button_38 .dockbar.tbf4.profile.tb.button_39 .dockbar.tbf4.profile.tb.button_40 .dockbar.tbf4.profile.tb.p .dockbar.tbf4.profile.tb.p-itk_hull .dockbar.tbf4.profile.tb.p.label .dockbar.tbf4.profile.tb.p.lwchildsite .dockbar.tbf4.profile.tb.p.lwchildsite.efchildsite .dockbar.tbf4.profile.tb.p.lwchildsite.efchildsite.downarrow .dockbar.tbf4.profile.tb.p.lwchildsite.efchildsite.uparrow .dockbar.tbf4.profile.tb.p.lwchildsite.entry .dockbar.tbf5 .dockbar.tbf5.coverage .dockbar.tbf5.coverage-itk_hull .dockbar.tbf5.coverage.tb .dockbar.tbf5.coverage.tb.button_41 .dockbar.tbf5.coverage.tb.button_42 .dockbar.tbf5.coverage.tb.button_43 .dockbar.tbf5.coverage.tb.button_44 .dockbar.tbf5.coverage.tb.button_45 .dockbar.tbf5.coverage.tb.button_46 .dockbar.tbf5.coverage.tb.button_47 .dockbar.tbf5.coverage.tb.button_48 .dockbar.tbf5.coverage.tb.p .dockbar.tbf5.coverage.tb.p-itk_hull .dockbar.tbf5.coverage.tb.p.label .dockbar.tbf5.coverage.tb.p.lwchildsite .dockbar.tbf5.coverage.tb.p.lwchildsite.efchildsite .dockbar.tbf5.coverage.tb.p.lwchildsite.efchildsite.downarrow .dockbar.tbf5.coverage.tb.p.lwchildsite.efchildsite.uparrow .dockbar.tbf5.coverage.tb.p.lwchildsite.entry .dockbar.tbf5.gf .dockbar.tbf5.gf.g1 .dockbar.tbf6 .dockbar.tbf6.gf .dockbar.tbf6.gf.g1 .dockbar.tbf6.layout .dockbar.tbf6.layout-itk_hull .dockbar.tbf6.layout.tb .dockbar.tbf6.layout.tb.f_0 .dockbar.tbf6.layout.tb.l .dockbar.tbf6.layout.tb.l-itk_hull .dockbar.tbf6.layout.tb.l.label .dockbar.tbf6.layout.tb.l.lwchildsite .dockbar.tbf6.layout.tb.l.lwchildsite.efchildsite .dockbar.tbf6.layout.tb.l.lwchildsite.efchildsite.arrowBtn .dockbar.tbf6.layout.tb.l.lwchildsite.efchildsite.popup .dockbar.tbf6.layout.tb.l.lwchildsite.efchildsite.popup.list .dockbar.tbf6.layout.tb.l.lwchildsite.efchildsite.popup.list-itk_hull .dockbar.tbf6.layout.tb.l.lwchildsite.efchildsite.popup.list.label .dockbar.tbf6.layout.tb.l.lwchildsite.efchildsite.popup.list.lwchildsite .dockbar.tbf6.layout.tb.l.lwchildsite.efchildsite.popup.list.lwchildsite.horizsb .dockbar.tbf6.layout.tb.l.lwchildsite.efchildsite.popup.list.lwchildsite.listbox .dockbar.tbf6.layout.tb.l.lwchildsite.efchildsite.popup.list.lwchildsite.vertsb .dockbar.tbf6.layout.tb.l.lwchildsite.entry .dockbar.tbf7 .dockbar.tbf7.changeColumn .dockbar.tbf7.changeColumn-itk_hull .dockbar.tbf7.changeColumn.tb .dockbar.tbf7.changeColumn.tb.f_0 .dockbar.tbf7.changeColumn.tb.l .dockbar.tbf7.changeColumn.tb.l-itk_hull .dockbar.tbf7.changeColumn.tb.l.label .dockbar.tbf7.changeColumn.tb.l.lwchildsite .dockbar.tbf7.changeColumn.tb.l.lwchildsite.efchildsite .dockbar.tbf7.changeColumn.tb.l.lwchildsite.efchildsite.arrowBtn .dockbar.tbf7.changeColumn.tb.l.lwchildsite.efchildsite.popup .dockbar.tbf7.changeColumn.tb.l.lwchildsite.efchildsite.popup.list .dockbar.tbf7.changeColumn.tb.l.lwchildsite.efchildsite.popup.list-itk_hull .dockbar.tbf7.changeColumn.tb.l.lwchildsite.efchildsite.popup.list.label .dockbar.tbf7.changeColumn.tb.l.lwchildsite.efchildsite.popup.list.lwchildsite .dockbar.tbf7.changeColumn.tb.l.lwchildsite.efchildsite.popup.list.lwchildsite.horizsb .dockbar.tbf7.changeColumn.tb.l.lwchildsite.efchildsite.popup.list.lwchildsite.listbox .dockbar.tbf7.changeColumn.tb.l.lwchildsite.efchildsite.popup.list.lwchildsite.vertsb .dockbar.tbf7.changeColumn.tb.l.lwchildsite.entry .dockbar.tbf7.gf .dockbar.tbf7.gf.g1 .dockbar.tbf8 .dockbar.tbf8.bookmarks .dockbar.tbf8.bookmarks-itk_hull .dockbar.tbf8.bookmarks.tb .dockbar.tbf8.bookmarks.tb.button_49 .dockbar.tbf8.bookmarks.tb.button_49.menu .dockbar.tbf8.bookmarks.tb.button_49.menu.sub .dockbar.tbf8.bookmarks.tb.button_50 .dockbar.tbf8.bookmarks.tb.button_50.menu .dockbar.tbf8.bookmarks.tb.button_50.menu.sub .dockbar.tbf8.bookmarks.tb.button_51 .dockbar.tbf8.bookmarks.tb.button_52 .dockbar.tbf8.bookmarks.tb.button_52.menu .dockbar.tbf8.bookmarks.tb.button_52.menu.sub .dockbar.tbf8.bookmarks.tb.f_0 .dockbar.tbf8.bookmarks.tb.f_1 .dockbar.tbf8.bookmarks.tb.f_2 .dockbar.tbf8.bookmarks.tb.f_3 .dockbar.tbf8.bookmarks.tb.f_4 .dockbar.tbf8.bookmarks.tb.mb .dockbar.tbf8.bookmarks.tb.mb.menu .dockbar.tbf8.gf .dockbar.tbf8.gf.g1
+
+
+
+
+
+do ram32x4.do
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:32:20 on Nov 06,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns ram.v 
+# ** Error: (vlog-7) Failed to open design unit file "ram.v" in read mode.
+# No such file or directory. (errno = ENOENT)
+# End time: 20:32:20 on Nov 06,2019, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
+# Error in macro ./ram32x4.do line 2
+# /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
+#     while executing
+# "vlog -timescale 1ns/1ns ram.v"
+do ram32x4.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:37:47 on Nov 06,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns ram32x4.v 
+# -- Compiling module ram32x4
+# 
+# Top level modules:
+# 	ram32x4
+# End time: 20:37:48 on Nov 06,2019, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -L altera_mf_ver ram32x4 
+# Start time: 20:37:48 on Nov 06,2019
+# Loading work.ram32x4
+# Loading altera_mf_ver.altsyncram
+# Loading altera_mf_ver.altsyncram_body
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+do ram32x4.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:40:24 on Nov 06,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns ram32x4.v 
+# -- Compiling module ram32x4
+# 
+# Top level modules:
+# 	ram32x4
+# End time: 20:40:24 on Nov 06,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 20:40:26 on Nov 06,2019, Elapsed time: 0:02:38
+# Errors: 0, Warnings: 1
+# vsim -L altera_mf_ver ram32x4 
+# Start time: 20:40:26 on Nov 06,2019
+# Loading work.ram32x4
+# Loading altera_mf_ver.altsyncram
+# Loading altera_mf_ver.altsyncram_body
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+do ram32x4.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:49:07 on Nov 06,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns ram32x4.v 
+# -- Compiling module ram32x4
+# 
+# Top level modules:
+# 	ram32x4
+# End time: 20:49:07 on Nov 06,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 20:49:08 on Nov 06,2019, Elapsed time: 0:08:42
+# Errors: 0, Warnings: 1
+# vsim -L altera_mf_ver ram32x4 
+# Start time: 20:49:08 on Nov 06,2019
+# Loading work.ram32x4
+# Loading altera_mf_ver.altsyncram
+# Loading altera_mf_ver.altsyncram_body
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+do ram32x4.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:52:35 on Nov 06,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns ram32x4.v 
+# -- Compiling module ram32x4
+# 
+# Top level modules:
+# 	ram32x4
+# End time: 20:52:35 on Nov 06,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 20:52:36 on Nov 06,2019, Elapsed time: 0:03:28
+# Errors: 0, Warnings: 1
+# vsim -L altera_mf_ver ram32x4 
+# Start time: 20:52:36 on Nov 06,2019
+# Loading work.ram32x4
+# Loading altera_mf_ver.altsyncram
+# Loading altera_mf_ver.altsyncram_body
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# End time: 21:48:42 on Nov 06,2019, Elapsed time: 0:56:06
+# Errors: 0, Warnings: 1

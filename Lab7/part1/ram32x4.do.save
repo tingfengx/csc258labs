@@ -1,0 +1,32 @@
+vlib work
+vlog -timescale 1ns/1ns ram32x4.v
+vsim -L altera_mf_ver ram32x4
+log {/*}
+add wave {/*}
+force {wren} 0 0, 1 10 -r 20
+
+#write
+force {wren} 1
+force {address} 11111
+force {data} 1111
+run 20ns
+force {address} 00001
+force {data} 0001
+run 20ns
+force {address} 00010
+force {data} 0010
+run 20ns
+force {address} 00011
+force {data} 0011
+run 20ns
+
+#read
+force {wren} 0
+force {address} 00000
+run 20ns
+force {address} 00001
+run 20ns
+force {address} 00010
+run 20ns
+force {address} 00011
+run 20ps
