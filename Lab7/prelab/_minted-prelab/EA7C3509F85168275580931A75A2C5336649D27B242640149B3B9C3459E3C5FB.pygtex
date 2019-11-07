@@ -1,0 +1,61 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k}{module} \PYG{n}{datapath}\PYG{p}{(}
+        \PYG{k}{input} \PYG{n}{clk}\PYG{p}{,} \PYG{n}{resetn}\PYG{p}{,} \PYG{n}{ld\PYGZus{}x}\PYG{p}{,} \PYG{n}{ld\PYGZus{}y}\PYG{p}{,} \PYG{n}{ld\PYGZus{}color}\PYG{p}{,}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{color\PYGZus{}in}\PYG{p}{,}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{coordinate}\PYG{p}{,}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{x\PYGZus{}out}\PYG{p}{,}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{y\PYGZus{}out}\PYG{p}{,}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{color\PYGZus{}out}
+    \PYG{p}{);}
+
+        \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{x}\PYG{p}{;}
+        \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{y}\PYG{p}{;}
+        \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{color}\PYG{p}{;}
+        \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{x\PYGZus{}pos}\PYG{p}{;}
+        \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{y\PYGZus{}pos}\PYG{p}{;}
+
+        \PYG{c+c1}{//reset or load}
+        \PYG{k}{always} \PYG{p}{@(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{)} \PYG{k}{begin}
+            \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{resetn}\PYG{p}{)} \PYG{k}{begin}
+                \PYG{n}{x} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{8}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+                \PYG{n}{y} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{7}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+                \PYG{n}{color} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+            \PYG{k}{end}
+            \PYG{c+c1}{// the load signals tells if we are loading}
+            \PYG{c+c1}{// or we are just printing the square}
+            \PYG{k}{else} \PYG{k}{begin}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{ld\PYGZus{}x}\PYG{p}{)}
+                    \PYG{n}{x} \PYG{o}{\PYGZlt{}=} \PYG{p}{\PYGZob{}}\PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{,} \PYG{n}{coordinate}\PYG{p}{\PYGZcb{};}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{ld\PYGZus{}y}\PYG{p}{)}
+                    \PYG{n}{y} \PYG{o}{\PYGZlt{}=} \PYG{n}{coordinate}\PYG{p}{;}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{ld\PYGZus{}color}\PYG{p}{)}
+                    \PYG{n}{color} \PYG{o}{\PYGZlt{}=} \PYG{n}{color\PYGZus{}in}\PYG{p}{;}
+            \PYG{k}{end}
+        \PYG{k}{end}
+        \PYG{c+c1}{//logic for  drawing the square}
+        \PYG{k}{always} \PYG{p}{@(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{)} \PYG{k}{begin}
+            \PYG{k}{if} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{resetn}\PYG{p}{)} \PYG{k}{begin}
+                \PYG{n}{x\PYGZus{}pos} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{;}
+                \PYG{n}{y\PYGZus{}pos} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{;}
+            \PYG{k}{end}
+            \PYG{k}{else}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{x\PYGZus{}pos} \PYG{o}{==} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b11} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{y\PYGZus{}pos} \PYG{o}{==} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b11}\PYG{p}{)} \PYG{k}{begin}
+                    \PYG{n}{x\PYGZus{}pos} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{;}
+                    \PYG{n}{y\PYGZus{}pos} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{;}
+                \PYG{k}{end}
+                \PYG{k}{else} \PYG{k}{begin}
+                    \PYG{k}{if} \PYG{p}{(}\PYG{n}{x\PYGZus{}pos} \PYG{o}{==} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b11}\PYG{p}{)} \PYG{k}{begin}
+                        \PYG{n}{x\PYGZus{}pos} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mh}{2}\PYG{l+m+mb}{\PYGZsq{}b00}\PYG{p}{;}
+                        \PYG{n}{y\PYGZus{}pos} \PYG{o}{\PYGZlt{}=} \PYG{n}{y\PYGZus{}pos} \PYG{o}{+} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                    \PYG{k}{end}
+                    \PYG{k}{else} \PYG{k}{begin}
+                        \PYG{n}{x\PYGZus{}pos} \PYG{o}{\PYGZlt{}=} \PYG{n}{x\PYGZus{}pos} \PYG{o}{+} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b1}\PYG{p}{;}
+                    \PYG{k}{end}
+                \PYG{k}{end}
+        \PYG{k}{end}
+
+        \PYG{k}{assign} \PYG{n}{x\PYGZus{}out} \PYG{o}{=} \PYG{n}{x} \PYG{o}{+} \PYG{n}{x\PYGZus{}pos}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{];}
+        \PYG{k}{assign} \PYG{n}{y\PYGZus{}out} \PYG{o}{=} \PYG{n}{y} \PYG{o}{+} \PYG{n}{y\PYGZus{}pos}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{];}
+        \PYG{k}{assign} \PYG{n}{color\PYGZus{}out} \PYG{o}{=} \PYG{n}{color}\PYG{p}{;}
+    \PYG{k}{endmodule}
+\end{Verbatim}

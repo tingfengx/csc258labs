@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k}{module} \PYG{n}{test\PYGZus{}comb}\PYG{p}{(}
+        \PYG{k}{input} \PYG{n}{clk}\PYG{p}{,} \PYG{n}{resetn}\PYG{p}{,} \PYG{n}{load}\PYG{p}{,} \PYG{n}{go}\PYG{p}{,}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{color\PYGZus{}in}\PYG{p}{,}
+        \PYG{k}{input} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{coordinate}\PYG{p}{,}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{x\PYGZus{}out}\PYG{p}{,}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{y\PYGZus{}out}\PYG{p}{,}
+        \PYG{k}{output} \PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{color\PYGZus{}out}
+        \PYG{p}{);}
+
+        \PYG{k+kt}{wire} \PYG{n}{ld\PYGZus{}x}\PYG{p}{,} \PYG{n}{ld\PYGZus{}y}\PYG{p}{,} \PYG{n}{ld\PYGZus{}color}\PYG{p}{,} \PYG{n}{writeEn}\PYG{p}{;}
+
+        \PYG{n}{control} \PYG{n}{c0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{resetn}\PYG{p}{(}\PYG{n}{resetn}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{load}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{go}\PYG{p}{(}\PYG{n}{go}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}x}\PYG{p}{(}\PYG{n}{ld\PYGZus{}x}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}y}\PYG{p}{(}\PYG{n}{ld\PYGZus{}y}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}color}\PYG{p}{(}\PYG{n}{ld\PYGZus{}color}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{writeEn}\PYG{p}{(}\PYG{n}{writeEn}\PYG{p}{)}	
+        \PYG{p}{);}
+
+        \PYG{n}{datapath} \PYG{n}{d0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n}{clk}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{color\PYGZus{}in}\PYG{p}{(}\PYG{n}{color\PYGZus{}in}\PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{resetn}\PYG{p}{(}\PYG{n}{resetn}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}x}\PYG{p}{(}\PYG{n}{ld\PYGZus{}x}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}y}\PYG{p}{(}\PYG{n}{ld\PYGZus{}y}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}color}\PYG{p}{(}\PYG{n}{ld\PYGZus{}color}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{coordinate}\PYG{p}{(}\PYG{n}{coordinate}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{x\PYGZus{}out}\PYG{p}{(}\PYG{n}{x\PYGZus{}out}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{y\PYGZus{}out}\PYG{p}{(}\PYG{n}{y\PYGZus{}out}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{color\PYGZus{}out}\PYG{p}{(}\PYG{n}{color\PYGZus{}out}\PYG{p}{)}
+        \PYG{p}{);}
+
+    \PYG{k}{endmodule}
+\end{Verbatim}

@@ -1,0 +1,63 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{c+c1}{/// FSM module control, instantieation is c0}
+    \PYG{k}{module} \PYG{n}{control}\PYG{p}{(}
+        \PYG{k}{input} \PYG{n}{clk}\PYG{p}{,}
+        \PYG{k}{input} \PYG{n}{resetn}\PYG{p}{,}
+        \PYG{k}{input} \PYG{n}{load}\PYG{p}{,}
+        \PYG{k}{input} \PYG{n}{go}\PYG{p}{,}
+        \PYG{k}{output} \PYG{k+kt}{reg} \PYG{n}{ld\PYGZus{}x}\PYG{p}{,}
+        \PYG{k}{output} \PYG{k+kt}{reg} \PYG{n}{ld\PYGZus{}y}\PYG{p}{,}
+        \PYG{k}{output} \PYG{k+kt}{reg} \PYG{n}{ld\PYGZus{}color}\PYG{p}{,}
+        \PYG{k}{output} \PYG{k+kt}{reg} \PYG{n}{writeEn}\PYG{p}{);}
+
+        \PYG{k+kt}{reg} \PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{current\PYGZus{}state}\PYG{p}{,} \PYG{n}{next\PYGZus{}state}\PYG{p}{;}
+
+        \PYG{k}{localparam}  \PYG{n+no}{LOAD\PYGZus{}X} \PYG{o}{=} \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b000}\PYG{p}{,}
+                        \PYG{n+no}{LOAD\PYGZus{}X\PYGZus{}WAIT} \PYG{o}{=} \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b001}\PYG{p}{,}
+                        \PYG{n+no}{LOAD\PYGZus{}Y\PYGZus{}C} \PYG{o}{=} \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b010}\PYG{p}{,}
+                        \PYG{n+no}{LOAD\PYGZus{}Y\PYGZus{}C\PYGZus{}WAIT} \PYG{o}{=} \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b011}\PYG{p}{,}
+                        \PYG{n+no}{DO\PYGZus{}PLOT} \PYG{o}{=} \PYG{l+m+mh}{3}\PYG{l+m+mb}{\PYGZsq{}b100}\PYG{p}{;}
+        \PYG{c+c1}{//reset}
+        \PYG{k}{always} \PYG{p}{@(}\PYG{k}{posedge} \PYG{n}{clk}\PYG{p}{)} \PYG{k}{begin}
+            \PYG{k}{if} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{resetn}\PYG{p}{)}
+                \PYG{n}{current\PYGZus{}state} \PYG{o}{\PYGZlt{}=} \PYG{n+no}{LOAD\PYGZus{}X}\PYG{p}{;}
+            \PYG{k}{else}
+                \PYG{n}{current\PYGZus{}state} \PYG{o}{\PYGZlt{}=} \PYG{n}{next\PYGZus{}state}\PYG{p}{;}
+        \PYG{k}{end}
+        \PYG{c+c1}{//state table}
+        \PYG{k}{always} \PYG{p}{@(}\PYG{o}{*}\PYG{p}{)}
+        \PYG{k}{begin}\PYG{o}{:} \PYG{n}{state\PYGZus{}table}
+            \PYG{k}{case} \PYG{p}{(}\PYG{n}{current\PYGZus{}state}\PYG{p}{)}
+                \PYG{n+nl}{LOAD\PYGZus{}X:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{load} \PYG{o}{?} \PYG{n+no}{LOAD\PYGZus{}X\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{LOAD\PYGZus{}X}\PYG{p}{;}
+                \PYG{n+nl}{LOAD\PYGZus{}X\PYGZus{}WAIT:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{load} \PYG{o}{?} \PYG{n+no}{LOAD\PYGZus{}X\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{LOAD\PYGZus{}Y\PYGZus{}C}\PYG{p}{;}
+                \PYG{n+nl}{LOAD\PYGZus{}Y\PYGZus{}C:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{go} \PYG{o}{?} \PYG{n+no}{LOAD\PYGZus{}Y\PYGZus{}C\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{LOAD\PYGZus{}Y\PYGZus{}C}\PYG{p}{;}
+                \PYG{n+nl}{LOAD\PYGZus{}Y\PYGZus{}C\PYGZus{}WAIT:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{go} \PYG{o}{?} \PYG{n+no}{LOAD\PYGZus{}Y\PYGZus{}C\PYGZus{}WAIT} \PYG{o}{:} \PYG{n+no}{DO\PYGZus{}PLOT}\PYG{p}{;}
+                \PYG{n+nl}{DO\PYGZus{}PLOT:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n}{load} \PYG{o}{?} \PYG{n+no}{LOAD\PYGZus{}X} \PYG{o}{:} \PYG{n+no}{DO\PYGZus{}PLOT}\PYG{p}{;}
+                \PYG{k}{default}\PYG{o}{:} \PYG{n}{next\PYGZus{}state} \PYG{o}{=} \PYG{n+no}{LOAD\PYGZus{}X}\PYG{p}{;}
+            \PYG{k}{endcase}
+        \PYG{k}{end}
+
+        \PYG{k}{always} \PYG{p}{@(}\PYG{o}{*}\PYG{p}{)}
+        \PYG{k}{begin}
+            \PYG{n}{ld\PYGZus{}x} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+            \PYG{n}{ld\PYGZus{}y} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+            \PYG{n}{ld\PYGZus{}color} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{l+m+mb}{\PYGZsq{}b0}\PYG{p}{;}
+            \PYG{n}{writeEn} \PYG{o}{=} \PYG{l+m+mh}{0}\PYG{p}{;}
+            \PYG{k}{case} \PYG{p}{(}\PYG{n}{current\PYGZus{}state}\PYG{p}{)}
+                \PYG{n+nl}{LOAD\PYGZus{}X:} \PYG{n}{ld\PYGZus{}x} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{p}{;}
+                \PYG{n+nl}{LOAD\PYGZus{}X\PYGZus{}WAIT:} \PYG{n}{ld\PYGZus{}x} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{p}{;}
+                \PYG{n+nl}{LOAD\PYGZus{}Y\PYGZus{}C:} \PYG{k}{begin}
+                        \PYG{n}{ld\PYGZus{}x} \PYG{o}{=} \PYG{l+m+mh}{0}\PYG{p}{;}
+                        \PYG{n}{ld\PYGZus{}y} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{p}{;}
+                        \PYG{n}{ld\PYGZus{}color} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{p}{;}
+                \PYG{k}{end}
+                \PYG{n+nl}{LOAD\PYGZus{}Y\PYGZus{}C\PYGZus{}WAIT:} \PYG{k}{begin}
+                        \PYG{n}{ld\PYGZus{}x} \PYG{o}{=} \PYG{l+m+mh}{0}\PYG{p}{;}
+                        \PYG{n}{ld\PYGZus{}y} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{p}{;}
+                        \PYG{n}{ld\PYGZus{}color} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{p}{;}
+                \PYG{k}{end}
+                \PYG{n+nl}{DO\PYGZus{}PLOT:} \PYG{n}{writeEn} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{p}{;}
+            \PYG{k}{endcase}
+        \PYG{k}{end}
+    \PYG{k}{endmodule}
+\end{Verbatim}

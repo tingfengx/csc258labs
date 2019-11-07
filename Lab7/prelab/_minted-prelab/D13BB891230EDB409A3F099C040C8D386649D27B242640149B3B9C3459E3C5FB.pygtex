@@ -1,0 +1,98 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{c+c1}{// Part 2 skeleton}
+    \PYG{k}{module} \PYG{n}{part2}
+        \PYG{p}{(}
+            \PYG{n+no}{CLOCK\PYGZus{}50}\PYG{p}{,}						\PYG{c+c1}{//	On Board 50 MHz}
+            \PYG{c+c1}{// Your inputs and outputs here}
+        \PYG{n+no}{KEY}\PYG{p}{,}
+        \PYG{n+no}{SW}\PYG{p}{,}
+            \PYG{c+c1}{// The ports below are for the VGA output.  Do not change.}
+            \PYG{n+no}{VGA\PYGZus{}CLK}\PYG{p}{,}   						\PYG{c+c1}{//	VGA Clock}
+            \PYG{n+no}{VGA\PYGZus{}HS}\PYG{p}{,}							\PYG{c+c1}{//	VGA H\PYGZus{}SYNC}
+            \PYG{n+no}{VGA\PYGZus{}VS}\PYG{p}{,}							\PYG{c+c1}{//	VGA V\PYGZus{}SYNC}
+            \PYG{n+no}{VGA\PYGZus{}BLANK\PYGZus{}N}\PYG{p}{,}					\PYG{c+c1}{//	VGA BLANK}
+            \PYG{n+no}{VGA\PYGZus{}SYNC\PYGZus{}N}\PYG{p}{,}						\PYG{c+c1}{//	VGA SYNC}
+            \PYG{n+no}{VGA\PYGZus{}R}\PYG{p}{,}   						\PYG{c+c1}{//	VGA Red[9:0]}
+            \PYG{n+no}{VGA\PYGZus{}G}\PYG{p}{,}	 						\PYG{c+c1}{//	VGA Green[9:0]}
+            \PYG{n+no}{VGA\PYGZus{}B}   							\PYG{c+c1}{//	VGA Blue[9:0]}
+        \PYG{p}{);}
+
+        \PYG{k}{input}			\PYG{n+no}{CLOCK\PYGZus{}50}\PYG{p}{;}				\PYG{c+c1}{//	50 MHz}
+        \PYG{k}{input}   \PYG{p}{[}\PYG{l+m+mh}{9}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}   \PYG{n+no}{SW}\PYG{p}{;}
+        \PYG{k}{input}   \PYG{p}{[}\PYG{l+m+mh}{3}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}   \PYG{n+no}{KEY}\PYG{p}{;}
+
+        \PYG{c+c1}{// Declare your inputs and outputs here}
+        \PYG{c+c1}{// Do not change the following outputs}
+        \PYG{k}{output}			\PYG{n+no}{VGA\PYGZus{}CLK}\PYG{p}{;}   				\PYG{c+c1}{//	VGA Clock}
+        \PYG{k}{output}			\PYG{n+no}{VGA\PYGZus{}HS}\PYG{p}{;}					\PYG{c+c1}{//	VGA H\PYGZus{}SYNC}
+        \PYG{k}{output}			\PYG{n+no}{VGA\PYGZus{}VS}\PYG{p}{;}					\PYG{c+c1}{//	VGA V\PYGZus{}SYNC}
+        \PYG{k}{output}			\PYG{n+no}{VGA\PYGZus{}BLANK\PYGZus{}N}\PYG{p}{;}			\PYG{c+c1}{//	VGA BLANK}
+        \PYG{k}{output}			\PYG{n+no}{VGA\PYGZus{}SYNC\PYGZus{}N}\PYG{p}{;}				\PYG{c+c1}{//	VGA SYNC}
+        \PYG{k}{output}	\PYG{p}{[}\PYG{l+m+mh}{9}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}	\PYG{n+no}{VGA\PYGZus{}R}\PYG{p}{;}   				\PYG{c+c1}{//	VGA Red[9:0]}
+        \PYG{k}{output}	\PYG{p}{[}\PYG{l+m+mh}{9}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}	\PYG{n+no}{VGA\PYGZus{}G}\PYG{p}{;}	 				\PYG{c+c1}{//	VGA Green[9:0]}
+        \PYG{k}{output}	\PYG{p}{[}\PYG{l+m+mh}{9}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]}	\PYG{n+no}{VGA\PYGZus{}B}\PYG{p}{;}   				\PYG{c+c1}{//	VGA Blue[9:0]}
+
+        \PYG{k+kt}{wire} \PYG{n}{resetn}\PYG{p}{;}
+        \PYG{k}{assign} \PYG{n}{resetn} \PYG{o}{=} \PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{0}\PYG{p}{];}
+
+        \PYG{c+c1}{// Create the colour, x, y and writeEn wires that are inputs to the controller.}
+        \PYG{k+kt}{wire} \PYG{p}{[}\PYG{l+m+mh}{2}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{colour}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{p}{[}\PYG{l+m+mh}{7}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{x}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]} \PYG{n}{y}\PYG{p}{;}
+        \PYG{k+kt}{wire} \PYG{n}{writeEn}\PYG{p}{;}
+
+        \PYG{c+c1}{// Create an Instance of a VGA controller \PYGZhy{} there can be only one!}
+        \PYG{c+c1}{// Define the number of colours as well as the initial background}
+        \PYG{c+c1}{// image file (.MIF) for the controller.}
+        \PYG{n}{vga\PYGZus{}adapter} \PYG{n+no}{VGA}\PYG{p}{(}
+                \PYG{p}{.}\PYG{n}{resetn}\PYG{p}{(}\PYG{n}{resetn}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n}{clock}\PYG{p}{(}\PYG{n+no}{CLOCK\PYGZus{}50}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n}{colour}\PYG{p}{(}\PYG{n}{colour}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n}{x}\PYG{p}{(}\PYG{n}{x}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n}{y}\PYG{p}{(}\PYG{n}{y}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{writeEn}\PYG{p}{),}
+                \PYG{c+cm}{/* Signals for the DAC to drive the monitor. */}
+                \PYG{p}{.}\PYG{n+no}{VGA\PYGZus{}R}\PYG{p}{(}\PYG{n+no}{VGA\PYGZus{}R}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n+no}{VGA\PYGZus{}G}\PYG{p}{(}\PYG{n+no}{VGA\PYGZus{}G}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n+no}{VGA\PYGZus{}B}\PYG{p}{(}\PYG{n+no}{VGA\PYGZus{}B}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n+no}{VGA\PYGZus{}HS}\PYG{p}{(}\PYG{n+no}{VGA\PYGZus{}HS}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n+no}{VGA\PYGZus{}VS}\PYG{p}{(}\PYG{n+no}{VGA\PYGZus{}VS}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n+no}{VGA\PYGZus{}BLANK}\PYG{p}{(}\PYG{n+no}{VGA\PYGZus{}BLANK\PYGZus{}N}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n+no}{VGA\PYGZus{}SYNC}\PYG{p}{(}\PYG{n+no}{VGA\PYGZus{}SYNC\PYGZus{}N}\PYG{p}{),}
+                \PYG{p}{.}\PYG{n+no}{VGA\PYGZus{}CLK}\PYG{p}{(}\PYG{n+no}{VGA\PYGZus{}CLK}\PYG{p}{));}
+            \PYG{k}{defparam} \PYG{n+no}{VGA}\PYG{p}{.}\PYG{n+no}{RESOLUTION} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}160x120\PYGZdq{}}\PYG{p}{;}
+            \PYG{k}{defparam} \PYG{n+no}{VGA}\PYG{p}{.}\PYG{n+no}{MONOCHROME} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}FALSE\PYGZdq{}}\PYG{p}{;}
+            \PYG{k}{defparam} \PYG{n+no}{VGA}\PYG{p}{.}\PYG{n+no}{BITS\PYGZus{}PER\PYGZus{}COLOUR\PYGZus{}CHANNEL} \PYG{o}{=} \PYG{l+m+mh}{1}\PYG{p}{;}
+            \PYG{k}{defparam} \PYG{n+no}{VGA}\PYG{p}{.}\PYG{n+no}{BACKGROUND\PYGZus{}IMAGE} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}black.mif\PYGZdq{}}\PYG{p}{;}
+
+        \PYG{c+c1}{// Put your code here. Your code should produce signals x,y,colour and writeEn/plot}
+        \PYG{c+c1}{// for the VGA controller, in addition to any other functionality your design may require.}
+
+    \PYG{c+c1}{// Instansiate datapath}
+        \PYG{n}{datapath} \PYG{n}{d0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n+no}{CLOCK\PYGZus{}50}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{color\PYGZus{}in}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{9}\PYG{o}{:}\PYG{l+m+mh}{7}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{resetn}\PYG{p}{(}\PYG{n}{resetn}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}x}\PYG{p}{(}\PYG{n}{ld\PYGZus{}x}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}y}\PYG{p}{(}\PYG{n}{ld\PYGZus{}y}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}color}\PYG{p}{(}\PYG{n}{ld\PYGZus{}color}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{coordinate}\PYG{p}{(}\PYG{n+no}{SW}\PYG{p}{[}\PYG{l+m+mh}{6}\PYG{o}{:}\PYG{l+m+mh}{0}\PYG{p}{]),}
+            \PYG{p}{.}\PYG{n}{x\PYGZus{}out}\PYG{p}{(}\PYG{n}{x}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{y\PYGZus{}out}\PYG{p}{(}\PYG{n}{y}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{color\PYGZus{}out}\PYG{p}{(}\PYG{n}{colour}\PYG{p}{)}
+        \PYG{p}{);}
+
+    \PYG{c+c1}{// Instansiate FSM control}
+    \PYG{n}{control} \PYG{n}{c0}\PYG{p}{(}
+            \PYG{p}{.}\PYG{n}{clk}\PYG{p}{(}\PYG{n+no}{CLOCK\PYGZus{}50}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{resetn}\PYG{p}{(}\PYG{n}{resetn}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{load}\PYG{p}{(}\PYG{o}{!}\PYG{p}{(}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{3}\PYG{p}{])),}
+            \PYG{p}{.}\PYG{n}{go}\PYG{p}{(}\PYG{o}{!}\PYG{p}{(}\PYG{n+no}{KEY}\PYG{p}{[}\PYG{l+m+mh}{1}\PYG{p}{])),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}x}\PYG{p}{(}\PYG{n}{ld\PYGZus{}x}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}y}\PYG{p}{(}\PYG{n}{ld\PYGZus{}y}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{ld\PYGZus{}color}\PYG{p}{(}\PYG{n}{ld\PYGZus{}color}\PYG{p}{),}
+            \PYG{p}{.}\PYG{n}{writeEn}\PYG{p}{(}\PYG{n}{writeEn}\PYG{p}{)}	
+        \PYG{p}{);}
+
+    \PYG{k}{endmodule}
+\end{Verbatim}
