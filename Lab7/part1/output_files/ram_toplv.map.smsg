@@ -1,0 +1,4 @@
+Info (10281): Verilog HDL Declaration information at ram_toplv.v(13): object "HEX5" differs only in case from object "hex5" in the same scope File: /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part1/ram_toplv.v Line: 13
+Info (10281): Verilog HDL Declaration information at ram_toplv.v(14): object "HEX4" differs only in case from object "hex4" in the same scope File: /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part1/ram_toplv.v Line: 14
+Info (10281): Verilog HDL Declaration information at ram_toplv.v(15): object "HEX2" differs only in case from object "hex2" in the same scope File: /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part1/ram_toplv.v Line: 15
+Info (10281): Verilog HDL Declaration information at ram_toplv.v(17): object "HEX0" differs only in case from object "hex0" in the same scope File: /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part1/ram_toplv.v Line: 17
