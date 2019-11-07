@@ -1,0 +1,10 @@
+
+
+/h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/vga_adapter/vga_pll.v
+
+Nov 07 02PM:54:28>: Error in CNX file format.
+
+Error messages are listed in file
+/h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2/vga_adapter/vga_pll.cnxerr.
+
+Can't create the custom megafunction variation file(s)

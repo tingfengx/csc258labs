@@ -1,322 +1,98 @@
-cd Desktop/csc258/
-# couldn't change working directory to "Desktop/csc258/": no such file or directory
-dc ../csc258labs/Lab4
-# dc: Will not attempt to process directory ../csc258labs/Lab4
-cd ../csc258labs/Lab4
-do RegisterALU.do
-# Cannot open macro file: RegisterALU.do
-cd RegisterALU
-do RegisterALU.do
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:48:34 on Oct 06,2019
-# vlog -reportprogress 300 -timescale 1ns/1ns RegisterALU.v 
-# -- Compiling module RegisterALU
-# ** Error: (vlog-13069) RegisterALU.v(39): near "=": syntax error, unexpected '=', expecting ++ or --.
-# ** Error: RegisterALU.v(52): (vlog-2730) Undefined variable: 'register'.
-# ** Error: RegisterALU.v(54): (vlog-2730) Undefined variable: 'ALUOut'.
-# -- Compiling module hexdecoder
-# -- Compiling module hex0
-# -- Compiling module hex1
-# -- Compiling module hex2
-# -- Compiling module hex3
-# -- Compiling module hex4
-# -- Compiling module hex5
-# -- Compiling module hex6
-# -- Compiling module rippleadder4
-# -- Compiling module fulladder
-# -- Compiling module my_XOR
-# -- Compiling module mux2to1
-# End time: 19:48:35 on Oct 06,2019, Elapsed time: 0:00:01
-# Errors: 3, Warnings: 0
-# ** Error: /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-# Error in macro ./RegisterALU.do line 9
-# /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-#     while executing
-# "vlog -timescale 1ns/1ns RegisterALU.v"
-do RegisterALU.do
+cd /h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab6/Part2
+ls
+# c5_pin_model_dump.txt
+# db
+# incremental_db
+# output_files
+# poly_function_assignment_defaults.qdf
+# poly_function.qpf
+# poly_function.qsf
+# poly_function.qsf.bak
+# poly_function.v
+# poly_function.v.bak
+# simulation
+# vsim.wlf
+# wave.do
+# wave.do.bak
+# work
+do wave.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:51:30 on Oct 06,2019
-# vlog -reportprogress 300 -timescale 1ns/1ns RegisterALU.v 
-# -- Compiling module RegisterALU
-# ** Error: RegisterALU.v(52): (vlog-2730) Undefined variable: 'register'.
-# ** Error: RegisterALU.v(54): (vlog-2730) Undefined variable: 'ALUOut'.
-# -- Compiling module hexdecoder
-# -- Compiling module hex0
-# -- Compiling module hex1
-# -- Compiling module hex2
-# -- Compiling module hex3
-# -- Compiling module hex4
-# -- Compiling module hex5
-# -- Compiling module hex6
-# -- Compiling module rippleadder4
-# -- Compiling module fulladder
-# -- Compiling module my_XOR
-# -- Compiling module mux2to1
-# End time: 19:51:31 on Oct 06,2019, Elapsed time: 0:00:01
-# Errors: 2, Warnings: 0
-# ** Error: /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-# Error in macro ./RegisterALU.do line 9
-# /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-#     while executing
-# "vlog -timescale 1ns/1ns RegisterALU.v"
-do RegisterALU.do
-# ** Warning: (vlib-34) Library already exists at "work".
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:52:11 on Oct 06,2019
-# vlog -reportprogress 300 -timescale 1ns/1ns RegisterALU.v 
-# -- Compiling module RegisterALU
-# ** Error (suppressible): RegisterALU.v(14): (vlog-2388) 'ALUout' already declared in this scope (RegisterALU).
-# ** Error (suppressible): RegisterALU.v(15): (vlog-2388) 'Register' already declared in this scope (RegisterALU).
-# ** Error: RegisterALU.v(54): (vlog-2730) Undefined variable: 'register'.
-# ** Error: RegisterALU.v(56): (vlog-2730) Undefined variable: 'ALUOut'.
-# -- Compiling module hexdecoder
-# -- Compiling module hex0
-# -- Compiling module hex1
-# -- Compiling module hex2
-# -- Compiling module hex3
-# -- Compiling module hex4
-# -- Compiling module hex5
-# -- Compiling module hex6
-# -- Compiling module rippleadder4
-# -- Compiling module fulladder
-# -- Compiling module my_XOR
-# -- Compiling module mux2to1
-# End time: 19:52:12 on Oct 06,2019, Elapsed time: 0:00:01
-# Errors: 4, Warnings: 0
-# ** Error: /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-# Error in macro ./RegisterALU.do line 9
-# /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-#     while executing
-# "vlog -timescale 1ns/1ns RegisterALU.v"
-do RegisterALU.do
-# ** Warning: (vlib-34) Library already exists at "work".
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:52:41 on Oct 06,2019
-# vlog -reportprogress 300 -timescale 1ns/1ns RegisterALU.v 
-# -- Compiling module RegisterALU
-# ** Error: RegisterALU.v(52): (vlog-2730) Undefined variable: 'register'.
-# ** Error: RegisterALU.v(54): (vlog-2730) Undefined variable: 'ALUOut'.
-# -- Compiling module hexdecoder
-# -- Compiling module hex0
-# -- Compiling module hex1
-# -- Compiling module hex2
-# -- Compiling module hex3
-# -- Compiling module hex4
-# -- Compiling module hex5
-# -- Compiling module hex6
-# -- Compiling module rippleadder4
-# -- Compiling module fulladder
-# -- Compiling module my_XOR
-# -- Compiling module mux2to1
-# End time: 19:52:42 on Oct 06,2019, Elapsed time: 0:00:01
-# Errors: 2, Warnings: 0
-# ** Error: /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-# Error in macro ./RegisterALU.do line 9
-# /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-#     while executing
-# "vlog -timescale 1ns/1ns RegisterALU.v"
-do RegisterALU.do
-# ** Warning: (vlib-34) Library already exists at "work".
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:53:20 on Oct 06,2019
-# vlog -reportprogress 300 -timescale 1ns/1ns RegisterALU.v 
-# -- Compiling module RegisterALU
-# ** Error: RegisterALU.v(54): (vlog-2730) Undefined variable: 'ALUOut'.
-# -- Compiling module hexdecoder
-# -- Compiling module hex0
-# -- Compiling module hex1
-# -- Compiling module hex2
-# -- Compiling module hex3
-# -- Compiling module hex4
-# -- Compiling module hex5
-# -- Compiling module hex6
-# -- Compiling module rippleadder4
-# -- Compiling module fulladder
-# -- Compiling module my_XOR
-# -- Compiling module mux2to1
-# End time: 19:53:20 on Oct 06,2019, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-# ** Error: /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-# Error in macro ./RegisterALU.do line 9
-# /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-#     while executing
-# "vlog -timescale 1ns/1ns RegisterALU.v"
-do RegisterALU.do
-# ** Warning: (vlib-34) Library already exists at "work".
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:53:35 on Oct 06,2019
-# vlog -reportprogress 300 -timescale 1ns/1ns RegisterALU.v 
-# -- Compiling module RegisterALU
-# ** Error: RegisterALU.v(54): (vlog-2730) Undefined variable: 'ALUOut'.
-# -- Compiling module hexdecoder
-# -- Compiling module hex0
-# -- Compiling module hex1
-# -- Compiling module hex2
-# -- Compiling module hex3
-# -- Compiling module hex4
-# -- Compiling module hex5
-# -- Compiling module hex6
-# -- Compiling module rippleadder4
-# -- Compiling module fulladder
-# -- Compiling module my_XOR
-# -- Compiling module mux2to1
-# End time: 19:53:35 on Oct 06,2019, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-# ** Error: /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-# Error in macro ./RegisterALU.do line 9
-# /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-#     while executing
-# "vlog -timescale 1ns/1ns RegisterALU.v"
-do RegisterALU.do
-# ** Warning: (vlib-34) Library already exists at "work".
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:53:50 on Oct 06,2019
-# vlog -reportprogress 300 -timescale 1ns/1ns RegisterALU.v 
-# -- Compiling module RegisterALU
-# ** Error: RegisterALU.v(57): (vlog-2730) Undefined variable: 'ALUOut'.
-# -- Compiling module hexdecoder
-# -- Compiling module hex0
-# -- Compiling module hex1
-# -- Compiling module hex2
-# -- Compiling module hex3
-# -- Compiling module hex4
-# -- Compiling module hex5
-# -- Compiling module hex6
-# -- Compiling module rippleadder4
-# -- Compiling module fulladder
-# -- Compiling module my_XOR
-# -- Compiling module mux2to1
-# End time: 19:53:50 on Oct 06,2019, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-# ** Error: /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-# Error in macro ./RegisterALU.do line 9
-# /s/appspace/quartus-18.1.0.625/modelsim_ase/linuxaloem/vlog failed.
-#     while executing
-# "vlog -timescale 1ns/1ns RegisterALU.v"
-do RegisterALU.do
-# ** Warning: (vlib-34) Library already exists at "work".
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:53:58 on Oct 06,2019
-# vlog -reportprogress 300 -timescale 1ns/1ns RegisterALU.v 
-# -- Compiling module RegisterALU
-# ** Warning: RegisterALU.v(51): (vlog-2576) [BSOB] - Bit-select into 'SW' is out of bounds.
-# -- Compiling module hexdecoder
-# -- Compiling module hex0
-# -- Compiling module hex1
-# -- Compiling module hex2
-# -- Compiling module hex3
-# -- Compiling module hex4
-# -- Compiling module hex5
-# -- Compiling module hex6
-# -- Compiling module rippleadder4
-# -- Compiling module fulladder
-# -- Compiling module my_XOR
-# -- Compiling module mux2to1
+# Start time: 12:33:17 on Oct 31,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns poly_function.v 
+# -- Compiling module poly_function
+# -- Compiling module part2
+# -- Compiling module control
+# -- Compiling module datapath
+# -- Compiling module hex_decoder
 # 
 # Top level modules:
-# 	RegisterALU
-# End time: 19:53:58 on Oct 06,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 1
-# vsim RegisterALU 
-# Start time: 19:53:58 on Oct 06,2019
-# Loading work.RegisterALU
-# Loading work.rippleadder4
-# Loading work.fulladder
-# Loading work.mux2to1
-# Loading work.my_XOR
-# Loading work.hexdecoder
-# Loading work.hex0
-# Loading work.hex1
-# Loading work.hex2
-# Loading work.hex3
-# Loading work.hex4
-# Loading work.hex5
-# Loading work.hex6
-# ** Error: (vsim-3734) Index value 9 is out of range 7 downto 0.
-# Error in macro ./RegisterALU.do line 30
-# ** Error: (vsim-3734) Index value 9 is out of range 7 downto 0.
-#     while executing
-# "force {SW[9]} 0"
-do RegisterALU.do
-# ** Warning: (vlib-34) Library already exists at "work".
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:55:05 on Oct 06,2019
-# vlog -reportprogress 300 -timescale 1ns/1ns RegisterALU.v 
-# -- Compiling module RegisterALU
-# -- Compiling module hexdecoder
-# -- Compiling module hex0
-# -- Compiling module hex1
-# -- Compiling module hex2
-# -- Compiling module hex3
-# -- Compiling module hex4
-# -- Compiling module hex5
-# -- Compiling module hex6
-# -- Compiling module rippleadder4
-# -- Compiling module fulladder
-# -- Compiling module my_XOR
-# -- Compiling module mux2to1
-# 
-# Top level modules:
-# 	RegisterALU
-# End time: 19:55:05 on Oct 06,2019, Elapsed time: 0:00:00
+# 	poly_function
+# End time: 12:33:18 on Oct 31,2019, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
-# End time: 19:55:06 on Oct 06,2019, Elapsed time: 0:01:08
-# Errors: 2, Warnings: 0
-# vsim RegisterALU 
-# Start time: 19:55:06 on Oct 06,2019
-# Loading work.RegisterALU
-# Loading work.rippleadder4
-# Loading work.fulladder
-# Loading work.mux2to1
-# Loading work.my_XOR
-# Loading work.hexdecoder
-# Loading work.hex0
-# Loading work.hex1
-# Loading work.hex2
-# Loading work.hex3
-# Loading work.hex4
-# Loading work.hex5
-# Loading work.hex6
+# vsim poly_function 
+# Start time: 12:33:18 on Oct 31,2019
+# Loading work.poly_function
+# Loading work.part2
+# Loading work.control
+# Loading work.datapath
+# Loading work.hex_decoder
 # ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-do RegisterALU.do
+do wave.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 20:11:53 on Oct 06,2019
-# vlog -reportprogress 300 -timescale 1ns/1ns RegisterALU.v 
-# -- Compiling module RegisterALU
-# -- Compiling module hexdecoder
-# -- Compiling module hex0
-# -- Compiling module hex1
-# -- Compiling module hex2
-# -- Compiling module hex3
-# -- Compiling module hex4
-# -- Compiling module hex5
-# -- Compiling module hex6
-# -- Compiling module rippleadder4
-# -- Compiling module fulladder
-# -- Compiling module my_XOR
-# -- Compiling module mux2to1
+# Start time: 12:55:05 on Oct 31,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns poly_function.v 
+# -- Compiling module poly_function
+# -- Compiling module part2
+# -- Compiling module control
+# -- Compiling module datapath
+# -- Compiling module hex_decoder
 # 
 # Top level modules:
-# 	RegisterALU
-# End time: 20:11:56 on Oct 06,2019, Elapsed time: 0:00:03
+# 	poly_function
+# End time: 12:55:06 on Oct 31,2019, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
-# End time: 20:11:57 on Oct 06,2019, Elapsed time: 0:16:51
+# End time: 12:55:07 on Oct 31,2019, Elapsed time: 0:21:49
 # Errors: 0, Warnings: 1
-# vsim RegisterALU 
-# Start time: 20:11:57 on Oct 06,2019
-# Loading work.RegisterALU
-# Loading work.rippleadder4
-# Loading work.fulladder
-# Loading work.mux2to1
-# Loading work.my_XOR
-# Loading work.hexdecoder
-# Loading work.hex0
-# Loading work.hex1
-# Loading work.hex2
-# Loading work.hex3
-# Loading work.hex4
-# Loading work.hex5
-# Loading work.hex6
+# vsim poly_function 
+# Start time: 12:55:07 on Oct 31,2019
+# Loading work.poly_function
+# Loading work.part2
+# Loading work.control
+# Loading work.datapath
+# Loading work.hex_decoder
 # ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# WARNING: No extended dataflow license exists
+do wave.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 13:07:53 on Oct 31,2019
+# vlog -reportprogress 300 -timescale 1ns/1ns poly_function.v 
+# -- Compiling module poly_function
+# -- Compiling module part2
+# -- Compiling module control
+# -- Compiling module datapath
+# -- Compiling module hex_decoder
+# 
+# Top level modules:
+# 	poly_function
+# End time: 13:07:53 on Oct 31,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 13:07:53 on Oct 31,2019, Elapsed time: 0:12:46
+# Errors: 0, Warnings: 2
+# vsim poly_function 
+# Start time: 13:07:53 on Oct 31,2019
+# Loading work.poly_function
+# Loading work.part2
+# Loading work.control
+# Loading work.datapath
+# Loading work.hex_decoder
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+stop
+stop
+dp wave
+# invalid command name "dp"
+exit
+# End time: 13:13:44 on Oct 31,2019, Elapsed time: 0:05:51
+# Errors: 1, Warnings: 1

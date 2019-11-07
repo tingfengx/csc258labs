@@ -1,0 +1,178 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/h/u10/c7/00/xiatingf/Desktop/csc258labs/Lab7/part2
+vcontrol
+!s110 1573162530
+!i10b 1
+!s100 l[WQ7Ezmo61e:=`3K9gKT1
+IOP=Xo`;:dXL2^^283fFAH1
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1573160507
+8control.v
+Fcontrol.v
+L0 2
+Z2 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1573162530.000000
+!s107 control.v|
+!s90 -reportprogress|300|-timescale|1ns/1ns|control.v|
+!i113 1
+Z3 o-timescale 1ns/1ns
+Z4 tCvgOpt 0
+vdatapath
+!s110 1573158804
+!i10b 1
+!s100 9JMD5VP;zE9kUBe:@8B1?0
+Im3Mz=geR:bPO>:D5TgZ4V0
+R1
+R0
+w1573156161
+8datapath.v
+Fdatapath.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1573158804.000000
+!s107 datapath.v|
+!s90 -reportprogress|300|-timescale|1ns/1ns|datapath.v|
+!i113 1
+R3
+R4
+vpart2
+Z5 !s110 1573163194
+!i10b 1
+!s100 S5:LK=0;YSJOB_UG^kLcW1
+I0PD0SHiWb@7YgFinM<PAN3
+R1
+R0
+w1573161526
+8part2.v
+Fpart2.v
+L0 3
+R2
+r1
+!s85 0
+31
+Z6 !s108 1573163194.000000
+Z7 !s107 vga_pll.v|vga_controller.v|vga_address_translator.v|vga_adapter.v|part2.v|
+Z8 !s90 -reportprogress|300|-timescale|1ns/1ns|part2.v|vga_adapter.v|vga_address_translator.v|vga_controller.v|vga_pll.v|
+!i113 1
+R3
+R4
+vtest_comb
+!s110 1573163851
+!i10b 1
+!s100 MODAR9kE3BaIc6>e<MQ[Z3
+Ic]4JzNi@o]8VkZ<7b:lgI1
+R1
+R0
+w1573163848
+8test_comb.v
+Ftest_comb.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1573163851.000000
+!s107 test_comb.v|
+!s90 -reportprogress|300|-timescale|1ns/1ns|test_comb.v|
+!i113 1
+R3
+R4
+vvga_adapter
+R5
+!i10b 1
+!s100 hkUB>b^KO=L]9S>>Mk8nj1
+IXfZ97z9?L:4@nzhMhJ8DD0
+R1
+R0
+Z9 w1573088456
+8vga_adapter.v
+Fvga_adapter.v
+L0 78
+R2
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R3
+R4
+vvga_address_translator
+R5
+!i10b 1
+!s100 3:mV5[e>gggL@b>hDoKk>3
+ISPfQ2Zm^@Zl66a3_SUKZF2
+R1
+R0
+R9
+8vga_address_translator.v
+Fvga_address_translator.v
+L0 4
+R2
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R3
+R4
+vvga_controller
+R5
+!i10b 1
+!s100 cVLRelV0U7V5APo3<>Q0P3
+Id1;g[PKWUlYU4LT3UT@<N2
+R1
+R0
+R9
+8vga_controller.v
+Fvga_controller.v
+L0 9
+R2
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R3
+R4
+vvga_pll
+R5
+!i10b 1
+!s100 4XSTjD`VEiamX^n1@5J`b3
+IzQM`zm>88jCI6S6DI_f@40
+R1
+R0
+R9
+8vga_pll.v
+Fvga_pll.v
+L0 36
+R2
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R3
+R4
